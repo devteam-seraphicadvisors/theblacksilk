@@ -1,0 +1,822 @@
+{
+  "young-members": {
+    "id": "young-members",
+    "name": "Young Members Committee",
+    "slug": "young-members",
+    "description": "Empowering the next generation of legal professionals with technology skills and networking opportunities.",
+    "fullDescription": "The Young Members Committee is dedicated to supporting early-career legal professionals in navigating the intersection of law and technology. We provide mentorship, networking opportunities, and skill development programs specifically designed for lawyers with 0-10 years of experience.\n\nOur mission is to bridge the gap between traditional legal education and the modern technology-driven legal landscape. Through workshops, mentorship programs, and networking events, we help young professionals build the skills they need to thrive in today's legal environment.\n\nWe focus on creating an inclusive community where young legal professionals can connect, learn, and grow together. Our programs are designed to address the unique challenges faced by early-career lawyers in today's rapidly evolving legal landscape.",
+    "members": 4,
+    "status": "Accepting Members",
+    "chair": {
+      "name": "Neil Dawes",
+      "designation": "Chair, Young Members Committee",
+      "email": "neil.dawes@theblacksilk.org",
+      "linkedin": "https://linkedin.com/in/neildawes",
+      "image": "/members/neil-dawes.png",
+      "bio": "Neil is a technology lawyer with over 8 years of experience in legal tech innovation. He leads initiatives to bridge the gap between traditional legal practice and modern technology solutions."
+    },
+    "coChair": {
+      "name": "Raviroop Singh Kohli",
+      "designation": "Co-Chair, Young Members Committee",
+      "email": "raviroop.kohli@theblacksilk.org",
+      "linkedin": "https://linkedin.com/in/raviroop-singh-kohli",
+      "image": "/members/raviroop-singh-kohli.png",
+      "bio": "Raviroop specializes in data privacy law and has been instrumental in developing training programs for young legal professionals entering the tech law space."
+    },
+    "established": "2023",
+    "focus": [
+      "Career Development",
+      "Networking",
+      "Skill Building",
+      "Mentorship",
+      "Technology Training"
+    ],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "UserCheck",
+    "color": "blue",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      },
+      {
+        "name": "Prerna Kapoor",
+        "role": "Member",
+        "image": "/members/prerna-kapoor.png",
+        "linkedin": "https://linkedin.com/in/priyakumari"
+      },
+      {
+        "name": "Subhash Bhutoria",
+        "role": "Member",
+        "image": "/members/subhash-bhutoria.png",
+        "linkedin": "https://linkedin.com/in/subhashchandra"
+      },
+      {
+        "name": "Dev Black Silk",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "#"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "data-policy": {
+    "id": "data-policy",
+    "name": "Data Policy Committee",
+    "slug": "data-policy",
+    "description": "Developing comprehensive data governance policies and privacy frameworks for the legal sector.",
+    "fullDescription": "The Data Policy Committee focuses on creating robust frameworks for data governance, privacy protection, and compliance in the legal industry. Our work spans policy development, regulatory analysis, and practical implementation guidance for legal professionals and organizations.\n\nWe work closely with government bodies, regulatory authorities, and industry stakeholders to shape data protection policies that balance innovation with privacy rights. Our committee members are experts in data protection law, cybersecurity, and regulatory compliance.",
+    "members": 4,
+    "status": "Open for Collaboration",
+    "chair": {
+      "name": "Mayank Grover",
+      "designation": "Chair, Data Policy Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/mayank-grover.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Subhash Bhutoria",
+      "designation": "Co-Chair, Data Policy Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/subhash-bhutoria.png",
+      "bio": ""
+    },
+    "established": "2024",
+    "focus": [
+      "Data Governance",
+      "Privacy Laws",
+      "Compliance",
+      "Policy Development",
+      "Regulatory Analysis"
+    ],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Database",
+    "color": "orange",
+    "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Roopa Somasundaran",
+        "role": "Member",
+        "image": "/members/roopa-somasundaran.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      },
+      {
+        "name": "Prerna Kapoor",
+        "role": "Member",
+        "image": "/members/prerna-kapoor.png",
+        "linkedin": "https://linkedin.com/in/priyakumari"
+      },
+      {
+        "name": "Raviroop Singh Kohli",
+        "role": "Member",
+        "image": "/members/raviroop-singh-kohli.png",
+        "linkedin": "https://linkedin.com/in/raviroop-singh-kohli"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "ai-ethics": {
+    "id": "ai-ethics",
+    "name": "AI Ethics Committee",
+    "slug": "ai-ethics",
+    "description": "Establishing ethical guidelines and best practices for artificial intelligence implementation in legal services.",
+    "fullDescription": "The AI Ethics Committee is at the forefront of developing comprehensive ethical frameworks for the responsible use of artificial intelligence in legal practice. We address the complex challenges that arise when AI technologies intersect with legal services, ensuring that innovation serves justice while protecting fundamental rights.\n\nOur work encompasses the development of ethical guidelines, risk assessment frameworks, and best practices for AI implementation in legal organizations. We collaborate with technologists, ethicists, and legal practitioners to create standards that promote transparency, fairness, and accountability in AI-driven legal solutions.",
+    "members": 3,
+    "status": "Accepting Members",
+    "chair": {
+      "name": "Dr. Aisha Patel",
+      "designation": "Chair, AI Ethics Committee",
+      "email": "aisha.patel@theblacksilk.org",
+      "linkedin": "https://linkedin.com/in/aishapatel",
+      "image": "/placeholder.svg?height=200&width=200",
+      "bio": "Dr. Patel is a renowned expert in AI ethics and legal technology with over 10 years of experience in developing ethical frameworks for emerging technologies."
+    },
+    "established": "2024",
+    "focus": [
+      "AI Ethics",
+      "Algorithmic Bias",
+      "Transparency",
+      "Accountability",
+      "Risk Assessment"
+    ],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Brain",
+    "color": "purple",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Rohit Sharma",
+        "role": "Vice Chair",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/rohitsharma"
+      },
+      {
+        "name": "Priya Nair",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/priyanair"
+      },
+      {
+        "name": "Amit Gupta",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/amitgupta"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "cybersecurity": {
+    "id": "cybersecurity",
+    "name": "Cybersecurity Committee",
+    "slug": "cybersecurity",
+    "description": "Advancing cybersecurity standards and practices for legal organizations and their clients.",
+    "fullDescription": "The Cybersecurity Committee focuses on developing robust security frameworks, incident response protocols, and best practices for protecting sensitive legal information in an increasingly digital world. We address the unique cybersecurity challenges faced by legal organizations and their clients.\n\nOur committee works on creating comprehensive security standards, conducting risk assessments, and providing guidance on emerging cyber threats. We collaborate with cybersecurity experts, legal practitioners, and technology vendors to ensure that legal organizations can operate securely in the digital age.",
+    "members": 4,
+    "status": "Open for Collaboration",
+    "chair": {
+      "name": "Vikram Singh",
+      "designation": "Chair, Cybersecurity Committee",
+      "email": "vikram.singh@theblacksilk.org",
+      "linkedin": "https://linkedin.com/in/vikramsingh",
+      "image": "/placeholder.svg?height=200&width=200",
+      "bio": "Vikram is a cybersecurity expert with over 15 years of experience in protecting legal organizations from cyber threats and developing security frameworks."
+    },
+    "established": "2023",
+    "focus": [
+      "Information Security",
+      "Incident Response",
+      "Risk Assessment",
+      "Compliance",
+      "Threat Intelligence"
+    ],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Shield",
+    "color": "red",
+    "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Sneha Reddy",
+        "role": "Vice Chair",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/snehareddy"
+      },
+      {
+        "name": "Arjun Mehta",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/arjunmehta"
+      },
+      {
+        "name": "Kavya Iyer",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavyaiyer"
+      },
+      {
+        "name": "Ravi Kumar",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/ravikumar"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "sponsorship": {
+    "id": "sponsorship",
+    "name": "Sponsorship Committee",
+    "slug": "sponsorship",
+    "description": "Oversees sponsorship opportunities, partnerships, and fundraising initiatives for The Black Silk.",
+    "fullDescription": "The Sponsorship Committee cultivates relationships with corporate and organizational partners to secure funding and sponsorships for The Black Silk's programs and events. The committee focuses on building sustainable partnerships that align with the organization's mission and values.",
+    "members": 4,
+    "status": "Active",
+    "chair": {
+      "name": "Sukanta Dey",
+      "designation": "Chair, Sponsorship Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/sukanta-dey.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Roopa Somasundaran",
+      "designation": "Co-Chair, Sponsorship Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/roopa-somasundaran.jpg",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Handshake",
+    "color": "green",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "KPS Kohli",
+        "role": "Member",
+        "image": "/members/kps-kohli.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Neil Dawes",
+        "role": "Member",
+        "image": "/members/neil-dawes.png",
+        "linkedin": "https://linkedin.com/in/neildawes"
+      },
+      {
+        "name": "Mayank Grover",
+        "role": "Member",
+        "image": "/members/mayank-grover.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Girija Krishan Varma",
+        "role": "Member",
+        "image": "/members/girija-krishan-varma.png",
+        "linkedin": ""
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "law-firm": {
+    "id": "law-firm",
+    "name": "Law Firm Committee",
+    "slug": "law-firm",
+    "description": "Engages law firms to promote best practices, training, and collaboration.",
+    "fullDescription": "The Law Firm Committee engages law firms to promote best practices, training, and collaboration between private firms and The Black Silk. The committee focuses on building partnerships, knowledge sharing, and professional development initiatives tailored to law firms.",
+    "members": 4,
+    "status": "Active",
+    "chair": {
+      "name": "Girija Krishan Varma",
+      "designation": "Chair, Law Firm Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/girija-krishan-varma.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "KPS Kohli",
+      "designation": "Co-Chair, Law Firm Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/kps-kohli.jpg",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Building",
+    "color": "teal",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Neil Dawes",
+        "role": "Member",
+        "image": "/members/neil-dawes.png",
+        "linkedin": "https://linkedin.com/in/neildawes"
+      },
+      {
+        "name": "Sukanta Dey",
+        "role": "Member",
+        "image": "/members/sukanta-dey.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Mayank Grover",
+        "role": "Member",
+        "image": "/members/mayank-grover.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Roopa Somasundaran",
+        "role": "Member",
+        "image": "/members/roopa-somasundaran.jpg",
+        "linkedin": ""
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "internet": {
+    "id": "internet",
+    "name": "Internet Committee",
+    "slug": "internet",
+    "description": "Focuses on internet policy, infrastructure, and digital access initiatives.",
+    "fullDescription": "The Internet Committee works on internet policy, infrastructure, and initiatives to improve digital access and governance for the legal community. The committee collaborates with technologists and policy makers to advance internet-related programs.",
+    "members": 2,
+    "status": "Active",
+    "chair": {
+      "name": "KPS Kohli",
+      "designation": "Chair, Internet Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/kps-kohli.jpg",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Mayank Grover",
+      "designation": "Co-Chair, Internet Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/mayank-grover.png",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Wifi",
+    "color": "indigo",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      },
+      {
+        "name": "Prerna Kapoor",
+        "role": "Member",
+        "image": "/members/prerna-kapoor.png",
+        "linkedin": "https://linkedin.com/in/priyakumari"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "skill-development": {
+    "id": "skill-development",
+    "name": "Skill Development Committee",
+    "slug": "skill-development",
+    "description": "Designs and runs training, upskilling, and professional development programs for members.",
+    "fullDescription": "The Skill Development Committee focuses on creating and delivering training, workshops, and mentorship programs that help members build practical skills in law and technology. We collaborate with practitioners, trainers, and industry partners to deliver high-quality learning opportunities.",
+    "members": 3,
+    "status": "Active",
+    "chair": {
+      "name": "Roopa Somasundaran",
+      "designation": "Chair, Skill Development Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/roopa-somasundaran.jpg",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Sukanta Dey",
+      "designation": "Co-Chair, Skill Development Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/sukanta-dey.png",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Lightbulb",
+    "color": "cyan",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Mayank Grover",
+        "role": "Member",
+        "image": "/members/mayank-grover.png",
+        "linkedin": ""
+      },
+      {
+        "name": "KPS Kohli",
+        "role": "Member",
+        "image": "/members/kps-kohli.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Girija Krishan Varma",
+        "role": "Member",
+        "image": "/members/girija-krishan-varma.png",
+        "linkedin": ""
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "personal-data": {
+    "id": "personal-data",
+    "name": "Personal Data Committee",
+    "slug": "personal-data",
+    "description": "Focuses on personal data protection, privacy practices and compliance.",
+    "fullDescription": "The Personal Data Committee develops best practices around personal data protection, advises on privacy compliance and works to protect member and stakeholder personal information. The committee collaborates with legal and technical experts to advise on policies and training.",
+    "members": 4,
+    "status": "Active",
+    "chair": {
+      "name": "Mayank Grover",
+      "designation": "Chair, Personal Data Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/mayank-grover.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "KPS Kohli",
+      "designation": "Co-Chair, Personal Data Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/kps-kohli.jpg",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Key",
+    "color": "lime",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Raviroop Singh Kohli",
+        "role": "Member",
+        "image": "/members/raviroop-singh-kohli.png",
+        "linkedin": "https://linkedin.com/in/raviroop-singh-kohli"
+      },
+      {
+        "name": "Neil Dawes",
+        "role": "Member",
+        "image": "/members/neil-dawes.png",
+        "linkedin": "https://linkedin.com/in/neildawes"
+      },
+      {
+        "name": "Roopa Somasundaran",
+        "role": "Member",
+        "image": "/members/roopa-somasundaran.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "community-data": {
+    "id": "community-data",
+    "name": "Community Data Committee",
+    "slug": "community-data",
+    "description": "Works on community data initiatives, outreach and local data projects.",
+    "fullDescription": "The Community Data Committee focuses on community-driven data projects, outreach, and initiatives that improve access to local data and insights for members. The committee partners with community organizations to run projects, events and trainings.",
+    "members": 3,
+    "status": "Active",
+    "chair": {
+      "name": "Subhash Bhutoria",
+      "designation": "Chair, Community Data Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/subhash-bhutoria.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Prerna Kapoor",
+      "designation": "Co-Chair, Community Data Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/prerna-kapoor.png",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Users",
+    "color": "amber",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Roopa Somasundaran",
+        "role": "Member",
+        "image": "/members/roopa-somasundaran.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      },
+      {
+        "name": "Sukanta Dey",
+        "role": "Member",
+        "image": "/members/sukanta-dey.png",
+        "linkedin": ""
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "privacy-rights": {
+    "id": "privacy-rights",
+    "name": "Privacy Rights Committee",
+    "slug": "privacy-rights",
+    "description": "Focuses on privacy rights, compliance and advocacy for personal data protection.",
+    "fullDescription": "The Privacy Rights Committee works to protect privacy rights, advise on compliance, and advocate for policies that protect individuals' personal data. The committee collaborates with legal experts and policy makers to promote privacy best practices.",
+    "members": 4,
+    "status": "Active",
+    "chair": {
+      "name": "KPS Kohli",
+      "designation": "Chair, Privacy Rights Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/kps-kohli.jpg",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Mayank Grover",
+      "designation": "Co-Chair, Privacy Rights Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/mayank-grover.png",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Shield",
+    "color": "purple",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Raviroop Singh Kohli",
+        "role": "Member",
+        "image": "/members/raviroop-singh-kohli.png",
+        "linkedin": "https://linkedin.com/in/raviroop-singh-kohli"
+      },
+      {
+        "name": "Neil Dawes",
+        "role": "Member",
+        "image": "/members/neil-dawes.png",
+        "linkedin": "https://linkedin.com/in/neildawes"
+      },
+      {
+        "name": "Roopa Somasundaran",
+        "role": "Member",
+        "image": "/members/roopa-somasundaran.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Kartik Mittal",
+        "role": "Member",
+        "image": "/placeholder.svg?height=200&width=200",
+        "linkedin": "https://linkedin.com/in/kavitwadhwa"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "pro-bono": {
+    "id": "pro-bono",
+    "name": "Pro-bono Committee",
+    "slug": "pro-bono",
+    "description": "Coordinates pro-bono legal work, clinics and access-to-justice initiatives.",
+    "fullDescription": "The Pro-bono Committee coordinates pro-bono legal assistance, community clinics, and access-to-justice programs. We connect volunteer lawyers with community needs and run training and oversight for pro-bono projects.",
+    "members": 3,
+    "status": "Active",
+    "chair": {
+      "name": "Sukanta Dey",
+      "designation": "Chair, Pro-bono Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/sukanta-dey.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Roopa Somasundaran",
+      "designation": "Co-Chair, Pro-bono Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/roopa-somasundaran.jpg",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Heart",
+    "color": "pink",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "KPS Kohli",
+        "role": "Member",
+        "image": "/members/kps-kohli.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Girija Krishan Varma",
+        "role": "Member",
+        "image": "/members/girija-krishan-varma.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Prerna Kapoor",
+        "role": "Member",
+        "image": "/members/prerna-kapoor.png",
+        "linkedin": "https://linkedin.com/in/priyakumari"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "programs": {
+    "id": "programs",
+    "name": "Programs Committee",
+    "slug": "programs",
+    "description": "Organizes events, conferences and programmatic activities for members.",
+    "fullDescription": "The Programs Committee plans and runs conferences, workshops, webinars, and other member-facing programs that deliver value and foster community engagement.",
+    "members": 4,
+    "status": "Active",
+    "chair": {
+      "name": "Neil Dawes",
+      "designation": "Chair, Programs Committee",
+      "email": "neil.dawes@theblacksilk.org",
+      "linkedin": "https://linkedin.com/in/neildawes",
+      "image": "/members/neil-dawes.png",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Roopa Somasundaran",
+      "designation": "Co-Chair, Programs Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/roopa-somasundaran.jpg",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "Calendar",
+    "color": "violet",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "Sukanta Dey",
+        "role": "Member",
+        "image": "/members/sukanta-dey.png",
+        "linkedin": ""
+      },
+      {
+        "name": "KPS Kohli",
+        "role": "Member",
+        "image": "/members/kps-kohli.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Girija Krishan Varma",
+        "role": "Member",
+        "image": "/members/girija-krishan-varma.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Prerna Kapoor",
+        "role": "Member",
+        "image": "/members/prerna-kapoor.png",
+        "linkedin": "https://linkedin.com/in/priyakumari"
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  },
+  "member-policy": {
+    "id": "member-policy",
+    "name": "Member Policy Committee",
+    "slug": "member-policy",
+    "description": "Develops and advises on member-related policies, engagement and governance.",
+    "fullDescription": "The Member Policy Committee focuses on policies affecting membership, member rights, engagement, and governance. We develop guidance, review membership policies, and advise the board on member-facing rules and standards.",
+    "members": 3,
+    "status": "Active",
+    "chair": {
+      "name": "Roopa Somasundaran",
+      "designation": "Chair, Member Policy Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/roopa-somasundaran.jpg",
+      "bio": ""
+    },
+    "coChair": {
+      "name": "Sukata Dey",
+      "designation": "Co-Chair, Member Policy Committee",
+      "email": "",
+      "linkedin": "",
+      "image": "/members/sukanta-dey.png",
+      "bio": ""
+    },
+    "established": "2025",
+    "focus": [],
+    "nextMeeting": "",
+    "publications": 0,
+    "icon": "DocumentText",
+    "color": "teal",
+    "image": "/placeholder.svg?height=800&width=600",
+    "activities": [],
+    "committeeMembers": [
+      {
+        "name": "KPS Kohli",
+        "role": "Member",
+        "image": "/members/kps-kohli.jpg",
+        "linkedin": ""
+      },
+      {
+        "name": "Mayank Grover",
+        "role": "Member",
+        "image": "/members/mayank-grover.png",
+        "linkedin": ""
+      },
+      {
+        "name": "Girija Krishan Varma",
+        "role": "Member",
+        "image": "/members/girija-krishan-varma.png",
+        "linkedin": ""
+      }
+    ],
+    "recentPublications": [],
+    "upcomingEvents": []
+  }
+}

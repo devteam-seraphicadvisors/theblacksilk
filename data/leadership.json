@@ -1,0 +1,48 @@
+{
+  "executiveBoard": [
+    {
+      "name": "KPS Kohli",
+      "position": "President",
+      "bio": "KPS Kohli is a Partner at Seraphic Advisors, Advocates and Solicitors. He is a trained mediator and has extensive experience in Telecommunications, IT, Media & Entertainment, IPR, Aviation, Litigation, Arbitration & Dispute Resolution, Insolvency, Public Policy, Corporate and Commercial. He has worked with various notable conglomerates and Fortune 500 companies and regularly advises clients on legal matters and the impact on businesses of the changes in policies of the Government. He represents clients before various High Courts, Tribunals and the Supreme Court of India.\n\nHe has also assisted a wide client base internationally on complex legal matters under the jurisdictional laws of United Kingdom, Germany, Italy, Sweden, Singapore, Hong Kong, Nepal, Australia, and the United States of America. He advised and represented clients before arbitral tribunals under various arbitration rules such as ICC, DIS, SCC, CIETAC.\n\nMr. Kohli offers hands-on legal advice and overall strategic input in a wide range of matters that address clients' interests and make them trust his legal acumen. He has advised various Ministries on varied issues of public importance and has worked closely with various regulatory bodies and trade groups. Mr. Kohli has appeared as a witness before the Parliamentary Standing Committee on the Commercial Courts Commercial Division and Commercial Appellate Division of High Courts Bill, 2015 ('Bill') and tendered proposed changes/modifications to the Bill. He has advised the Comptroller of Digital Locker Authority on the appropriate licensing framework for the digital locker service to be provided in India.",
+      "image": "/images/kps-kohli.jpg",
+      "expertise": [
+        "Telecommunications Law",
+        "IT & Media Law",
+        "Intellectual Property Rights",
+        "Aviation Law",
+        "Arbitration & Dispute Resolution",
+        "Insolvency",
+        "Public Policy",
+        "Corporate & Commercial Law",
+        "AI Ethics",
+        "Legal Innovation"
+      ],
+      "social": {
+        "linkedin": "#",
+        "twitter": "#",
+        "email": "kpskohli@theblacksilk.org"
+      }
+    },
+    {
+      "name": "Roopa Somasundaran",
+      "position": "Secretary",
+      "bio": "Roopa Somasundaran is the Secretary of The Black Silk and is an individual with a multifaceted personality. Endlessly exploring avenues to serve selflessly, Roopa is a renowned Lawyer, a Bestseller Author, RJ with FM rainbow, Motivational Speaker, Entrepreneur and Yoga Enthusiast. She is IT Chair for Rotary Club-Tulips, Treasurer and Member at Large – IWIRC India, Joint Secretary of Malayalee Association and a member of the Bar Council of Punjab & Haryana. She is also the Patron Board Member of NGOs like Mission Jagriti, Jazbaa Foundation and Sambharye Foundation.\n\nAt The Black Silk, she takes care of Practice Development, Knowledge Management and Corporate Relations. She is responsible for strategic communication, business network management and knowledge marketing. She assists in developing and implementing brand strategy, external and internal communications programs, working closely with partners and practice groups to develop and manage client relations. She also conducts research and penned articles, which have been published in Mondaq and various other journals.\n\nShe has also been invited as a Speaker in various notable platforms like TerraLex conference, CII, PHD Chambers, National Summit on Holistic Sciences & Wellness etc. She has been conferred with many awards and recognitions which include the prestigious Karmaveer Chakra instituted by UN, Woman of Substance award, Pride of India, Legend Award, Desh ka Maan award, Trailblazer award, Devi Award in the field of social service by Government administration, News NCR, Dainik Jagran, Haryana Police, Delhi Police to name a few.",
+      "image": "/images/roopa.jpg",
+      "expertise": [
+        "Practice Development",
+        "Knowledge Management",
+        "Corporate Relations",
+        "Strategic Communication",
+        "Brand Strategy",
+        "Legal Tech",
+        "Digital Transformation",
+        "Product Strategy"
+      ],
+      "social": {
+        "linkedin": "#",
+        "twitter": "#",
+        "email": "roopa@theblacksilk.org"
+      }
+    }
+  ]
+}

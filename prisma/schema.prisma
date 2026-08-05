@@ -1,0 +1,490 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  name                  String?
+  email                 String                 @unique
+  emailVerified         DateTime?
+  image                 String?
+  password              String?
+  role                  String                 @default("user")
+  mfaEnabled            Boolean                @default(false)
+  bio                   String?
+  organization          String?
+  position              String?
+  location              String?
+  website               String?
+  linkedin              String?
+  twitter               String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  accounts              Account[]
+  committeeApplications CommitteeApplication[]
+  committeeMembers      CommitteeMember[]
+  committeeMessages     CommitteeMessage[]
+  eventRegistrations    EventRegistration[]
+  forumPosts            ForumPost[]
+  forumReplies          ForumReply[]
+  jobApplications       JobApplication[]
+  mfaSecret             MFASecret?
+  membership            Membership?
+  mentorRequests        MentorRequest[]
+  receivedMessages      Message[]              @relation("ReceivedMessages")
+  sentMessages          Message[]              @relation("SentMessages")
+  sessions              Session[]
+  savedPublications     UserPublication[]
+}
+
+model MFASecret {
+  id        String  @id @default(cuid())
+  userId    String  @unique
+  secret    String
+  isEnabled Boolean @default(false)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model ForumPost {
+  id        String       @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  isPinned  Boolean      @default(false)
+  views     Int          @default(0)
+  authorId  String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  author    User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  replies   ForumReply[]
+
+  @@index([category])
+  @@index([createdAt])
+}
+
+model ForumReply {
+  id        String    @id @default(cuid())
+  content   String
+  postId    String
+  authorId  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post      ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+}
+
+model Event {
+  id                  String              @id @default(cuid())
+  title               String
+  description         String
+  date                DateTime
+  endDate             DateTime?
+  location            String?
+  isVirtual           Boolean             @default(false)
+  maxAttendees        Int?
+  price               Float?
+  status              String              @default("upcoming")
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  eventType           String?             @default("roundtable")
+  registrationFormUrl String?
+  slug                String              @unique
+  speakers            Json?
+  timeline            Json?
+  youtubeUrl          String?
+  registrations       EventRegistration[]
+
+  @@index([date])
+  @@index([status])
+  @@index([slug])
+}
+
+model EventRegistration {
+  id        String   @id @default(cuid())
+  userId    String
+  eventId   String
+  status    String   @default("registered")
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+}
+
+model Committee {
+  id                 String                 @id @default(cuid())
+  name               String                 @unique
+  description        String
+  established        String?
+  status             String                 @default("active")
+  focusAreas         String[]               @default([])
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  activities         String[]               @default([])
+  chairBio           String?
+  chairDesignation   String?
+  chairEmail         String?
+  chairImage         String?
+  chairLinkedin      String?
+  chairName          String?
+  coChairBio         String?
+  coChairDesignation String?
+  coChairEmail       String?
+  coChairImage       String?
+  coChairLinkedin    String?
+  coChairName        String?
+  color              String?
+  fullDescription    String?
+  icon               String?
+  image              String?
+  nextMeeting        String?
+  publications       Int                    @default(0)
+  slug               String?                @unique
+  upcomingEvents     CommitteeEvent[]
+  members            CommitteeMember[]
+  messages           CommitteeMessage[]
+  recentPublications CommitteePublication[]
+}
+
+model CommitteePublication {
+  id          String    @id @default(cuid())
+  committeeId String
+  title       String
+  description String
+  date        String
+  type        String
+  url         String?
+  createdAt   DateTime  @default(now())
+  committee   Committee @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+
+  @@index([committeeId])
+}
+
+model CommitteeEvent {
+  id          String    @id @default(cuid())
+  committeeId String
+  title       String
+  description String
+  date        String
+  location    String
+  type        String
+  createdAt   DateTime  @default(now())
+  committee   Committee @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+
+  @@index([committeeId])
+}
+
+model CommitteeMember {
+  id          String    @id @default(cuid())
+  userId      String
+  committeeId String
+  role        String    @default("member")
+  joinedAt    DateTime  @default(now())
+  committee   Committee @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, committeeId])
+}
+
+model CommitteeApplication {
+  id            String    @id @default(cuid())
+  userId        String
+  committeeId   String
+  committeeSlug String
+  committeeName String
+  motivation    String
+  experience    String
+  contribution  String
+  availability  String
+  expertise     String[]  @default([])
+  linkedinUrl   String?
+  status        String    @default("pending")
+  reviewedBy    String?
+  reviewedAt    DateTime?
+  reviewNotes   String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([committeeSlug])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Membership {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  type      String
+  status    String   @default("active")
+  startDate DateTime @default(now())
+  endDate   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Newsletter {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  eventUpdates    Boolean  @default(true)
+  firstName       String?
+  lastName        String?
+  organization    String?
+  policyAlerts    Boolean  @default(false)
+  researchUpdates Boolean  @default(false)
+  role            String?
+  weeklyDigest    Boolean  @default(true)
+}
+
+model NewsletterIssue {
+  id          String   @id @default(cuid())
+  title       String
+  excerpt     String
+  content     String
+  topics      String[] @default([])
+  image       String?
+  readTime    String
+  published   Boolean  @default(false)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([publishedAt])
+  @@index([published])
+}
+
+model FactSheet {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  pages       Int
+  downloads   Int      @default(0)
+  image       String?
+  tags        String[] @default([])
+  featured    Boolean  @default(false)
+  rating      Float    @default(0)
+  pdfUrl      String?
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([publishedAt])
+  @@index([featured])
+}
+
+model Publication {
+  id          String            @id @default(cuid())
+  title       String
+  excerpt     String
+  content     String?
+  category    String
+  readTime    String?
+  author      String
+  authorImage String?
+  image       String?
+  views       Int               @default(0)
+  downloads   Int               @default(0)
+  type        String            @default("article")
+  tags        String[]          @default([])
+  pdfUrl      String?
+  featured    Boolean           @default(false)
+  published   Boolean           @default(true)
+  publishedAt DateTime          @default(now())
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  savedBy     UserPublication[]
+
+  @@index([category])
+  @@index([publishedAt])
+  @@index([featured])
+}
+
+model UserPublication {
+  id            String      @id @default(cuid())
+  userId        String
+  publicationId String
+  savedAt       DateTime    @default(now())
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, publicationId])
+  @@index([userId])
+  @@index([publicationId])
+}
+
+model Job {
+  id           String           @id @default(cuid())
+  title        String
+  description  String
+  department   String
+  location     String
+  type         String
+  experience   String
+  salary       String?
+  requirements String[]         @default([])
+  skills       String[]         @default([])
+  featured     Boolean          @default(false)
+  urgency      String           @default("medium")
+  status       String           @default("open")
+  applicants   Int              @default(0)
+  postedAt     DateTime         @default(now())
+  closedAt     DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  applications JobApplication[]
+
+  @@index([status])
+  @@index([department])
+  @@index([postedAt])
+}
+
+model Mentor {
+  id             String   @id @default(cuid())
+  name           String
+  role           String
+  company        String
+  expertise      String[] @default([])
+  experience     String
+  bio            String
+  image          String?
+  rating         Float    @default(0)
+  availability   String   @default("available")
+  specialization String
+  sessions       Int      @default(0)
+  mentees        Int      @default(0)
+  linkedin       String?
+  email          String?
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([availability])
+  @@index([active])
+}
+
+model JobApplication {
+  id            String    @id @default(cuid())
+  jobId         String
+  userId        String
+  coverLetter   String
+  experience    String
+  whyInterested String
+  availability  String
+  resumeUrl     String
+  portfolioUrl  String?
+  linkedinUrl   String?
+  status        String    @default("pending")
+  appliedAt     DateTime  @default(now())
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviewNotes   String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  job           Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobId])
+  @@index([jobId])
+  @@index([userId])
+  @@index([status])
+}
+
+model MentorRequest {
+  id           String    @id @default(cuid())
+  mentorId     String
+  userId       String
+  message      String
+  goals        String
+  availability String
+  status       String    @default("pending")
+  requestedAt  DateTime  @default(now())
+  respondedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mentorId])
+  @@index([mentorId])
+  @@index([userId])
+  @@index([status])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  subject    String
+  content    String
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([isRead])
+}
+
+model CommitteeMessage {
+  id          String    @id @default(cuid())
+  committeeId String
+  userId      String
+  content     String
+  attachments String[]  @default([])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  committee   Committee @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([committeeId])
+  @@index([userId])
+  @@index([createdAt])
+}

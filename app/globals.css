@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 210 100% 16%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Default heading colors for light backgrounds only */
+  .bg-white h1,
+  .bg-white h2,
+  .bg-white h3,
+  .bg-white h4,
+  .bg-white h5,
+  .bg-white h6,
+  .bg-gray-50 h1,
+  .bg-gray-50 h2,
+  .bg-gray-50 h3,
+  .bg-gray-50 h4,
+  .bg-gray-50 h5,
+  .bg-gray-50 h6,
+  .bg-gray-100 h1,
+  .bg-gray-100 h2,
+  .bg-gray-100 h3,
+  .bg-gray-100 h4,
+  .bg-gray-100 h5,
+  .bg-gray-100 h6 {
+    @apply text-gray-900;
+  }
+
+  /* Default paragraph colors for light backgrounds only */
+  .bg-white p,
+  .bg-white span:not(.text-white):not([class*="text-"]),
+  .bg-white div:not(.text-white):not([class*="text-"]),
+  .bg-gray-50 p,
+  .bg-gray-50 span:not(.text-white):not([class*="text-"]),
+  .bg-gray-50 div:not(.text-white):not([class*="text-"]),
+  .bg-gray-100 p,
+  .bg-gray-100 span:not(.text-white):not([class*="text-"]),
+  .bg-gray-100 div:not(.text-white):not([class*="text-"]) {
+    @apply text-gray-700;
+  }
+
+  /* Ensure dark backgrounds have white text by default */
+  .bg-gray-900,
+  .bg-gray-800,
+  .bg-black {
+    @apply text-white;
+  }
+
+  .bg-gray-900 *,
+  .bg-gray-800 *,
+  .bg-black * {
+    color: inherit;
+  }
+
+  /* Respect explicit color classes */
+  .text-white {
+    color: white !important;
+  }
+
+  .text-gray-900 {
+    color: rgb(17 24 39) !important;
+  }
+
+  .text-gray-800 {
+    color: rgb(31 41 55) !important;
+  }
+
+  .text-gray-700 {
+    color: rgb(55 65 81) !important;
+  }
+
+  .text-gray-600 {
+    color: rgb(75 85 99) !important;
+  }
+
+  .text-gray-500 {
+    color: rgb(107 114 128) !important;
+  }
+
+  .text-gray-400 {
+    color: rgb(156 163 175) !important;
+  }
+
+  .text-gray-300 {
+    color: rgb(209 213 219) !important;
+  }
+
+  .text-gray-200 {
+    color: rgb(229 231 235) !important;
+  }
+
+  .text-gray-100 {
+    color: rgb(243 244 246) !important;
+  }
+}
+
+@layer components {
+  /* Container utilities */
+  .container-responsive {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Button utilities */
+  .btn-primary {
+    @apply bg-gray-900 text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-accent {
+    @apply bg-gray-900 text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  /* Text utilities with proper contrast */
+  .text-heading {
+    @apply text-gray-900 font-semibold;
+  }
+
+  .text-body {
+    @apply text-gray-700;
+  }
+
+  .text-muted {
+    @apply text-gray-600;
+  }
+
+  /* Card utilities */
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .card-interactive {
+    @apply cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Selection */
+::selection {
+  background: #e5e5e5;
+  color: #171717;
+}
+
+/* Focus visible */
+.focus-visible:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
