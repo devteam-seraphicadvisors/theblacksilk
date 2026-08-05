@@ -36,7 +36,7 @@ If you see the error: `Can't reach database server at localhost:5432`, it means 
    ```
 4. Run migrations:
    ```bash
-   pnpm prisma db push
+   npx prisma db push
    ```
 
 ### Option 3: Use Docker PostgreSQL
@@ -52,7 +52,7 @@ If you see the error: `Can't reach database server at localhost:5432`, it means 
    ```
 4. Run migrations:
    ```bash
-   pnpm prisma db push
+   npx prisma db push
    ```
 
 ## Useful Commands
