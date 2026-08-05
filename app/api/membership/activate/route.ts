@@ -2,10 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions, createMembership } from "@/lib/auth";
 import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-05-28.basil",
-});
+import { stripe } from "@/lib/stripe";
 
 export async function POST(request: NextRequest) {
   try {
