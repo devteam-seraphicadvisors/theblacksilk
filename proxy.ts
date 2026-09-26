@@ -127,22 +127,26 @@ export default async function proxy(req: any) {
 
   // When Maintenance Mode is active:
   if (isMaintenanceMode && !hasBypassParam && !hasBypassCookie) {
-    // If not already on /maintenance and not a static asset or maintenance API
+    const isStaticAsset =
+      pathname.startsWith("/_next") ||
+      pathname.startsWith("/images") ||
+      pathname.startsWith("/icons") ||
+      pathname.startsWith("/members") ||
+      pathname.startsWith("/sponsors") ||
+      pathname.endsWith(".png") ||
+      pathname.endsWith(".svg") ||
+      pathname.endsWith(".ico") ||
+      pathname.endsWith(".jpg") ||
+      pathname.endsWith(".jpeg") ||
+      pathname.endsWith(".webp") ||
+      pathname.endsWith(".json") ||
+      pathname.endsWith(".webmanifest");
+
+    // If not already on /maintenance, not maintenance API, and not static asset
     if (
       !pathname.startsWith("/maintenance") &&
       !pathname.startsWith("/api/maintenance") &&
-      !pathname.startsWith("/_next") &&
-      !pathname.startsWith("/images") &&
-      !pathname.startsWith("/icons") &&
-      !pathname.startsWith("/members") &&
-      !pathname.startsWith("/sponsors") &&
-      pathname !== "/favicon.ico" &&
-      pathname !== "/favicon.png" &&
-      pathname !== "/favicon-32x32.png" &&
-      pathname !== "/favicon-16x16.png" &&
-      pathname !== "/apple-touch-icon.png" &&
-      pathname !== "/icon.png" &&
-      pathname !== "/site.webmanifest"
+      !isStaticAsset
     ) {
       const url = req.nextUrl.clone();
       url.pathname = "/maintenance";

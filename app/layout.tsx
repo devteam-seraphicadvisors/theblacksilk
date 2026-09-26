@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   ...defaultSEO,
   metadataBase: new URL("https://theblacksilk.org"),
   generator: "v0.dev",
+  appleWebApp: {
+    title: "theblacksilk",
+  },
 };
 
 export default function RootLayout({
@@ -105,6 +108,7 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="apple-mobile-web-app-title" content="theblacksilk" />
       </head>
       <body className="font-body antialiased bg-surface-primary">
         <noscript>
