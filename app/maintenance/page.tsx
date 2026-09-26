@@ -82,7 +82,7 @@ export default function MaintenancePage() {
       />
 
       {/* Minimal Top Header - Clean Logo Only */}
-      <header className="relative z-10 w-full pt-4 sm:pt-6 pb-2">
+      <header className="relative z-10 w-full py-2 sm:py-3 bg-white">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-center sm:justify-start">
           <Link href="/" className="relative w-[140px] sm:w-[150px] h-[36px] sm:h-[40px] block">
             <Image
