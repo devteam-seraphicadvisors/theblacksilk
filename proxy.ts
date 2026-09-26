@@ -137,17 +137,16 @@ export default async function proxy(req: any) {
       !pathname.startsWith("/members") &&
       !pathname.startsWith("/sponsors") &&
       pathname !== "/favicon.ico" &&
+      pathname !== "/favicon.png" &&
+      pathname !== "/favicon-32x32.png" &&
+      pathname !== "/favicon-16x16.png" &&
+      pathname !== "/apple-touch-icon.png" &&
+      pathname !== "/icon.png" &&
       pathname !== "/site.webmanifest"
     ) {
       const url = req.nextUrl.clone();
       url.pathname = "/maintenance";
-      return NextResponse.rewrite(url, {
-        status: 503,
-        headers: {
-          "Retry-After": "7200",
-          "Cache-Control": "no-store, max-age=0",
-        },
-      });
+      return NextResponse.redirect(url, 307);
     }
     return NextResponse.next();
   }
