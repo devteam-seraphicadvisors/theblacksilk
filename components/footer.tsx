@@ -19,8 +19,12 @@ import Image from "next/image";
 export function Footer() {
 	const pathname = usePathname();
 
-	// Don't render footer on dashboard pages
-	if (pathname.startsWith("/dashboard") || pathname.startsWith("/admin")) {
+	// Don't render footer on dashboard pages or maintenance page
+	if (
+		pathname.startsWith("/dashboard") ||
+		pathname.startsWith("/admin") ||
+		pathname.startsWith("/maintenance")
+	) {
 		return null;
 	}
 

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduled Maintenance | The Black Silk</title>
+  <meta name="description" content="The Black Silk is currently undergoing scheduled maintenance and updates.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+      overflow-y: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      line-height: 1.5;
+      user-select: none;
+    }
+
+    /* Ambient Subtle Monochrome Background */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, #171717 0%, #000000 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      background: transparent;
+      padding: 1.25rem 2rem 0.5rem;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .brand-logo img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(1.25);
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.25rem;
+    }
+
+    .content-box {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .category-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: #d4d4d4;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.15;
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    p.lead-text {
+      font-size: 1.05rem;
+      color: #a3a3a3;
+      font-weight: 300;
+      max-width: 580px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.6;
+    }
+
+    p.lead-text strong {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* Countdown Card */
+    .countdown-card {
+      background: rgba(10, 10, 10, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .countdown-header {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #a3a3a3;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .timer-box {
+      background: #171717;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: monospace;
+      line-height: 1;
+    }
+
+    .timer-unit {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #737373;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Direct Contact */
+    .urgent-box {
+      font-size: 0.875rem;
+      color: #a3a3a3;
+      padding-top: 0.5rem;
+    }
+
+    .urgent-box a {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .urgent-box a:hover {
+      color: #d4d4d4;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1.25rem 2rem;
+      font-size: 0.8rem;
+      color: #737373;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="grid-pattern"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="brand-logo">
+        <img src="/images/logo.png" alt="The Black Silk" onerror="this.style.display='none'; document.getElementById('fallback-brand').style.display='block';">
+        <span id="fallback-brand" style="display:none; font-family:'DM Serif Display', Georgia, serif; font-size:1.4rem; letter-spacing:0.02em; color:#fff;">THE BLACK SILK</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="content-box">
+      <div>
+        <span class="category-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Scheduled Maintenance
+        </span>
+      </div>
+
+      <h1>We Are Currently Undergoing Scheduled Maintenance</h1>
+      <p class="lead-text">
+        <strong>The Black Silk</strong> is undergoing planned infrastructure updates and system enhancements to deliver an improved platform experience.
+      </p>
+
+      <!-- Countdown: 7 Days -->
+      <div class="countdown-card">
+        <div class="countdown-header">Estimated System Restoration In</div>
+        <div class="timer-grid">
+          <div class="timer-box">
+            <div class="timer-num" id="d">07</div>
+            <div class="timer-unit">Days</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-num" id="h">00</div>
+            <div class="timer-unit">Hours</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-num" id="m">00</div>
+            <div class="timer-unit">Minutes</div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-num" id="s">00</div>
+            <div class="timer-unit">Seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Urgent Inquiries -->
+      <div class="urgent-box">
+        <p>
+          For urgent inquiries, please contact 
+          <a href="mailto:contact@theblacksilk.org">contact@theblacksilk.org</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year">2026</span> The Black Silk. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 7 Days Countdown Timer with Auto-Repeat
+    var SEVEN_DAYS_MS = 7 * 24 * 3600 * 1000;
+    var storedTarget = localStorage.getItem('tbs_maintenance_7d_ts');
+    var targetDate;
+
+    if (storedTarget && !isNaN(storedTarget) && parseInt(storedTarget, 10) > Date.now()) {
+      targetDate = parseInt(storedTarget, 10);
+    } else {
+      targetDate = Date.now() + SEVEN_DAYS_MS;
+      localStorage.setItem('tbs_maintenance_7d_ts', targetDate);
+    }
+
+    function updateTimer() {
+      var diff = targetDate - Date.now();
+
+      // When timer ends, automatically repeat the 7 days timer
+      if (diff <= 0) {
+        targetDate = Date.now() + SEVEN_DAYS_MS;
+        localStorage.setItem('tbs_maintenance_7d_ts', targetDate);
+        diff = targetDate - Date.now();
+      }
+
+      var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('d').innerText = String(d).padStart(2, '0');
+      document.getElementById('h').innerText = String(h).padStart(2, '0');
+      document.getElementById('m').innerText = String(m).padStart(2, '0');
+      document.getElementById('s').innerText = String(s).padStart(2, '0');
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>

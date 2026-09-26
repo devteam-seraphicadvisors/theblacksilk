@@ -1,8 +1,9 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import type { NextRequestWithAuth } from "next-auth/middleware";
 
-export default withAuth(
-  function middleware(req) {
+const authMiddleware = withAuth(
+  function middleware(req: NextRequestWithAuth) {
     const token = req.nextauth.token;
     const isAuth = !!token;
     const { pathname } = req.nextUrl;
@@ -17,16 +18,8 @@ export default withAuth(
       pathname.startsWith("/membership");
     const isOnboarding = pathname.startsWith("/onboarding");
 
-    console.log("Middleware check:", {
-      pathname,
-      isAuth,
-      hasMembership: token?.hasMembership,
-      onboardingCompleted: token?.onboardingCompleted,
-    });
-
     // If user is authenticated and tries to access auth pages, redirect appropriately
     if (isAuthPage && isAuth) {
-      // Check membership and onboarding status
       if (!token?.hasMembership) {
         return NextResponse.redirect(new URL("/community/membership", req.url));
       }
@@ -91,8 +84,10 @@ export default withAuth(
           "/careers",
           "/get-involved",
           "/partnerships",
+          "/maintenance",
           "/api/auth",
           "/api/payment/webhook",
+          "/api/maintenance",
         ];
 
         // Check if the current path is a public route or starts with a public route
@@ -104,7 +99,8 @@ export default withAuth(
         if (
           isPublicRoute ||
           pathname.startsWith("/login") ||
-          pathname.startsWith("/register")
+          pathname.startsWith("/register") ||
+          pathname.startsWith("/maintenance")
         ) {
           return true;
         }
@@ -116,6 +112,60 @@ export default withAuth(
   }
 );
 
+export default async function proxy(req: any) {
+  const isMaintenanceMode =
+    process.env.MAINTENANCE_MODE === "true" ||
+    process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
+
+  const { pathname, searchParams } = req.nextUrl;
+
+  const hasBypassParam =
+    searchParams.get("bypass") === "admin" ||
+    searchParams.get("preview") === "true";
+  const hasBypassCookie =
+    req.cookies?.get("bypass_maintenance")?.value === "true";
+
+  // When Maintenance Mode is active:
+  if (isMaintenanceMode && !hasBypassParam && !hasBypassCookie) {
+    // If not already on /maintenance and not a static asset or maintenance API
+    if (
+      !pathname.startsWith("/maintenance") &&
+      !pathname.startsWith("/api/maintenance") &&
+      !pathname.startsWith("/_next") &&
+      !pathname.startsWith("/images") &&
+      !pathname.startsWith("/icons") &&
+      !pathname.startsWith("/members") &&
+      !pathname.startsWith("/sponsors") &&
+      pathname !== "/favicon.ico" &&
+      pathname !== "/site.webmanifest"
+    ) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/maintenance";
+      return NextResponse.rewrite(url, {
+        status: 503,
+        headers: {
+          "Retry-After": "7200",
+          "Cache-Control": "no-store, max-age=0",
+        },
+      });
+    }
+    return NextResponse.next();
+  }
+
+  // If admin bypass parameter provided, set cookie and reload without the param
+  if (hasBypassParam && !hasBypassCookie) {
+    const res = NextResponse.redirect(new URL(pathname, req.url));
+    res.cookies.set("bypass_maintenance", "true", {
+      path: "/",
+      maxAge: 86400,
+      httpOnly: false,
+    });
+    return res;
+  }
+
+  return (authMiddleware as any)(req);
+}
+
 export const config = {
   matcher: [
     /*
@@ -124,8 +174,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public folder
+     * - public folder & static images
      */
-    "/((?!api/auth|_next/static|_next/image|favicon.ico|public|.*\\.).*)",
+    "/((?!api/auth|_next/static|_next/image|favicon.ico|public|images|members|sponsors|icons|.*\\..*).*)",
   ],
 };
