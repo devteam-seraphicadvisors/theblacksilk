@@ -47,7 +47,7 @@ const membershipPlans = {
   },
   "government-academic": {
     name: "Government Employee / Law Professor",
-    price: 6500,
+    price: 4000,
     period: "/year",
     features: [
       "All Advocate benefits",
@@ -83,7 +83,7 @@ const membershipPlans = {
   },
   "non-lawyer": {
     name: "Non-lawyer Professional",
-    price: 11000,
+    price: 8000,
     period: "/year",
     features: [
       "All core benefits",
@@ -107,7 +107,7 @@ const membershipPlans = {
   },
   "law-firm-small": {
     name: "Law Firm (Up to 10 Members)",
-    price: 75000,
+    price: 85000,
     period: "/year",
     features: [
       "Up to 10 lawyer accounts",
@@ -131,7 +131,7 @@ const membershipPlans = {
   },
   "law-firm-medium": {
     name: "Law Firm (11-20 Members)",
-    price: 125000,
+    price: 90000,
     period: "/year",
     features: [
       "Up to 20 lawyer accounts",
