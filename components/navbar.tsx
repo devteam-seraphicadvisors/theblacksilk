@@ -110,6 +110,22 @@ export function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = React.useState<
     string | null
   >(null);
+  const [activeNavDropdown, setActiveNavDropdown] = React.useState<string | null>(null);
+  const navTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavMouseEnter = (name: string) => {
+    if (navTimeoutRef.current) {
+      clearTimeout(navTimeoutRef.current);
+    }
+    setActiveNavDropdown(name);
+  };
+
+  const handleNavMouseLeave = () => {
+    navTimeoutRef.current = setTimeout(() => {
+      setActiveNavDropdown(null);
+    }, 150);
+  };
+
   const pathname = usePathname();
   const { data: session, status } = useSession();
 
@@ -157,39 +173,69 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
-            {navigation.map((item) => (
-              <DropdownMenu key={item.name}>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
+            {navigation.map((item) => {
+              const isOpen = activeNavDropdown === item.name;
+              const isActive = pathname.startsWith(item.href);
+
+              return (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => handleNavMouseEnter(item.name)}
+                  onMouseLeave={handleNavMouseLeave}
+                >
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveNavDropdown(isOpen ? null : item.name);
+                    }}
                     className={cn(
-                      "h-9 px-3 text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors",
-                      pathname.startsWith(item.href) &&
-                        "text-neutral-900 bg-neutral-100"
+                      "h-9 px-3.5 text-sm font-medium transition-colors inline-flex items-center rounded-none cursor-pointer",
+                      isActive || isOpen
+                        ? "text-black bg-neutral-100 font-semibold"
+                        : "text-neutral-700 hover:text-black hover:bg-neutral-100"
                     )}
                   >
-                    {item.name}
-                    <ChevronDown className="ml-1 h-3 w-3" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48">
-                  {item.children.map((child) => (
-                    <DropdownMenuItem key={child.name} asChild>
-                      <Link
-                        href={child.href}
-                        className={cn(
-                          "cursor-pointer",
-                          pathname === child.href &&
-                            "bg-neutral-100 text-neutral-900"
-                        )}
-                      >
-                        {child.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ))}
+                    <span>{item.name}</span>
+                    <ChevronDown
+                      className={cn(
+                        "ml-1 h-3.5 w-3.5 transition-transform duration-200",
+                        isOpen && "rotate-180"
+                      )}
+                    />
+                  </button>
+
+                  {/* Dropdown Menu - Opens as soon as user hovers on navlink and stays open while mouse is on the menu */}
+                  <div
+                    className={cn(
+                      "absolute top-full left-0 pt-1 z-50 transition-all duration-150",
+                      isOpen
+                        ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                        : "opacity-0 invisible -translate-y-1 pointer-events-none"
+                    )}
+                    onMouseEnter={() => handleNavMouseEnter(item.name)}
+                    onMouseLeave={handleNavMouseLeave}
+                  >
+                    <div className="w-52 bg-white text-black shadow-xl rounded-none">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          onClick={() => setActiveNavDropdown(null)}
+                          className={cn(
+                            "block px-4 py-2 text-sm text-neutral-800 hover:bg-black hover:!text-white transition-colors",
+                            pathname === child.href &&
+                            "bg-neutral-100 font-semibold !text-black"
+                          )}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </nav>
 
           {/* Right Actions */}
@@ -485,7 +531,7 @@ export function Navbar() {
                                 className={cn(
                                   "block px-3 py-2.5 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md transition-colors active:bg-neutral-200",
                                   pathname === child.href &&
-                                    "text-neutral-900 bg-neutral-100 font-medium"
+                                  "text-neutral-900 bg-neutral-100 font-medium"
                                 )}
                               >
                                 {child.name}

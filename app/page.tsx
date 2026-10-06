@@ -1,8 +1,9 @@
 import { Hero } from "@/components/hero";
-import { FeaturedContent } from "@/components/featured-content";
+import { IntroSection } from "@/components/intro-section";
 import { Stats } from "@/components/stats";
-import { CallToAction } from "@/components/call-to-action";
 import { CommitteesSection } from "@/components/committees-section";
+import { FeaturedContent } from "@/components/featured-content";
+import { CallToAction } from "@/components/call-to-action";
 import { generateMetadata } from "@/lib/seo";
 
 // Force dynamic rendering - this page uses database-dependent components
@@ -10,16 +11,17 @@ export const dynamic = "force-dynamic";
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export const metadata = generateMetadata({
-  title: "The Black Silk - Leading Legal Technology & Policy Platform",
+  title: "The Black Silk — Ethical Standards & Policy for the Digital Future",
   description:
-    "Join India's premier community of legal professionals, technologists, and policymakers. Access exclusive insights, events, and collaborative opportunities in law and technology.",
+    "A not-for-profit organization working toward the ethical development and judicious use of digital technologies for the greater good. Bringing together academicians, policymakers, lawmakers, and expert professionals.",
   keywords: [
+    "The Black Silk",
+    "ethical digital technology",
     "legal technology",
-    "law policy",
-    "legal community",
-    "India legal tech",
-    "legal professionals",
-    "technology law",
+    "tech policy India",
+    "digital law",
+    "data protection",
+    "artificial intelligence ethics",
   ],
   canonical: "https://theblacksilk.org",
 });
@@ -39,7 +41,8 @@ export default function HomePage() {
           width: 112,
           height: 112,
         },
-        description: "Leading legal technology and policy platform in India",
+        description:
+          "Not-for-profit organization working toward the ethical development and judicious use of digital technologies for the greater good.",
         address: {
           "@type": "PostalAddress",
           addressLocality: "New Delhi",
@@ -64,7 +67,8 @@ export default function HomePage() {
         "@id": "https://theblacksilk.org/#website",
         url: "https://theblacksilk.org",
         name: "The Black Silk",
-        description: "Leading Legal Technology & Policy Platform",
+        description:
+          "Ethical Development and Judicious Use of Digital Technologies",
         publisher: {
           "@id": "https://theblacksilk.org/#organization",
         },
@@ -101,8 +105,9 @@ export default function HomePage() {
           __html: JSON.stringify(jsonLd),
         }}
       />
-      <main className="bg-white">
+      <main className="w-full min-h-screen">
         <Hero />
+        <IntroSection />
         <Stats />
         <CommitteesSection />
         <FeaturedContent />

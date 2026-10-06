@@ -105,18 +105,43 @@
   /* Ensure dark backgrounds have white text by default */
   .bg-gray-900,
   .bg-gray-800,
+  .bg-neutral-950,
+  .bg-neutral-900,
   .bg-black {
     @apply text-white;
   }
 
   .bg-gray-900 *,
   .bg-gray-800 *,
-  .bg-black * {
+  .bg-neutral-950 *,
+  .bg-neutral-900 *,
+  .bg-black *,
+  .bg-black p,
+  .bg-neutral-950 p,
+  .bg-neutral-900 p {
     color: inherit;
   }
 
   /* Respect explicit color classes */
   .text-white {
+    color: white !important;
+  }
+
+  .text-black {
+    color: black !important;
+  }
+
+  .hover\:text-black:hover,
+  .hover\:\!text-black:hover,
+  .group:hover .group-hover\:text-black,
+  .group:hover .group-hover\:\!text-black {
+    color: black !important;
+  }
+
+  .hover\:text-white:hover,
+  .hover\:\!text-white:hover,
+  .group:hover .group-hover\:text-white,
+  .group:hover .group-hover\:\!text-white {
     color: white !important;
   }
 
@@ -199,23 +224,20 @@
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Remove vertical and horizontal scrollbars project-wide while keeping smooth scrolling */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
 }
 
 /* Selection */

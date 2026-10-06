@@ -3,239 +3,218 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
-	Twitter,
-	Facebook,
-	Linkedin,
-	Mail,
-	MapPin,
-	Phone,
-	ArrowRight,
-	X,
+  MapPin,
+  Mail,
+  Phone,
+  ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 export function Footer() {
-	const pathname = usePathname();
+  const pathname = usePathname();
 
-	// Don't render footer on dashboard pages, admin pages, or maintenance page
-	if (
-		pathname.startsWith("/dashboard") ||
-		pathname.startsWith("/admin") ||
-		pathname.startsWith("/maintenance") ||
-		process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true"
-	) {
-		return null;
-	}
+  // Don't render footer on dashboard pages, admin pages, or maintenance page
+  if (
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/maintenance") ||
+    process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true"
+  ) {
+    return null;
+  }
 
-	return (
-		<footer className="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white">
-			<div className="container-responsive py-12 lg:py-16">
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-					{/* Brand & Description */}
-					<div className="sm:col-span-2 lg:col-span-1 space-y-6">
-						<Link href="/" className="flex items-center space-x-3">
-							{/* Use the icon version of the logo if available for a tighter footer layout */}
-							<img
-								src="/images/logo-icon.png"
-								alt="The Black Silk Logo"
-								className="h-10 w-auto invert"
-							/>
-						</Link>
-						<p className="text-white/80 leading-relaxed text-sm lg:text-base max-w-sm">
-							India's premier platform for fostering dialogue between legal
-							professionals, technologists, and policymakers.
-						</p>
-						<div className="flex space-x-3">
-							<Link
-								href="https://x.com/TheBlackSilk"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="The Black Silk on Twitter"
-								title="Twitter"
-							>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-								>
-									<Image
-										src="/icons/x.svg"
-										alt="Twitter"
-										width={24}
-										height={24}
-										// white
-										className="invert"
-									/>
-								</Button>
-							</Link>
+  return (
+    <footer className="bg-black text-white border-t border-neutral-800">
+      <div className="container mx-auto px-4 max-w-7xl pt-16 pb-12">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
+          {/* Brand & Organization Column (5 cols on lg) */}
+          <div className="lg:col-span-5 space-y-6">
+            <Link href="/" className="inline-block group">
+              {/* Exact Logo from Navbar, inverted for crisp display on pure black */}
+              <div className="relative w-[150px] h-[42px] sm:w-[170px] sm:h-[48px] invert">
+                <Image
+                  src="/images/logo.png"
+                  alt="The Black Silk Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
-							<Link
-								href="https://www.facebook.com/TheBlackSilk.org"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="The Black Silk on Facebook"
-								title="Facebook"
-							>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-								>
-									<Image
-										src="/icons/facebook.svg"
-										alt="Facebook"
-										width={24}
-										height={24}
-										className="invert"
-									/>
-								</Button>
-							</Link>
+            <p className="!text-neutral-300 text-sm sm:text-base leading-relaxed max-w-md font-sans font-light">
+              A not-for-profit organization working toward the ethical development
+              and judicious use of digital technologies for the greater good,
+              bringing together academicians, policymakers, lawmakers, and expert
+              professionals.
+            </p>
 
-							<Link
-								href="https://www.linkedin.com/company/the-black-silk"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="The Black Silk on LinkedIn"
-								title="LinkedIn"
-							>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-								>
-									<Image
-										src="/icons/linkedin.svg"
-										alt="LinkedIn"
-										width={24}
-										height={24}
-										className="invert"
-									/>
-								</Button>
-							</Link>
-						</div>
-					</div>
+            {/* Social Links */}
+            <div className="flex items-center space-x-3 pt-2">
+              <Link
+                href="https://x.com/TheBlackSilk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter / X"
+                className="w-10 h-10 border border-neutral-800 bg-neutral-950 flex items-center justify-center hover:bg-white hover:border-white transition-all group"
+              >
+                <div className="relative w-4 h-4 invert group-hover:invert-0 transition-all">
+                  <Image src="/icons/x.svg" alt="X" fill className="object-contain" />
+                </div>
+              </Link>
 
-					{/* Quick Links */}
-					<div className="space-y-4">
-						<h3 className="font-semibold text-lg lg:text-xl tracking-wide">
-							Platform
-						</h3>
-						<ul className="space-y-3">
-							{[
-								{ name: "About Us", href: "/about" },
-								{ name: "Membership", href: "/community/membership" },
-								{ name: "Committees", href: "/community/committees" },
-								{ name: "Events", href: "/events" },
-								{ name: "Forum", href: "/forum" },
-							].map((link) => (
-								<li key={link.name}>
-									<Link
-										href={link.href}
-										className="text-white/70 hover:text-white transition-colors duration-200 text-sm lg:text-base group flex items-center"
-									>
-										{link.name}
-										<ArrowRight className="h-3 w-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
+              <Link
+                href="https://www.linkedin.com/company/the-black-silk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 border border-neutral-800 bg-neutral-950 flex items-center justify-center hover:bg-white hover:border-white transition-all group"
+              >
+                <div className="relative w-4 h-4 invert group-hover:invert-0 transition-all">
+                  <Image src="/icons/linkedin.svg" alt="LinkedIn" fill className="object-contain" />
+                </div>
+              </Link>
 
-					{/* Resources */}
-					<div className="space-y-4">
-						<h3 className="font-semibold text-lg lg:text-xl tracking-wide">
-							Resources
-						</h3>
-						<ul className="space-y-3">
-							{[
-								{ name: "Insights", href: "/knowledge-hub/blog" },
-								{ name: "Publications", href: "/knowledge-hub/fact-sheets" },
-								{ name: "Newsletter", href: "/knowledge-hub/newsletter" },
-								{ name: "Global Network", href: "/network" },
-								{ name: "Contact", href: "/get-involved/contact" },
-							].map((link) => (
-								<li key={link.name}>
-									<Link
-										href={link.href}
-										className="text-white/70 hover:text-white transition-colors duration-200 text-sm lg:text-base group flex items-center"
-									>
-										{link.name}
-										<ArrowRight className="h-3 w-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
+              <Link
+                href="https://www.facebook.com/TheBlackSilk.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-10 h-10 border border-neutral-800 bg-neutral-950 flex items-center justify-center hover:bg-white hover:border-white transition-all group"
+              >
+                <div className="relative w-4 h-4 invert group-hover:invert-0 transition-all">
+                  <Image src="/icons/facebook.svg" alt="Facebook" fill className="object-contain" />
+                </div>
+              </Link>
+            </div>
+          </div>
 
-					{/* Newsletter */}
-					<div className="space-y-4">
-						<h3 className="font-semibold text-lg lg:text-xl tracking-wide">
-							Stay Connected
-						</h3>
-						<p className="text-white/70 text-sm lg:text-base">
-							Subscribe for the latest insights and updates.
-						</p>
-						<div className="space-y-3">
-							<Input
-								type="email"
-								placeholder="Enter your email"
-								className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-white focus:ring-white/20 transition-all duration-200"
-							/>
-							<Button className="w-full bg-white text-black hover:bg-white/90 font-medium shadow-lg hover:shadow-xl transition-all duration-200">
-								Subscribe
-							</Button>
-						</div>
-					</div>
-				</div>
+          {/* Navigation Column 1: Platform (2 cols on lg) */}
+          <div className="lg:col-span-2 space-y-4">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
+              Platform
+            </span>
+            <ul className="space-y-3">
+              {[
+                { name: "About Us", href: "/about" },
+                { name: "Membership", href: "/community/membership" },
+                { name: "Committees", href: "/community/committees" },
+                { name: "Events", href: "/events" },
+                { name: "Forum", href: "/forum" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
+                  >
+                    <span>{link.name}</span>
+                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-				{/* Contact Info */}
-				<div className="border-t border-white/20 mt-12 pt-8">
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm lg:text-base text-white/70">
-						<div className="flex items-center gap-3 group">
-							<div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
-								<MapPin className="h-4 w-4" />
-							</div>
-							<span>New Delhi, India</span>
-						</div>
-						<div className="flex items-center gap-3 group">
-							<div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
-								<Mail className="h-4 w-4" />
-							</div>
-							<span>info@blacksilk.org</span>
-						</div>
-						<div className="flex items-center gap-3 group">
-							<div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
-								<Phone className="h-4 w-4" />
-							</div>
-							<span>+91 11 1234 5678</span>
-						</div>
-					</div>
-				</div>
+          {/* Navigation Column 2: Knowledge & Network (2 cols on lg) */}
+          <div className="lg:col-span-2 space-y-4">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
+              Knowledge
+            </span>
+            <ul className="space-y-3">
+              {[
+                { name: "Insights & Blog", href: "/knowledge-hub/blog" },
+                { name: "Fact Sheets", href: "/knowledge-hub/fact-sheets" },
+                { name: "Newsletter", href: "/knowledge-hub/newsletter" },
+                { name: "Legal Tech Careers", href: "/careers/jobs" },
+                { name: "Mentorship", href: "/careers/mentorship" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
+                  >
+                    <span>{link.name}</span>
+                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-				{/* Copyright */}
-				<div className="border-t border-white/20 mt-8 pt-8 text-center text-sm lg:text-base text-white/60">
-					<p className="mb-4">
-						&copy;2026 The Black Silk. All rights reserved.
-					</p>
-					<div className="flex flex-wrap justify-center gap-6">
-						{[
-							{ name: "Privacy Policy", href: "/privacy" },
-							{ name: "Terms of Service", href: "/terms" },
-							{ name: "Cookie Policy", href: "/cookies" },
-						].map((link) => (
-							<Link
-								key={link.name}
-								href={link.href}
-								className="hover:text-white transition-colors duration-200"
-							>
-								{link.name}
-							</Link>
-						))}
-					</div>
-				</div>
-			</div>
-		</footer>
-	);
+          {/* Navigation Column 3: Newsletter (3 cols on lg) */}
+          <div className="lg:col-span-3 space-y-4">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
+              Stay Informed
+            </span>
+            <p className="!text-neutral-300 text-sm leading-relaxed font-sans">
+              Receive updates on public consultations, whitepapers, and legal-tech roundtables.
+            </p>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
+              <input
+                type="email"
+                placeholder="Enter your work email"
+                className="w-full bg-neutral-950 border border-neutral-800 text-white placeholder:text-neutral-500 px-4 py-3 text-sm rounded-none focus:outline-none focus:border-white transition-colors"
+              />
+              <button
+                type="submit"
+                className="w-full bg-white text-black hover:bg-neutral-200 font-semibold text-xs uppercase tracking-wider py-3 px-4 border border-white transition-all cursor-pointer flex items-center justify-center group"
+              >
+                <span>Subscribe to Briefs</span>
+                <ArrowUpRight className="ml-1.5 h-3.5 w-3.5 text-black" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Contact Info Row */}
+        <div className="py-8 border-b border-neutral-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm !text-neutral-300 font-sans">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
+                <MapPin className="h-4 w-4 text-white" />
+              </div>
+              <span>New Delhi, India</span>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
+                <Mail className="h-4 w-4 text-white" />
+              </div>
+              <a href="mailto:info@blacksilk.org" className="hover:text-white transition-colors">
+                info@blacksilk.org
+              </a>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
+                <Phone className="h-4 w-4 text-white" />
+              </div>
+              <a href="tel:+911112345678" className="hover:text-white transition-colors">
+                +91 11 1234 5678
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Legal / Copyright Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono !text-neutral-400">
+          <p>© 2026 The Black Silk. All rights reserved.</p>
+
+          <div className="flex items-center space-x-6">
+            <Link href="/privacy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
