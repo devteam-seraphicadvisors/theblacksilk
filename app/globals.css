@@ -122,12 +122,29 @@
     color: inherit;
   }
 
-  /* Respect explicit color classes */
-  .text-white {
+  .bg-black h1,
+  .bg-black h2,
+  .bg-black h3,
+  .bg-black h4,
+  .bg-black h5,
+  .bg-black h6,
+  .bg-neutral-950 h1,
+  .bg-neutral-950 h2,
+  .bg-neutral-950 h3,
+  .bg-neutral-900 h1,
+  .bg-neutral-900 h2,
+  .bg-neutral-900 h3 {
     color: white !important;
   }
 
-  .text-black {
+  /* Respect explicit color classes */
+  .text-white,
+  .\!text-white {
+    color: white !important;
+  }
+
+  .text-black,
+  .\!text-black {
     color: black !important;
   }
 

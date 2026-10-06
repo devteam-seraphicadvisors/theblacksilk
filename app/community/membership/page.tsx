@@ -292,17 +292,21 @@ export default function MembershipPage() {
                       <div className="mb-6">
                         <span
                           className={`font-mono text-xs uppercase tracking-wider block mb-2 ${
-                            tier.featured ? "text-neutral-400" : "text-neutral-500"
+                            tier.featured ? "!text-neutral-300" : "!text-neutral-500"
                           }`}
                         >
                           Individual Tier
                         </span>
-                        <h3 className="text-2xl font-serif font-medium leading-tight mb-2">
+                        <h3
+                          className={`text-2xl font-serif font-medium leading-tight mb-2 ${
+                            tier.featured ? "!text-white" : "!text-black"
+                          }`}
+                        >
                           {tier.name}
                         </h3>
                         <p
                           className={`text-xs font-sans leading-relaxed min-h-[36px] ${
-                            tier.featured ? "!text-neutral-300" : "text-neutral-600"
+                            tier.featured ? "!text-neutral-300" : "!text-neutral-600"
                           }`}
                         >
                           {tier.tagline}
@@ -311,12 +315,16 @@ export default function MembershipPage() {
 
                       <div className="mb-8 pb-6 border-b border-neutral-200/40">
                         <div className="flex items-baseline gap-1">
-                          <span className="text-4xl font-serif font-normal tracking-tight">
+                          <span
+                            className={`text-4xl font-serif font-normal tracking-tight ${
+                              tier.featured ? "!text-white" : "!text-black"
+                            }`}
+                          >
                             {tier.price}
                           </span>
                           <span
                             className={`text-xs font-mono uppercase tracking-wider ${
-                              tier.featured ? "text-neutral-400" : "text-neutral-500"
+                              tier.featured ? "!text-neutral-300" : "!text-neutral-500"
                             }`}
                           >
                             {tier.period}
@@ -337,11 +345,15 @@ export default function MembershipPage() {
                                   : "border-black bg-black text-white"
                               }`}
                             >
-                              <Check className="h-3 w-3 stroke-[2.5]" />
+                              <Check
+                                className={`h-3 w-3 stroke-[2.5] ${
+                                  tier.featured ? "!text-black" : "!text-white"
+                                }`}
+                              />
                             </div>
                             <span
                               className={
-                                tier.featured ? "!text-neutral-200" : "text-neutral-700"
+                                tier.featured ? "!text-neutral-200" : "!text-neutral-700"
                               }
                             >
                               {feature}
@@ -355,12 +367,24 @@ export default function MembershipPage() {
                       href={tier.href}
                       className={`w-full inline-flex items-center justify-center py-3.5 px-6 font-mono text-xs uppercase tracking-wider font-semibold border transition-all cursor-pointer group ${
                         tier.featured
-                          ? "bg-white text-black border-white hover:bg-neutral-200 hover:text-black"
-                          : "bg-black text-white border-black hover:bg-neutral-800"
+                          ? "bg-white !text-black border-white hover:bg-neutral-200 hover:!text-black"
+                          : "bg-black !text-white border-black hover:bg-neutral-900 hover:!text-white"
                       }`}
                     >
-                      <span>Choose {tier.name}</span>
-                      <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                      <span
+                        className={
+                          tier.featured
+                            ? "!text-black font-semibold"
+                            : "!text-white font-semibold"
+                        }
+                      >
+                        Choose {tier.name}
+                      </span>
+                      <ArrowRight
+                        className={`ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform ${
+                          tier.featured ? "!text-black" : "!text-white"
+                        }`}
+                      />
                     </Link>
                   </div>
                 ))}
@@ -383,8 +407,8 @@ export default function MembershipPage() {
                       <div
                         className={`inline-block self-start font-mono text-[10px] uppercase tracking-widest px-3 py-1 mb-4 font-semibold border ${
                           tier.featured
-                            ? "bg-neutral-900 text-white border-neutral-700"
-                            : "bg-neutral-100 text-black border-neutral-300"
+                            ? "bg-neutral-900 !text-white border-neutral-700"
+                            : "bg-neutral-100 !text-black border-neutral-300"
                         }`}
                       >
                         {tier.saving}
@@ -395,17 +419,21 @@ export default function MembershipPage() {
                       <div className="mb-6">
                         <span
                           className={`font-mono text-xs uppercase tracking-wider block mb-2 ${
-                            tier.featured ? "text-neutral-400" : "text-neutral-500"
+                            tier.featured ? "!text-neutral-300" : "!text-neutral-500"
                           }`}
                         >
                           Institutional Tier
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-serif font-medium leading-tight mb-2">
+                        <h3
+                          className={`text-2xl sm:text-3xl font-serif font-medium leading-tight mb-2 ${
+                            tier.featured ? "!text-white" : "!text-black"
+                          }`}
+                        >
                           {tier.name}
                         </h3>
                         <p
                           className={`text-sm font-sans leading-relaxed ${
-                            tier.featured ? "!text-neutral-300" : "text-neutral-600"
+                            tier.featured ? "!text-neutral-300" : "!text-neutral-600"
                           }`}
                         >
                           {tier.tagline}
@@ -414,12 +442,16 @@ export default function MembershipPage() {
 
                       <div className="mb-8 pb-6 border-b border-neutral-200/40">
                         <div className="flex items-baseline gap-1">
-                          <span className="text-4xl sm:text-5xl font-serif font-normal tracking-tight">
+                          <span
+                            className={`text-4xl sm:text-5xl font-serif font-normal tracking-tight ${
+                              tier.featured ? "!text-white" : "!text-black"
+                            }`}
+                          >
                             {tier.price}
                           </span>
                           <span
                             className={`text-xs font-mono uppercase tracking-wider ${
-                              tier.featured ? "text-neutral-400" : "text-neutral-500"
+                              tier.featured ? "!text-neutral-300" : "!text-neutral-500"
                             }`}
                           >
                             {tier.period}
@@ -440,11 +472,15 @@ export default function MembershipPage() {
                                   : "border-black bg-black text-white"
                               }`}
                             >
-                              <Check className="h-3 w-3 stroke-[2.5]" />
+                              <Check
+                                className={`h-3 w-3 stroke-[2.5] ${
+                                  tier.featured ? "!text-black" : "!text-white"
+                                }`}
+                              />
                             </div>
                             <span
                               className={
-                                tier.featured ? "!text-neutral-200" : "text-neutral-700"
+                                tier.featured ? "!text-neutral-200" : "!text-neutral-700"
                               }
                             >
                               {feature}
@@ -458,12 +494,24 @@ export default function MembershipPage() {
                       href={tier.href}
                       className={`w-full inline-flex items-center justify-center py-4 px-6 font-mono text-xs uppercase tracking-wider font-semibold border transition-all cursor-pointer group ${
                         tier.featured
-                          ? "bg-white text-black border-white hover:bg-neutral-200 hover:text-black"
-                          : "bg-black text-white border-black hover:bg-neutral-800"
+                          ? "bg-white !text-black border-white hover:bg-neutral-200 hover:!text-black"
+                          : "bg-black !text-white border-black hover:bg-neutral-900 hover:!text-white"
                       }`}
                     >
-                      <span>Choose {tier.name}</span>
-                      <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                      <span
+                        className={
+                          tier.featured
+                            ? "!text-black font-semibold"
+                            : "!text-white font-semibold"
+                        }
+                      >
+                        Choose {tier.name}
+                      </span>
+                      <ArrowRight
+                        className={`ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform ${
+                          tier.featured ? "!text-black" : "!text-white"
+                        }`}
+                      />
                     </Link>
                   </div>
                 ))}
