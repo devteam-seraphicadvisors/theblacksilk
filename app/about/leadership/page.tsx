@@ -1,238 +1,186 @@
 import { generateMetadata as generateSeoMetadata } from "@/lib/seo";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Linkedin, Twitter, Mail, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { Mail, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
-import leadershipData from "@/data/leadership.json";
+import Link from "next/link";
 
 export const metadata = generateSeoMetadata({
-  title: "Leadership Team - The Black Silk",
+  title: "Leadership & Governance — The Black Silk",
   description:
-    "Meet the visionary leaders driving The Black Silk's mission to bridge law and technology in India.",
+    "Meet the leadership team guiding The Black Silk: bringing decades of experience in law, technology, and public policy in India.",
   canonical: "https://theblacksilk.org/about/leadership",
 });
 
-const leadership = leadershipData.executiveBoard;
-
-// const advisors = [
-//   {
-//     name: "Justice (Retd.) Vikram Singh",
-//     position: "Senior Advisor",
-//     organization: "Former Supreme Court Judge",
-//     image:
-//       "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop",
-//   },
-// ];
+const leaders = [
+  {
+    name: "KPS Kohli",
+    position: "President",
+    image: "/images/kps-kohli.jpg",
+    email: "kpskohli@theblacksilk.org",
+    social: {
+      linkedin: "https://www.linkedin.com/company/the-black-silk",
+      twitter: "https://x.com/TheBlackSilk",
+    },
+    expertise: [
+      "Telecommunications Law",
+      "IT & Media Law",
+      "Intellectual Property",
+      "Tech Policy",
+      "Dispute Resolution & Arbitration",
+      "Commercial & Corporate Law",
+    ],
+    paragraphs: [
+      "KPS Kohli is a Partner at Seraphic Advisors, Advocates and Solicitors, and a trained mediator with deep experience across telecommunications, IT, media and entertainment, intellectual property, aviation, and public policy. His work sits directly at the intersection of law and digital technology, the space The Black Silk was built to address.",
+      "He regularly advises clients, including government ministries, regulatory bodies, and trade groups, on the legal and business impact of shifting technology policy, and has represented clients before the High Courts, Tribunals, and the Supreme Court of India, as well as international arbitral tribunals under rules including ICC, DIS, SCC, and CIETAC. His international practice spans jurisdictions including the United Kingdom, Germany, Italy, Sweden, Singapore, Hong Kong, Nepal, Australia, and the United States.",
+      "Mr. Kohli has appeared as a witness before the Parliamentary Standing Committee on the Commercial Courts Bill, 2015, and advised the Comptroller of the Digital Locker Authority on the licensing framework for digital locker services in India, work that speaks directly to the ethical and regulatory questions The Black Silk brings to public discussion. He leads The Black Silk with the same hands-on, stakeholder-focused approach that defines his legal practice.",
+    ],
+  },
+  {
+    name: "Roopa Somasundaran",
+    position: "Secretary",
+    image: "/images/roopa.jpg",
+    email: "roopa@theblacksilk.org",
+    social: {
+      linkedin: "https://www.linkedin.com/company/the-black-silk",
+      twitter: "https://x.com/TheBlackSilk",
+    },
+    expertise: [
+      "Practice Development",
+      "Knowledge Management",
+      "Corporate Relations",
+      "Strategic Communications",
+      "Media & Public Dialogue",
+      "Advocacy & Social Impact",
+    ],
+    paragraphs: [
+      "Roopa Somasundaran serves as Secretary of The Black Silk, where she leads Practice Development, Knowledge Management, and Corporate Relations, overseeing strategic communication, business network management, and knowledge marketing for the organization. She works closely with partners and practice groups to build and manage relationships, and develops the brand strategy and communications that carry The Black Silk's work to a wider audience.",
+      "A practicing lawyer and member of the Bar Council of Punjab and Haryana, she brings research and writing to the organization's public work as well, with articles published in Mondaq and other journals, work that feeds directly into The Black Silk's own mission of inclusive, evidence-based discussion on digital technology.",
+      "Beyond her legal practice, Roopa is a bestseller author, radio jockey with FM Rainbow, motivational speaker, and entrepreneur, a range that reflects the same multidisciplinary, public-facing approach she brings to her role at The Black Silk. She holds leadership positions including IT Chair for Rotary Club Tulips, Treasurer and Member at Large for IWIRC India, and Joint Secretary of the Malayalee Association, and serves as a Patron Board Member for NGOs including Mission Jagriti, Jazbaa Foundation, and Sambharye Foundation.",
+      "She has spoken at platforms including the TerraLex Conference, CII, and PHD Chambers, and her work in law and social service has been recognized with honors including the Karmaveer Chakra, instituted by iCONGO in partnership with the United Nations, and the Woman of Substance award.",
+    ],
+  },
+];
 
 export default function LeadershipPage() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gray-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&h=800&fit=crop"
-            alt="Leadership Team"
-            fill
-            className="object-cover opacity-20"
+    <main className="min-h-screen bg-white text-black">
+      {/* Editorial Hero */}
+      <section className="relative py-20 lg:py-32 bg-black text-white border-b border-neutral-800 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-5">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
+              backgroundSize: "32px 32px",
+            }}
           />
-          <div className="absolute inset-0 bg-gray-900/70" />
         </div>
-        <div className="container mx-auto px-4 relative ">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-              Executive Board
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-              Inspiring Visionaries Leading Ethical Digital Transformation
-            </p>
+
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="inline-block px-3 py-1 border border-neutral-700 bg-neutral-900 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-6">
+            Governance & Executive Board
           </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white mb-8 leading-[1.1] tracking-tight">
+            Leadership and Governance
+          </h1>
+
+          <p className="text-xl sm:text-2xl !text-neutral-200 font-sans font-light leading-relaxed max-w-3xl">
+            Our leadership brings together decades of experience in law,
+            technology, and policy, ensuring our initiatives are grounded in
+            legal rigor and practical impact.
+          </p>
         </div>
       </section>
 
-      {/* Executive Leadership */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Executive Leadership
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our executive team brings together decades of experience in law,
-                technology, and policy
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {leadership.map((leader, index) => (
-                <Card
-                  key={index}
-                  className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group bg-white"
-                >
-                  <div className="flex flex-col md:flex-row">
-                    <div className="relative md:w-1/3 h-64 md:h-auto overflow-hidden">
-                      <Image
-                        src={leader.image || "/placeholder.svg"}
-                        alt={leader.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    </div>
-                    <CardContent className="md:w-2/3 p-8">
-                      <div className="mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors">
-                          {leader.name}
-                        </h3>
-                        <p className="text-lg font-medium text-gray-700 mb-4">
-                          {leader.position}
-                        </p>
-                      </div>
-
-                      <p className="text-gray-700 mb-6 leading-relaxed whitespace-pre-line">
-                        {leader.bio}
-                      </p>
-
-                      <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-gray-800 mb-2">
-                          Expertise
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {leader.expertise.map((skill, skillIndex) => (
-                            <Badge
-                              key={skillIndex}
-                              variant="outline"
-                              className="text-xs border-gray-300 text-gray-700"
-                            >
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex space-x-3">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                          asChild
-                        >
-                          <Link href={leader.social.linkedin}>
-                            <Linkedin className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                          asChild
-                        >
-                          <Link href={leader.social.twitter}>
-                            <Twitter className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                          asChild
-                        >
-                          <Link href={`mailto:${leader.social.email}`}>
-                            <Mail className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardContent>
+      {/* Leadership Profiles */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="container mx-auto px-4 max-w-5xl space-y-20 lg:space-y-28">
+          {leaders.map((leader, index) => (
+            <article
+              key={leader.name}
+              className="border border-neutral-200 bg-white p-8 sm:p-12 transition-shadow hover:shadow-xl"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                {/* Photo & Role Card */}
+                <div className="lg:col-span-4 space-y-6">
+                  <div className="relative aspect-[3/4] w-full max-w-[280px] mx-auto lg:mx-0 border border-neutral-300 bg-neutral-100 overflow-hidden">
+                    <Image
+                      src={leader.image}
+                      alt={leader.name}
+                      fill
+                      className="object-cover grayscale contrast-110"
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      priority={index === 0}
+                    />
                   </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Advisory Board */}
-      {/* <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Advisory Board
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Distinguished advisors providing strategic guidance and industry
-                expertise
-              </p>
-            </div>
+                  <div className="space-y-2 text-center lg:text-left">
+                    <span className="inline-block px-3 py-1 border border-neutral-800 bg-black text-white text-xs uppercase tracking-widest font-mono">
+                      {leader.position}
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-black pt-1">
+                      {leader.name}
+                    </h2>
+                  </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {advisors.map((advisor, index) => (
-                <Card
-                  key={index}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center group bg-white"
-                >
-                  <CardContent className="p-8">
-                    <div className="relative w-24 h-24 mx-auto mb-6 overflow-hidden rounded-full">
-                      <Image
-                        src={advisor.image || "/placeholder.svg"}
-                        alt={advisor.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                  {/* Social and Contact Icons */}
+                  <div className="flex items-center justify-center lg:justify-start space-x-3 pt-2">
+                    <Link
+                      href={`mailto:${leader.email}`}
+                      className="w-9 h-9 border border-neutral-300 bg-white flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-colors"
+                      aria-label={`Email ${leader.name}`}
+                    >
+                      <Mail className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      href={leader.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 border border-neutral-300 bg-white flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-colors"
+                      aria-label={`${leader.name} LinkedIn`}
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      href={leader.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 border border-neutral-300 bg-white flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-colors"
+                      aria-label={`${leader.name} X`}
+                    >
+                      <Twitter className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Biography & Expertise */}
+                <div className="lg:col-span-8 space-y-6">
+                  <div className="space-y-4 text-neutral-700 font-sans text-base sm:text-lg leading-relaxed">
+                    {leader.paragraphs.map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
+
+                  {/* Expertise Badges */}
+                  <div className="pt-6 border-t border-neutral-200">
+                    <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                      Areas of Practice & Expertise
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {leader.expertise.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-neutral-100 border border-neutral-200 text-neutral-800 text-xs font-mono uppercase tracking-wider"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors">
-                      {advisor.name}
-                    </h3>
-                    <p className="text-sm font-medium text-gray-900 mb-2">
-                      {advisor.position}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      {advisor.organization}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Join Our Team */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Join Our Mission
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              We're always looking for passionate individuals who share our
-              vision of transforming the legal landscape through technology and
-              innovation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-gray-900 hover:bg-gray-800 text-white"
-                asChild
-              >
-                <Link href="/careers/jobs">
-                  View Open Positions
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                asChild
-              >
-                <Link href="/get-involved/contact">Contact Leadership</Link>
-              </Button>
-            </div>
-          </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </main>

@@ -3,7 +3,6 @@ import { IntroSection } from "@/components/intro-section";
 import { Stats } from "@/components/stats";
 import { CommitteesSection } from "@/components/committees-section";
 import { FeaturedContent } from "@/components/featured-content";
-import { CallToAction } from "@/components/call-to-action";
 import { generateMetadata } from "@/lib/seo";
 
 // Force dynamic rendering - this page uses database-dependent components
@@ -111,7 +110,6 @@ export default function HomePage() {
         <Stats />
         <CommitteesSection />
         <FeaturedContent />
-        <CallToAction />
       </main>
     </>
   );

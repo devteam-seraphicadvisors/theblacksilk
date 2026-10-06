@@ -1,347 +1,257 @@
-import { generateMetadata } from "@/lib/seo"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Users, Target, Lightbulb, Rocket, ArrowRight, CheckCircle } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { generateMetadata } from "@/lib/seo";
+import { Users, FileSearch, ShieldCheck, Scale, Check, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = generateMetadata({
-  title: "Our Approach - The Black Silk",
+  title: "Our Approach — The Black Silk",
   description:
-    "Discover how The Black Silk approaches legal technology challenges through collaborative research, inclusive dialogue, and practical solutions.",
+    "Explore The Black Silk Framework: our uniform methodology for structured, evidence-based dialogue and actionable policy guidance in India.",
   canonical: "https://theblacksilk.org/about/approach",
-})
+});
+
+const principles = [
+  {
+    title: "Stakeholder-Led",
+    description:
+      "Every discussion includes the people actually affected by the issue at hand, not only legal or policy experts.",
+    icon: Users,
+    number: "01",
+  },
+  {
+    title: "Evidence-Based",
+    description:
+      "Our conclusions are grounded in research and real-world input, not assumption or precedent borrowed from elsewhere.",
+    icon: FileSearch,
+    number: "02",
+  },
+  {
+    title: "Transparent Process",
+    description:
+      "How we reach a position is as important as the position itself, and our process is open to scrutiny.",
+    icon: ShieldCheck,
+    number: "03",
+  },
+  {
+    title: "Non-Partisan",
+    description:
+      "We do not represent any single industry, government body, or interest group; our role is to convene, not to advocate for one side.",
+    icon: Scale,
+    number: "04",
+  },
+];
+
+const frameworkStages = [
+  {
+    stage: "01",
+    title: "Identify the Issue",
+    summary:
+      "Rigorous horizon-scanning and relevance validation across the Indian regulatory landscape.",
+    deliverables: [
+      "Monitor emerging developments in digital technology & legal/ethical questions",
+      "Flag issues with direct relevance to India's regulatory context",
+      "Consult early with members and partners to confirm merit",
+      "Define specific questions the discussion needs to answer",
+    ],
+  },
+  {
+    stage: "02",
+    title: "Convene Stakeholders",
+    summary:
+      "Bringing multi-disciplinary voices together with shared materials and explicit objectives.",
+    deliverables: [
+      "Identify and invite diverse voices (lawmakers, academicians, tech leaders, users)",
+      "Structure format: public consultation, closed roundtable, or committee review",
+      "Share comprehensive background material and research in advance",
+      "Set out clear scope and intended outcomes before beginning",
+    ],
+  },
+  {
+    stage: "03",
+    title: "Deliberate and Analyze",
+    summary:
+      "Facilitating structured deliberation that surfaces friction, tests solutions, and maps consensus.",
+    deliverables: [
+      "Facilitate open, frank discussion without favoring any interest",
+      "Capture the full range of positions raised, including dissent",
+      "Stress-test proposed solutions against practical and ethical tests",
+      "Map where consensus exists and where divergence remains",
+    ],
+  },
+  {
+    stage: "04",
+    title: "Publish and Advocate",
+    summary:
+      "Translating dialogue into actionable guidance delivered directly to regulatory bodies.",
+    deliverables: [
+      "Document conclusions in clear, citable, and practical formats",
+      "Publish findings as articles, whitepapers, or formal position statements",
+      "Share outcomes directly with policymakers and institutions positioned to act",
+      "Track whether and how resulting recommendations are adopted",
+    ],
+  },
+];
 
 export default function ApproachPage() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-24 bg-gray-900 text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/approach-hero.png"
-            alt="Our Approach"
-            fill
-            className="object-cover opacity-20"
+    <main className="min-h-screen bg-white text-black">
+      {/* Editorial Hero */}
+      <section className="relative py-20 lg:py-32 bg-black text-white border-b border-neutral-800 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-5">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
+              backgroundSize: "32px 32px",
+            }}
           />
         </div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-              <Target className="h-4 w-4 mr-2" />
-              <span className="text-sm font-medium">Our Approach</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-heading mb-6 animate-fade-in">
-              Inclusive Discussions and Collaborative Solutions
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed animate-slide-in-left">
-              How we bridge the gap between legal practice and technological
-              innovation through collaborative research and inclusive dialogue
+
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="inline-block px-3 py-1 border border-neutral-700 bg-neutral-900 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-6">
+            Methodology & Process
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white mb-8 leading-[1.1] tracking-tight">
+            Our Approach
+          </h1>
+
+          <p className="text-xl sm:text-2xl !text-neutral-200 font-sans font-light leading-relaxed max-w-3xl">
+            The Black Silk's work rests on a simple idea: the best answers to
+            digital technology's hardest questions come from structured,
+            inclusive dialogue among the people who understand the problem from
+            different sides—not from any single voice working alone.
+          </p>
+        </div>
+      </section>
+
+      {/* Core Principles Section */}
+      <section className="py-20 lg:py-28 bg-white border-b border-neutral-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="max-w-2xl mb-16">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+              Guiding Ethos
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-black tracking-tight">
+              Core Principles
+            </h2>
+            <p className="mt-4 text-neutral-600 text-base sm:text-lg font-sans">
+              Four fundamental rules guide how we frame discussions, invite
+              participants, and construct policy guidance.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Core Principles */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-gray-900 mb-6">
-                Core Principles
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our approach is built on four fundamental principles that guide
-                everything we do
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: Users,
-                  title: "Collaborative Excellence",
-                  description:
-                    "We bring together diverse stakeholders from law, technology, and policy sectors to foster meaningful dialogue and cross-pollination of ideas.",
-                  image: "/images/principle-collaborative.png",
-                  color: "from-blue-500 to-blue-600",
-                },
-                {
-                  icon: Target,
-                  title: "Solution-Focused Research",
-                  description:
-                    "Every research initiative is designed to produce practical, implementable solutions that address real-world challenges in legal technology.",
-                  image: "/images/principle-research.png",
-                  color: "from-green-500 to-green-600",
-                },
-                {
-                  icon: Lightbulb,
-                  title: "Innovation-Driven Thinking",
-                  description:
-                    "We embrace emerging technologies while respecting legal traditions, finding innovative ways to enhance legal practice and access to justice.",
-                  image: "/images/principle-innovation.png",
-                  color: "from-purple-500 to-purple-600",
-                },
-                {
-                  icon: Rocket,
-                  title: "Impact-Oriented Action",
-                  description:
-                    "We measure success by the real-world impact of our work, focusing on outcomes that benefit legal professionals and society at large.",
-                  image: "/images/principle-impact.png",
-                  color: "from-orange-500 to-orange-600",
-                },
-              ].map((principle, index) => (
-                <Card
-                  key={index}
-                  className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={principle.image || "/placeholder.svg"}
-                      alt={principle.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-t ${principle.color} opacity-80`}
-                    />
-                    <div className="absolute top-6 left-6">
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                        <principle.icon className="h-6 w-6 text-white" />
-                      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {principles.map((item) => (
+              <div
+                key={item.title}
+                className="border border-neutral-200 p-8 flex flex-col justify-between hover:border-black transition-colors bg-white group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="font-mono text-xs text-neutral-400 group-hover:text-black transition-colors">
+                      {item.number}
+                    </span>
+                    <div className="w-10 h-10 border border-neutral-200 flex items-center justify-center bg-neutral-50 group-hover:bg-black group-hover:text-white transition-colors">
+                      <item.icon className="h-5 w-5" />
                     </div>
                   </div>
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-heading text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">
-                      {principle.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {principle.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  <h3 className="text-xl font-serif font-medium text-black mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-neutral-600 font-sans text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Methodology */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-gray-900 mb-6">
-                Our Methodology
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                A systematic approach to addressing complex challenges at the
-                intersection of law and technology
-              </p>
-            </div>
+      {/* The Black Silk Framework */}
+      <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="max-w-2xl mb-16">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+              End-To-End Methodology
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-black tracking-tight">
+              The Black Silk Framework
+            </h2>
+            <p className="mt-4 text-neutral-600 text-base sm:text-lg font-sans">
+              Every discussion convened by The Black Silk follows this uniform
+              four-stage methodology to ensure legitimacy, rigor, and impact.
+            </p>
+          </div>
 
-            <div className="space-y-16">
-              {[
-                {
-                  step: "01",
-                  title: "Research & Analysis",
-                  description:
-                    "We begin by conducting comprehensive research to understand the current landscape, identify gaps, and analyze emerging trends in legal technology.",
-                  features: [
-                    "Market analysis and trend identification",
-                    "Stakeholder interviews and surveys",
-                    "Comparative studies across jurisdictions",
-                    "Technology assessment and evaluation",
-                  ],
-                  image: "/images/methodology-research.png",
-                },
-                {
-                  step: "02",
-                  title: "Collaborative Dialogue",
-                  description:
-                    "We facilitate inclusive discussions bringing together diverse perspectives from legal professionals, technologists, policymakers, and academics.",
-                  features: [
-                    "Multi-stakeholder workshops and symposiums",
-                    "Expert panel discussions",
-                    "Committee-based working groups",
-                    "Public consultation processes",
-                  ],
-                  image: "/images/methodology-dialogue.png",
-                },
-                {
-                  step: "03",
-                  title: "Solution Development",
-                  description:
-                    "Based on research and dialogue, we develop practical solutions, frameworks, and recommendations that can be implemented in real-world scenarios.",
-                  features: [
-                    "Policy framework development",
-                    "Best practice guidelines",
-                    "Implementation roadmaps",
-                    "Pilot program design",
-                  ],
-                  image: "/images/methodology-solution.png",
-                },
-                {
-                  step: "04",
-                  title: "Implementation & Impact",
-                  description:
-                    "We work with partners to implement solutions, monitor their effectiveness, and continuously refine our approach based on real-world feedback.",
-                  features: [
-                    "Partnership development",
-                    "Implementation support",
-                    "Impact measurement and evaluation",
-                    "Continuous improvement processes",
-                  ],
-                  image: "/images/methodology-impact.png",
-                },
-              ].map((phase, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col lg:flex-row gap-12 items-center ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
-                >
-                  <div className="lg:w-1/2">
-                    <div className="relative">
-                      <div className="text-6xl font-bold text-gray-100 mb-4">
-                        {phase.step}
-                      </div>
-                      <h3 className="text-3xl font-heading text-gray-900 mb-6">
-                        {phase.title}
-                      </h3>
-                      <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                        {phase.description}
-                      </p>
-                      <div className="space-y-3">
-                        {phase.features.map((feature, featureIndex) => (
-                          <div
-                            key={featureIndex}
-                            className="flex items-center space-x-3"
-                          >
-                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
+          <div className="space-y-6">
+            {frameworkStages.map((phase) => (
+              <div
+                key={phase.stage}
+                className="bg-white border border-neutral-200 p-8 sm:p-10 hover:border-black transition-all"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <div className="lg:col-span-4">
+                    <div className="font-mono text-3xl font-light text-neutral-400 mb-2">
+                      Stage {phase.stage}
                     </div>
+                    <h3 className="text-2xl font-serif font-medium text-black mb-3">
+                      {phase.title}
+                    </h3>
+                    <p className="text-neutral-600 font-sans text-sm sm:text-base leading-relaxed">
+                      {phase.summary}
+                    </p>
                   </div>
-                  <div className="lg:w-1/2">
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                      <Image
-                        src={phase.image || "/placeholder.svg"}
-                        alt={phase.title}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
+
+                  <div className="lg:col-span-8 border-t lg:border-t-0 lg:border-l border-neutral-200 pt-6 lg:pt-0 lg:pl-8">
+                    <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-4">
+                      Key Deliverables & Protocols
+                    </span>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {phase.deliverables.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start text-sm text-neutral-700 leading-relaxed font-sans"
+                        >
+                          <div className="w-4 h-4 rounded-none border border-black bg-black text-white flex items-center justify-center flex-shrink-0 mt-0.5 mr-2.5">
+                            <Check className="h-3 w-3 text-white" />
+                          </div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Success Stories */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-gray-900 mb-6">
-                Success Stories
+      {/* Success Stories & Track Record */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="border border-neutral-200 p-8 sm:p-12 bg-neutral-50">
+            <div className="max-w-2xl">
+              <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                Track Record & Practical Outcomes
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-serif font-normal text-black mb-4">
+                Success Stories & Case Outcomes
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Real examples of how our approach has created meaningful impact
-                in the legal technology landscape
+              <p className="text-neutral-700 font-sans text-base leading-relaxed mb-6">
+                We are early in building our track record, and this section will
+                grow as discussions completed through the Black Silk Framework
+                translate into published outcomes and adopted recommendations.
+                Check back as we add real examples of our work in practice.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "AI Ethics Framework",
-                  description:
-                    "Developed comprehensive guidelines for ethical AI use in Indian courts",
-                  impact: "Adopted by 15+ state high courts",
-                  image: "/images/success-ai-ethics.jpg",
-                },
-                {
-                  title: "Digital Evidence Standards",
-                  description:
-                    "Created standardized protocols for digital evidence handling",
-                  impact: "Implemented across 200+ courts",
-                  image: "/images/success-digital-evidence.jpg",
-                },
-                {
-                  title: "Legal Tech Startup Incubator",
-                  description:
-                    "Launched India's first legal technology startup accelerator program",
-                  impact: "Supported 50+ startups",
-                  image: "/images/success-incubator.png",
-                },
-              ].map((story, index) => (
-                <Card
-                  key={index}
-                  className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={story.image || "/placeholder.svg"}
-                      alt={story.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <div className="text-sm font-medium bg-green-500 px-2 py-1 rounded">
-                        {story.impact}
-                      </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-heading text-gray-900 mb-3 group-hover:text-gray-800 transition-colors">
-                      {story.title}
-                    </h3>
-                    <p className="text-gray-600">{story.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gray-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-heading mb-6">
-              Ready to Collaborate?
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Join our community and be part of shaping the future of legal
-              technology in India
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100"
-                asChild
+              <Link
+                href="/knowledge-hub/blog"
+                className="inline-flex items-center text-xs uppercase tracking-widest font-mono text-black hover:text-neutral-600 transition-colors font-semibold group"
               >
-                <Link href="/community/membership">
-                  Become a Member
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white bg-gray-900 hover:bg-white hover:text-gray-900"
-                asChild
-              >
-                <Link href="/get-involved/contact">Contact Us</Link>
-              </Button>
+                <span>Read our latest published papers & briefs</span>
+                <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>

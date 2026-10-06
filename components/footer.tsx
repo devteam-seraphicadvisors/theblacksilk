@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import Image from "next/image";
+import { CallToAction } from "@/components/call-to-action";
 
 export function Footer() {
   const pathname = usePathname();
@@ -25,7 +26,9 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-black text-white border-t border-neutral-800">
+    <>
+      <CallToAction />
+      <footer className="bg-black text-white border-t border-neutral-800">
       <div className="container mx-auto px-4 max-w-7xl pt-16 pb-12">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
@@ -216,5 +219,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  </>
+);
 }

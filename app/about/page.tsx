@@ -1,185 +1,158 @@
-import { generateMetadata } from "@/lib/seo"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Users, Target, Globe, Award, ArrowRight } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { generateMetadata } from "@/lib/seo";
+import { ArrowRight, Compass, Users, Layers, Award } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = generateMetadata({
-  title: "About Us - The Black Silk",
+  title: "About The Black Silk — Ethical Standards & Policy for Digital Technologies",
   description:
-    "Learn about The Black Silk's mission to bridge law, technology, and policy through collaborative discussions and innovative solutions.",
+    "The Black Silk is a not-for-profit organization working toward the ethical development and judicious use of digital technologies for the greater good.",
   canonical: "https://theblacksilk.org/about",
-})
+});
+
+const subpages = [
+  {
+    title: "Our Mission",
+    href: "/about/mission",
+    description:
+      "Our guiding purpose, 5 foundational values, and the 4 pillars of how we work.",
+    icon: Compass,
+  },
+  {
+    title: "Leadership & Governance",
+    href: "/about/leadership",
+    description:
+      "Meet President KPS Kohli, Secretary Roopa Somasundaran, and our governance structure.",
+    icon: Users,
+  },
+  {
+    title: "Our Approach",
+    href: "/about/approach",
+    description:
+      "The 4 core principles and our 4-stage Black Silk Framework for stakeholder deliberation.",
+    icon: Layers,
+  },
+  {
+    title: "Our Impact",
+    href: "/about/impact",
+    description:
+      "Our nationwide reach, problem statement, and key engagement metrics since founding.",
+    icon: Award,
+  },
+];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gray-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop"
-            alt="Legal professionals in discussion"
-            fill
-            className="object-cover opacity-20"
+    <main className="min-h-screen bg-white text-black">
+      {/* Editorial Hero */}
+      <section className="relative py-20 lg:py-32 bg-black text-white border-b border-neutral-800 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-5">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
+              backgroundSize: "32px 32px",
+            }}
           />
-          <div className="absolute inset-0 bg-gray-900/70" />
         </div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-              About The Black Silk
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-              Driving Ethical Digital Transformation for a Better Future
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <Target className="h-8 w-8 text-prussian-blue mr-3" />
-                  <h2 className="text-2xl font-semibold text-gray-900">
-                    Our Mission
-                  </h2>
-                </div>
-                <p className="text-gray-600 leading-relaxed">
-                  To create a trusted forum for open and frank discussions on
-                  the future of global technologies, bringing together diverse
-                  perspectives to address complex challenges in digital
-                  transformation, legal frameworks, and policy development.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <Globe className="h-8 w-8 text-prussian-blue mr-3" />
-                  <h2 className="text-2xl font-semibold text-gray-900">
-                    Our Vision
-                  </h2>
-                </div>
-                <p className="text-gray-600 leading-relaxed">
-                  To be the leading global platform that shapes the future of
-                  law and technology, fostering inclusive discussions that lead
-                  to practical, implementable solutions for the digital age.
-                </p>
-              </CardContent>
-            </Card>
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="inline-block px-3 py-1 border border-neutral-700 bg-neutral-900 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-6">
+            About Organization
           </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-white mb-8 leading-[1.1] tracking-tight">
+            About The Black Silk
+          </h1>
+
+          <p className="text-xl sm:text-2xl !text-neutral-200 font-sans font-light leading-relaxed max-w-3xl">
+            A not-for-profit organization working toward the ethical development
+            and judicious use of digital technologies for the greater good.
+          </p>
         </div>
       </section>
 
-      {/* Our Approach */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Our Approach
-            </h2>
-            <p className="text-xl text-gray-600">
-              We believe in collaborative problem-solving and inclusive dialogue
+      {/* Overview & Purpose */}
+      <section className="py-20 lg:py-28 bg-white border-b border-neutral-200">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="border-l-4 border-black pl-8 sm:pl-12 py-4 mb-12">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-4">
+              Convening for the Digital Age
+            </span>
+            <p className="text-2xl sm:text-3xl font-serif leading-relaxed text-black font-normal">
+              “We convene academicians, policymakers, lawmakers, and expert
+              professionals to address the community, global, moral, ethical,
+              legal, local, and personal dimensions of digital technology
+              through open, inclusive discussion.”
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: Users,
-                title: "Collaborative",
-                description:
-                  "Bringing together diverse stakeholders from law, technology, and policy sectors",
-                image:
-                  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop",
-              },
-              {
-                icon: Target,
-                title: "Solution-Focused",
-                description:
-                  "Identifying practical, implementable solutions to complex technological challenges",
-                image:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
-              },
-              {
-                icon: Award,
-                title: "Excellence-Driven",
-                description:
-                  "Maintaining the highest standards of research, discussion, and thought leadership",
-                image:
-                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-              },
-            ].map((item, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-lg text-center overflow-hidden"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="p-4 bg-white/20 backdrop-blur-sm rounded-lg">
-                      <item.icon className="h-8 w-8 text-white" />
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Join Our Mission?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Become part of India's leading legal technology community and help
-              shape the future of legal practice.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100"
-                asChild
-              >
-                <Link href="/community/membership">
-                  Become a Member
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-gray-900"
-                asChild
-              >
-                <Link href="/about/mission">Learn More</Link>
-              </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-neutral-700 leading-relaxed font-sans text-base sm:text-lg">
+            <div>
+              <h2 className="text-xl font-serif text-black mb-3 font-semibold">
+                The Challenge We Address
+              </h2>
+              <p>
+                Digital technology has many facets and a wide ecosystem. It is now
+                difficult to think of any human activity without it. That ecosystem
+                includes not only hardware manufacturers and software developers, but
+                users as well, who are often the most vulnerable stakeholders in it,
+                exposed to risks ranging from data breaches to the rapid spread of
+                misinformation.
+              </p>
             </div>
+            <div>
+              <h2 className="text-xl font-serif text-black mb-3 font-semibold">
+                Our Reach Across Sectors
+              </h2>
+              <p>
+                The Black Silk works across the technology sector, bringing the
+                country&apos;s most difficult digital policy questions to the fore and
+                working toward solutions through inclusive discussion. We bring
+                stakeholders together for frank discussion on the ethical and legal
+                thresholds needed to govern digital technology in India.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Directory of About Sections */}
+      <section className="py-20 lg:py-28 bg-neutral-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="max-w-2xl mb-16">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+              Explore Our Work
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-black tracking-tight">
+              About Us Sections
+            </h2>
+            <p className="mt-4 text-neutral-600 text-base sm:text-lg font-sans">
+              Learn in detail about our core mission, executive leadership,
+              methodology, and documented impact.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            {subpages.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="bg-white border border-neutral-200 p-8 sm:p-10 hover:border-black transition-all block group"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 border border-neutral-200 bg-neutral-50 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="text-2xl font-serif font-medium text-black mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-neutral-600 font-sans text-sm sm:text-base leading-relaxed">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
