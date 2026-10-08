@@ -1,15 +1,66 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const markVideoReady = () => {
+    setIsVideoReady(true);
+    if (typeof window !== "undefined") {
+      (window as any).__HERO_VIDEO_READY__ = true;
+      window.dispatchEvent(new CustomEvent("hero-video-ready"));
+    }
+  };
+
+  useEffect(() => {
+    // Listen for Vimeo postMessage events (ready / play)
+    const handleMessage = (event: MessageEvent) => {
+      try {
+        const data =
+          typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+        if (
+          data &&
+          (data.event === "ready" ||
+            data.event === "play" ||
+            data.event === "playing" ||
+            data.method === "ping")
+        ) {
+          markVideoReady();
+        }
+      } catch {
+        // Ignore non-JSON postMessages
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    // Fallback timer: ensure video is considered ready within 2.5s even if events are delayed
+    const fallbackTimer = setTimeout(() => {
+      markVideoReady();
+    }, 2500);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
+
   return (
     <section className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden no-scrollbar bg-black text-white">
       {/* Fullscreen Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="relative w-full h-full overflow-hidden">
           <iframe
-            src="https://player.vimeo.com/video/902919321?background=1&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&playsinline=1"
-            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none grayscale contrast-110 brightness-100 opacity-90"
+            ref={iframeRef}
+            src="https://player.vimeo.com/video/902919321?background=1&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&playsinline=1&api=1"
+            onLoad={markVideoReady}
+            className={`absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none grayscale contrast-110 brightness-100 transition-opacity duration-1000 ${
+              isVideoReady ? "opacity-90" : "opacity-0"
+            }`}
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"
             title="The Black Silk background video"

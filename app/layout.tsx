@@ -121,6 +121,7 @@ export default function RootLayout({
         </noscript>
         <Suspense fallback={<MainLoader />}>
           <Providers>
+            <MainLoader isInitialSiteLoader />
             <Navbar />
             {children}
             <Footer />

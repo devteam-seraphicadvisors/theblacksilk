@@ -15,7 +15,7 @@ export function SimpleLoader({ size = "md", className }: SimpleLoaderProps) {
   return (
     <div
       className={cn(
-        "animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-1000",
+        "animate-spin rounded-full border-2 border-neutral-300 border-t-black dark:border-neutral-800 dark:border-t-white",
         sizeClasses[size],
         className,
       )}
