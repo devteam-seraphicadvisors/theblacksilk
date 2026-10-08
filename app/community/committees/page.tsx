@@ -231,37 +231,33 @@ const committees = [
 const getStatusColor = (status: string) => {
   switch (status) {
     case "Accepting Members":
-      return "bg-green-100 text-green-800 border-green-200";
+      return "bg-black text-white border-black";
     case "Open for Collaboration":
-      return "bg-blue-100 text-blue-800 border-blue-200";
+      return "bg-neutral-900 text-white border-neutral-900";
     case "Active Research":
-      return "bg-purple-100 text-purple-800 border-purple-200";
     case "Active Development":
-      return "bg-orange-100 text-orange-800 border-orange-200";
+      return "bg-neutral-100 text-neutral-900 border-neutral-300";
     case "Policy Review":
-      return "bg-gray-100 text-gray-800 border-gray-200";
     default:
-      return "bg-gray-100 text-gray-700 border-gray-200";
+      return "bg-neutral-100 text-neutral-700 border-neutral-300";
   }
 };
 
 export default function CommitteesPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      <section className="py-20 lg:py-28 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8">
-              <Sparkles className="h-4 w-4 text-white mr-2" />
-              <span className="text-sm font-medium text-white">
-                13 Active Committees
-              </span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Sparkles className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>13 Active Committees</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Expert Committees
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Join specialized committees working on the most pressing issues at
               the intersection of law and technology
             </p>
@@ -270,7 +266,7 @@ export default function CommitteesPage() {
       </section>
 
       {/* Committees Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -278,88 +274,88 @@ export default function CommitteesPage() {
                 return (
                   <Card
                     key={committee.id}
-                    className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group"
+                    className="border border-neutral-200 shadow-sm hover:shadow-md hover:border-black transition-all duration-300 bg-white rounded-none overflow-hidden group flex flex-col justify-between"
                   >
                     <CardHeader className="pb-4">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center mb-4 shadow-lg">
-                          <committee.icon className="h-7 w-7 text-white" />
+                        <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center text-white border border-black">
+                          <committee.icon className="h-6 w-6 text-white" />
                         </div>
                         <Badge
                           className={`${getStatusColor(
                             committee.status
-                          )} font-medium`}
+                          )} rounded-none px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border`}
                         >
                           {committee.status}
                         </Badge>
                       </div>
-                      <CardTitle className="text-xl font-bold text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
+                      <CardTitle className="text-xl font-serif font-normal text-black leading-tight group-hover:text-neutral-700 transition-colors">
                         {committee.name}
                       </CardTitle>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-neutral-600 text-sm leading-relaxed mt-2 font-sans">
                         {committee.description}
                       </p>
                     </CardHeader>
 
-                    <CardContent className="space-y-6">
+                    <CardContent className="space-y-6 pt-0">
                       {/* Committee Stats */}
-                      <div className="grid grid-cols-3 gap-4">
-                        <div className="text-center p-3 bg-gray-50 rounded-xl">
-                          <div className="flex items-center justify-center mb-2">
-                            <Users className="h-4 w-4 text-gray-500" />
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="text-center p-3 bg-neutral-50 border border-neutral-200">
+                          <div className="flex items-center justify-center mb-1.5">
+                            <Users className="h-4 w-4 text-neutral-500" />
                           </div>
-                          <p className="text-lg font-bold text-gray-900">
+                          <p className="text-lg font-bold text-black font-mono">
                             {committee.members}
                           </p>
-                          <p className="text-xs text-gray-500 font-medium">
+                          <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-wider">
                             Members
                           </p>
                         </div>
-                        <div className="text-center p-3 bg-gray-50 rounded-xl">
-                          <div className="flex items-center justify-center mb-2">
-                            <FileText className="h-4 w-4 text-gray-500" />
+                        <div className="text-center p-3 bg-neutral-50 border border-neutral-200">
+                          <div className="flex items-center justify-center mb-1.5">
+                            <FileText className="h-4 w-4 text-neutral-500" />
                           </div>
-                          <p className="text-lg font-bold text-gray-900">
+                          <p className="text-lg font-bold text-black font-mono">
                             {committee.publications}
                           </p>
-                          <p className="text-xs text-gray-500 font-medium">
-                            Publications
+                          <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-wider">
+                            Pubs
                           </p>
                         </div>
-                        <div className="text-center p-3 bg-gray-50 rounded-xl">
-                          <div className="flex items-center justify-center mb-2">
-                            <Calendar className="h-4 w-4 text-gray-500" />
+                        <div className="text-center p-3 bg-neutral-50 border border-neutral-200">
+                          <div className="flex items-center justify-center mb-1.5">
+                            <Calendar className="h-4 w-4 text-neutral-500" />
                           </div>
-                          <p className="text-lg font-bold text-gray-900">
+                          <p className="text-lg font-bold text-black font-mono">
                             {committee.established}
                           </p>
-                          <p className="text-xs text-gray-500 font-medium">
-                            Established
+                          <p className="text-[11px] text-neutral-500 font-mono uppercase tracking-wider">
+                            Est.
                           </p>
                         </div>
                       </div>
 
                       {/* Committee Details */}
-                      <div className="space-y-4">
-                        <div>
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
+                      <div className="space-y-4 text-sm">
+                        <div className="border-t border-neutral-100 pt-3">
+                          <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">
                             Committee Chair
                           </p>
-                          <p className="text-sm text-gray-600 font-medium">
+                          <p className="text-sm text-black font-medium">
                             {committee.chair}
                           </p>
                         </div>
 
                         <div>
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
+                          <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-2">
                             Focus Areas
                           </p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5">
                             {committee.focus.map((area, index) => (
                               <Badge
                                 key={index}
                                 variant="outline"
-                                className="text-xs border-gray-300 text-gray-600 bg-white hover:bg-gray-50 transition-colors"
+                                className="text-[11px] rounded-none border-neutral-300 text-neutral-700 bg-neutral-50 hover:bg-neutral-100 transition-colors"
                               >
                                 {area}
                               </Badge>
@@ -368,31 +364,31 @@ export default function CommitteesPage() {
                         </div>
 
                         <div>
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
+                          <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">
                             Next Meeting
                           </p>
-                          <p className="text-sm text-gray-600 font-medium">
+                          <p className="text-sm text-black font-medium">
                             {committee.nextMeeting}
                           </p>
                         </div>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex gap-3 pt-4 border-t border-gray-100">
+                      <div className="flex gap-3 pt-4 border-t border-neutral-200">
                         <Button
-                          className="flex-1 bg-gray-900 hover:bg-black text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-xl"
+                          className="flex-1 bg-black hover:bg-neutral-800 !text-white rounded-none transition-all duration-200 text-xs uppercase font-mono tracking-wider cursor-pointer"
                           asChild
                         >
                           <Link href={`/community/committees/${committee.id}`}>
                             Learn More
-                            <ArrowRight className="ml-2 h-4 w-4" />
+                            <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                           </Link>
                         </Button>
                         {(committee.status === "Accepting Members" ||
                           committee.status === "Open for Collaboration") && (
                           <Button
                             variant="outline"
-                            className="border-gray-300 text-gray-700 hover:border-gray-900 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-all duration-200"
+                            className="border-neutral-300 text-black hover:border-black hover:bg-black hover:!text-white rounded-none text-xs uppercase font-mono tracking-wider transition-all duration-200 cursor-pointer"
                             asChild
                           >
                             <Link
@@ -407,38 +403,6 @@ export default function CommitteesPage() {
                   </Card>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Contribute?
-            </h2>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-              Join a committee and help shape the future of law and technology
-              in India
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl px-8 py-3 font-semibold"
-                asChild
-              >
-                <Link href="/membership">Become a Member</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-gray-900 rounded-xl px-8 py-3 font-semibold transition-all duration-200"
-                asChild
-              >
-                <Link href="/contact">Contact Us</Link>
-              </Button>
             </div>
           </div>
         </div>

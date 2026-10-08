@@ -1,4 +1,4 @@
-﻿import { generateMetadata } from "@/lib/seo";
+import { generateMetadata } from "@/lib/seo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -45,17 +45,19 @@ export default async function PastEventsPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Calendar className="h-4 w-4 text-blue-400" />
-              <span className="text-sm font-medium">
+            <div className="inline-flex items-center gap-2 bg-neutral-900 border border-neutral-700 px-3 py-1 mb-8">
+              <Calendar className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-mono uppercase tracking-widest text-neutral-300">
                 {totalEvents} Past {totalEvents === 1 ? "Event" : "Events"}
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Past Events</h1>
-            <p className="text-xl text-gray-300">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
+              Past Events
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Explore our archive of events, symposiums, and workshops
             </p>
           </div>
@@ -182,23 +184,6 @@ export default async function PastEventsPage() {
         </section>
       )}
 
-      <section className="py-24 bg-gradient-to-r from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Join Our Next Event</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Discover upcoming opportunities to connect with industry leaders
-            </p>
-            <Button
-              size="lg"
-              className="bg-white text-black hover:bg-gray-100"
-              asChild
-            >
-              <Link href="/events/upcoming">View Upcoming Events</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

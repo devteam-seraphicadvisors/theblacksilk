@@ -107,17 +107,21 @@ export default async function EventDetailPage({
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      upcoming: { color: "bg-blue-100 text-blue-800", label: "Upcoming" },
-      ongoing: { color: "bg-green-100 text-green-800", label: "Ongoing" },
-      completed: { color: "bg-gray-100 text-gray-800", label: "Completed" },
-      cancelled: { color: "bg-red-100 text-red-800", label: "Cancelled" },
+      upcoming: { color: "bg-white text-black border border-white", label: "Upcoming" },
+      ongoing: { color: "bg-neutral-800 text-white border border-neutral-700", label: "Ongoing" },
+      completed: { color: "bg-neutral-100 text-neutral-800 border border-neutral-300", label: "Completed" },
+      cancelled: { color: "bg-neutral-200 text-neutral-700 border border-neutral-300", label: "Cancelled" },
     };
 
     const config =
       statusConfig[status as keyof typeof statusConfig] ||
       statusConfig.upcoming;
 
-    return <Badge className={config.color}>{config.label}</Badge>;
+    return (
+      <Badge className={`${config.color} rounded-none font-mono text-xs uppercase tracking-wider`}>
+        {config.label}
+      </Badge>
+    );
   };
 
   return (
@@ -408,46 +412,6 @@ export default async function EventDetailPage({
           </section>
         )}
 
-        {/* Registration CTA */}
-        {isUpcoming && (
-          <section className="py-16 bg-gray-900 text-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold mb-4">
-                  Don't Miss This Event
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Secure your spot today and join industry leaders in this
-                  exciting event.
-                </p>
-                {event.registrationFormUrl ? (
-                  <Button
-                    size="lg"
-                    className="bg-white text-gray-900 hover:bg-gray-100"
-                    asChild
-                  >
-                    <a
-                      href={event.registrationFormUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Register Now
-                      <ExternalLink className="ml-2 h-5 w-5" />
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    size="lg"
-                    className="bg-white text-gray-900 hover:bg-gray-100"
-                    asChild
-                  >
-                    <Link href="/login">Register Now</Link>
-                  </Button>
-                )}
-              </div>
-            </div>
-          </section>
-        )}
       </main>
     </>
   );

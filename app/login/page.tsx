@@ -68,71 +68,73 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-neutral-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h2 className="mt-6 text-3xl font-serif font-bold text-black">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-neutral-600">
             Or{" "}
             <Link
               href="/register"
-              className="font-medium text-gray-900 hover:underline"
+              className="font-medium text-black hover:underline"
             >
               create a new account
             </Link>
           </p>
         </div>
 
-        <Card className="border-0 shadow-lg">
+        <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
-            <CardDescription className="text-center">
+            <CardTitle className="text-2xl text-center font-serif text-black">
+              Welcome back
+            </CardTitle>
+            <CardDescription className="text-center text-neutral-500">
               Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {error && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" className="rounded-none border-black bg-neutral-900 text-white">
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-3 text-neutral-400 hover:text-black"
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" />
@@ -145,7 +147,7 @@ export default function LoginPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gray-900 hover:bg-black"
+                className="w-full bg-black !text-white hover:bg-neutral-800 rounded-none h-11 text-sm font-medium tracking-wide uppercase"
                 disabled={loading}
               >
                 {loading ? (
@@ -164,7 +166,7 @@ export default function LoginPage() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">
+                <span className="bg-white px-2 text-neutral-400 font-mono">
                   Or continue with
                 </span>
               </div>
@@ -174,7 +176,7 @@ export default function LoginPage() {
               type="button"
               variant="outline"
               onClick={handleGoogleSignIn}
-              className="w-full bg-transparent"
+              className="w-full rounded-none border-neutral-300 hover:bg-neutral-50 h-11 text-sm font-medium"
               disabled={loading}
             >
               {loading ? (
@@ -205,7 +207,7 @@ export default function LoginPage() {
             <div className="text-center text-sm">
               <Link
                 href="/forgot-password"
-                className="text-gray-600 hover:underline"
+                className="text-neutral-500 hover:text-black hover:underline"
               >
                 Forgot your password?
               </Link>

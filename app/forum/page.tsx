@@ -124,20 +124,26 @@ export default function ForumPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-light tracking-wide text-gray-900 mb-2">Community Forum</h1>
-          <p className="text-gray-600">Engage in discussions about law, technology, and policy</p>
+    <div className="min-h-screen bg-white">
+      {/* Hero Header */}
+      <section className="py-20 bg-black text-white border-b border-neutral-800 mb-8">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-6">
+            <MessageSquare className="h-3.5 w-3.5 mr-2 text-white" />
+            <span>Discussion & Exchange</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-serif font-normal text-white mb-4 tracking-tight">Community Forum</h1>
+          <p className="text-lg text-neutral-300 font-sans font-light max-w-2xl">Engage in discussions about law, technology, ethics, and digital policy with fellow practitioners</p>
         </div>
+      </section>
 
+      <div className="container mx-auto px-4 max-w-6xl pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">Categories</CardTitle>
+            <Card className="mb-6 border border-neutral-200 shadow-none rounded-none bg-white">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-serif">Categories</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {categories.map((category) => (

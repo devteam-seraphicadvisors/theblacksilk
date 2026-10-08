@@ -70,22 +70,19 @@ export default async function BlogPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/blog-hero.jpg')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-md rounded-full mb-8 border border-white/20">
-              <BookOpen className="h-5 w-5 mr-3" />
-              <span className="text-sm font-medium">Knowledge Hub</span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <BookOpen className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Knowledge Hub</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Blog & Insights
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Expert analysis, thought leadership, and insights on legal
               technology, policy, and innovation
             </p>
@@ -392,19 +389,19 @@ export default async function BlogPage() {
                 </Card>
 
                 {/* Trending Topics */}
-                <Card className="border-0 shadow-lg rounded-2xl">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <Card className="border border-neutral-200 shadow-none rounded-none bg-white">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-serif text-black mb-4">
                       Trending Topics
                     </h3>
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {trendingTopics.map((topic) => (
                         <div
                           key={topic}
-                          className="flex items-center gap-3 py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer"
+                          className="flex items-center gap-3 py-2 px-3 border border-neutral-100 hover:border-black transition-colors cursor-pointer"
                         >
-                          <TrendingUp className="h-5 w-5 text-blue-600" />
-                          <span className="font-medium text-gray-700">
+                          <TrendingUp className="h-4 w-4 text-black" />
+                          <span className="text-xs font-mono uppercase tracking-wider text-neutral-700">
                             {topic}
                           </span>
                         </div>
@@ -414,18 +411,18 @@ export default async function BlogPage() {
                 </Card>
 
                 {/* Newsletter Signup */}
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-                    <p className="text-gray-300 mb-6">
+                <Card className="border border-neutral-800 bg-black text-white rounded-none">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-serif mb-2">Stay Updated</h3>
+                    <p className="text-neutral-400 text-xs mb-4">
                       Get the latest insights delivered to your inbox weekly
                     </p>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       <Input
                         placeholder="Enter your email"
-                        className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 rounded-xl"
+                        className="bg-neutral-900 border-neutral-700 text-white placeholder:text-neutral-500 rounded-none text-xs"
                       />
-                      <Button className="w-full bg-white text-gray-900 hover:bg-gray-100 rounded-xl py-3">
+                      <Button className="w-full bg-white !text-black hover:bg-neutral-200 rounded-none py-2 text-xs font-mono uppercase tracking-wider">
                         Subscribe
                       </Button>
                     </div>

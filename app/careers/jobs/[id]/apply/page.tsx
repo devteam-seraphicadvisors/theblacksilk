@@ -149,22 +149,22 @@ export default function JobApplicationPage({
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="max-w-2xl mx-4">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <Card className="max-w-2xl mx-4 border border-neutral-200 bg-white rounded-none shadow-none">
           <CardContent className="p-12 text-center">
-            <CheckCircle className="h-20 w-20 text-green-500 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <CheckCircle className="h-16 w-16 text-black mx-auto mb-6" />
+            <h2 className="text-3xl font-serif font-bold text-black mb-4">
               Application Submitted!
             </h2>
-            <p className="text-gray-600 mb-6 text-lg">
+            <p className="text-neutral-600 mb-6 text-base">
               Thank you for applying to the <strong>{job.title}</strong>{" "}
               position. We'll review your application and get back to you soon.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="rounded-none border-neutral-300 hover:bg-neutral-50">
                 <Link href="/careers/jobs">Browse More Jobs</Link>
               </Button>
-              <Button asChild>
+              <Button asChild className="rounded-none bg-black !text-white hover:bg-neutral-800">
                 <Link href="/dashboard">Go to Dashboard</Link>
               </Button>
             </div>
@@ -175,35 +175,35 @@ export default function JobApplicationPage({
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12">
+    <main className="min-h-screen bg-neutral-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <Link
             href={`/careers/jobs/${params.id}`}
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-8 transition-colors group"
+            className="inline-flex items-center text-neutral-500 hover:text-black mb-8 transition-colors group font-mono text-sm"
           >
             <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Job Details
           </Link>
 
-          <Card>
+          <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
             <CardHeader>
-              <CardTitle className="text-3xl font-bold">
+              <CardTitle className="text-3xl font-serif font-bold text-black">
                 Apply for {job.title}
               </CardTitle>
-              <p className="text-gray-600 mt-2">{job.department}</p>
+              <p className="text-neutral-500 mt-2 font-mono text-xs uppercase">{job.department}</p>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 {error && (
-                  <Alert variant="destructive">
-                    <XCircle className="h-4 w-4" />
+                  <Alert variant="destructive" className="rounded-none border-black bg-neutral-900 text-white">
+                    <XCircle className="h-4 w-4 text-white" />
                     <AlertDescription>{error}</AlertDescription>
                   </Alert>
                 )}
 
-                <Alert>
-                  <AlertDescription>
+                <Alert className="rounded-none border-neutral-200 bg-neutral-50 text-neutral-800">
+                  <AlertDescription className="text-xs font-mono">
                     Logged in as: <strong>{session?.user?.email}</strong>
                   </AlertDescription>
                 </Alert>
@@ -212,7 +212,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="coverLetter"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     Cover Letter *
                   </Label>
@@ -226,7 +226,7 @@ export default function JobApplicationPage({
                         coverLetter: e.target.value,
                       }))
                     }
-                    className="min-h-[150px] resize-none"
+                    className="min-h-[150px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="experience"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     Relevant Experience *
                   </Label>
@@ -249,7 +249,7 @@ export default function JobApplicationPage({
                         experience: e.target.value,
                       }))
                     }
-                    className="min-h-[120px] resize-none"
+                    className="min-h-[120px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                 </div>
@@ -258,7 +258,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="whyInterested"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     Why are you interested in this role? *
                   </Label>
@@ -272,7 +272,7 @@ export default function JobApplicationPage({
                         whyInterested: e.target.value,
                       }))
                     }
-                    className="min-h-[100px] resize-none"
+                    className="min-h-[100px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                 </div>
@@ -281,7 +281,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="availability"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     When can you start? *
                   </Label>
@@ -295,6 +295,7 @@ export default function JobApplicationPage({
                         availability: e.target.value,
                       }))
                     }
+                    className="rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
                 </div>
@@ -303,7 +304,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="resumeUrl"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     Resume URL *
                   </Label>
@@ -318,11 +319,12 @@ export default function JobApplicationPage({
                         resumeUrl: e.target.value,
                       }))
                     }
+                    className="rounded-none border-neutral-300 focus-visible:ring-black"
                     required
                   />
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs text-neutral-500 font-mono">
                     Upload your resume to Google Drive or Dropbox and share the
-                    link
+                    public link
                   </p>
                 </div>
 
@@ -330,7 +332,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="linkedinUrl"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     LinkedIn Profile URL
                   </Label>
@@ -345,6 +347,7 @@ export default function JobApplicationPage({
                         linkedinUrl: e.target.value,
                       }))
                     }
+                    className="rounded-none border-neutral-300 focus-visible:ring-black"
                   />
                 </div>
 
@@ -352,7 +355,7 @@ export default function JobApplicationPage({
                 <div className="space-y-2">
                   <Label
                     htmlFor="portfolioUrl"
-                    className="text-base font-semibold"
+                    className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                   >
                     Portfolio/Website URL
                   </Label>
@@ -367,6 +370,7 @@ export default function JobApplicationPage({
                         portfolioUrl: e.target.value,
                       }))
                     }
+                    className="rounded-none border-neutral-300 focus-visible:ring-black"
                   />
                 </div>
 
@@ -375,7 +379,7 @@ export default function JobApplicationPage({
                   <Button
                     type="button"
                     variant="outline"
-                    className="flex-1"
+                    className="flex-1 rounded-none border-neutral-300 hover:bg-neutral-50 h-11"
                     onClick={() => router.back()}
                     disabled={isSubmitting}
                   >
@@ -383,7 +387,7 @@ export default function JobApplicationPage({
                   </Button>
                   <Button
                     type="submit"
-                    className="flex-1 bg-slate-900 hover:bg-slate-800"
+                    className="flex-1 bg-black !text-white hover:bg-neutral-800 rounded-none h-11 uppercase font-medium tracking-wide text-xs"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

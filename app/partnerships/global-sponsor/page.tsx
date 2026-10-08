@@ -145,28 +145,28 @@ const currentGlobalPartner = {
 
 export default function GlobalSponsorPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-900 to-blue-900 text-white">
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-              <Crown className="h-4 w-4 mr-2" />
-              <span className="text-sm font-medium">Exclusive Partnership</span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Crown className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Exclusive Partnership</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Global Sponsor</h1>
-            <p className="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">Global Sponsor</h1>
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto mb-8">
               Become our premier global partner and gain exclusive access to India's most influential legal technology
               community with unparalleled benefits and strategic collaboration opportunities.
             </p>
-            <div className="flex items-center justify-center gap-4">
-              <Badge className="bg-yellow-500 text-yellow-900 px-4 py-2">
-                <Star className="h-4 w-4 mr-2" />
-                Exclusive Partnership
+            <div className="flex items-center justify-center gap-3">
+              <Badge className="bg-white text-black border border-white px-3 py-1 rounded-none font-mono text-xs uppercase tracking-wider">
+                <Star className="h-3.5 w-3.5 mr-1.5 text-black" />
+                Premier Tier
               </Badge>
-              <Badge className="bg-white/20 text-white px-4 py-2">
-                <Shield className="h-4 w-4 mr-2" />
-                Limited to One Partner
+              <Badge className="bg-neutral-900 text-neutral-300 border border-neutral-700 px-3 py-1 rounded-none font-mono text-xs uppercase tracking-wider">
+                <Shield className="h-3.5 w-3.5 mr-1.5 text-white" />
+                Limited Partnership
               </Badge>
             </div>
           </div>
@@ -193,13 +193,13 @@ export default function GlobalSponsorPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {globalBenefits.map((benefit, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <Card key={index} className="border border-neutral-200 shadow-none hover:border-black transition-all duration-300 rounded-none bg-white">
                     <CardContent className="p-6 text-center">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4">
                         <benefit.icon className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+                      <h3 className="text-lg font-serif text-black mb-2">{benefit.title}</h3>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{benefit.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -207,14 +207,14 @@ export default function GlobalSponsorPage() {
             </section>
 
             {/* Success Metrics */}
-            <section className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Partnership Impact</h2>
+            <section className="bg-neutral-50 rounded-none p-8 border border-neutral-200">
+              <h2 className="text-2xl font-serif text-black mb-8 text-center">Partnership Impact</h2>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {successMetrics.map((metric, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">{metric.value}</div>
-                    <div className="text-lg font-semibold text-gray-900 mb-1">{metric.metric}</div>
-                    <div className="text-sm text-gray-600">{metric.description}</div>
+                    <div className="text-3xl font-mono font-bold text-black mb-1">{metric.value}</div>
+                    <div className="text-sm font-semibold text-neutral-900 mb-1">{metric.metric}</div>
+                    <div className="text-xs text-neutral-500">{metric.description}</div>
                   </div>
                 ))}
               </div>
@@ -222,13 +222,13 @@ export default function GlobalSponsorPage() {
 
             {/* Package Details */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Global Sponsorship Package</h2>
-              <div className="space-y-8">
+              <h2 className="text-3xl font-serif text-black mb-8">Global Sponsorship Package</h2>
+              <div className="space-y-6">
                 {packageIncludes.map((section, index) => (
-                  <Card key={index} className="border-0 shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                  <Card key={index} className="border border-neutral-200 shadow-none rounded-none bg-white">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-xl font-serif text-black flex items-center gap-3">
+                        <div className="w-8 h-8 bg-black rounded-none flex items-center justify-center">
                           <Zap className="h-4 w-4 text-white" />
                         </div>
                         {section.category}
@@ -462,10 +462,10 @@ export default function GlobalSponsorPage() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-lg py-4"
+                      className="w-full bg-black hover:bg-neutral-800 !text-white text-base py-3 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer"
                     >
                       Submit Global Partnership Application
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
                     <p className="text-sm text-gray-500 text-center">

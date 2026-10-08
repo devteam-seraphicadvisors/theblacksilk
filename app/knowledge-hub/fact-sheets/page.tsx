@@ -70,13 +70,39 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function FactSheetsPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold">Fact Sheets</h1>
-        <p className="text-gray-600 mt-4">
-          Fact sheets listing is temporarily simplified for build debugging.
-        </p>
-      </div>
+    <main className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <FileText className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Research & Policy</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
+              Fact Sheets
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
+              Concise, authoritative briefings on key legal tech, data governance, and regulatory developments
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="p-12 border border-neutral-200 bg-neutral-50">
+            <FileText className="h-12 w-12 text-black mx-auto mb-4" />
+            <h2 className="text-2xl font-serif text-black mb-2">Fact Sheets Archive</h2>
+            <p className="text-neutral-600 text-sm max-w-md mx-auto mb-6">
+              Our fact sheets and policy briefs are currently being updated with the latest 2025-2026 regulatory frameworks. Check back soon for new publications.
+            </p>
+            <Button className="bg-black hover:bg-neutral-800 !text-white rounded-none text-xs font-mono uppercase tracking-wider" asChild>
+              <Link href="/knowledge-hub/blog">View Latest Insights</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

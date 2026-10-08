@@ -223,20 +223,17 @@ export default function DirectoryPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/directory-hero.jpg')] bg-cover bg-center opacity-10"></div>
+      <section className="py-20 lg:py-28 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8">
-              <Users className="h-4 w-4 text-white mr-2" />
-              <span className="text-sm font-medium text-white">
-                500+ Active Members
-              </span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Users className="h-3.5 w-3.5 text-white mr-2" />
+              <span>500+ Active Members</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Member Directory
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Connect with legal professionals, technologists, and policymakers
               shaping the future of legal technology
             </p>
@@ -245,16 +242,16 @@ export default function DirectoryPage() {
       </section>
 
       {/* Search and Filters */}
-      <section className="py-8 bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+      <section className="py-6 bg-white border-b border-neutral-200 sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-6 items-center">
+            <div className="flex flex-col lg:flex-row gap-4 items-center">
               {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <div className="relative flex-1 max-w-md w-full">
+                <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
-                  placeholder="Search members by name, organization, or expertise..."
-                  className="pl-12 pr-4 py-3 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded-xl"
+                  placeholder="Search members by name, organization..."
+                  className="pl-10 pr-4 py-2 border-neutral-300 focus:border-black focus:ring-black rounded-none text-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -267,19 +264,19 @@ export default function DirectoryPage() {
                     key={filter.value}
                     variant={filter.active ? "default" : "outline"}
                     size="sm"
-                    className={`rounded-full transition-all duration-200 ${
+                    className={`rounded-none transition-all duration-200 text-xs uppercase font-mono tracking-wider cursor-pointer ${
                       filter.active
-                        ? "bg-gray-900 hover:bg-black text-white shadow-lg"
-                        : "border-gray-300 text-gray-700 hover:border-gray-900 hover:text-gray-900"
+                        ? "bg-black hover:bg-neutral-800 !text-white border-black"
+                        : "border-neutral-300 text-black hover:border-black hover:bg-neutral-50"
                     }`}
                   >
                     {filter.label}
                     <Badge
                       variant="secondary"
-                      className={`ml-2 text-xs ${
+                      className={`ml-2 text-[10px] rounded-none ${
                         filter.active
-                          ? "bg-white/20 text-white"
-                          : "bg-gray-100 text-gray-600"
+                          ? "bg-neutral-800 text-white"
+                          : "bg-neutral-100 text-neutral-700"
                       }`}
                     >
                       {filter.count}
@@ -290,9 +287,9 @@ export default function DirectoryPage() {
 
               {/* City Filter */}
               <div className="relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-neutral-400" />
                 <select
-                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-xl text-sm focus:border-gray-900 focus:ring-gray-900 bg-white"
+                  className="pl-9 pr-8 py-2 border border-neutral-300 rounded-none text-xs font-mono uppercase tracking-wider focus:border-black focus:ring-black bg-white cursor-pointer"
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
                   aria-label="Filter by city"
@@ -310,16 +307,16 @@ export default function DirectoryPage() {
       </section>
 
       {/* Members Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {filteredMembers.length === 0 ? (
               <div className="text-center py-16">
-                <Users className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <Users className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                <h3 className="text-xl font-serif text-black mb-2">
                   No members found
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-neutral-500 font-sans text-sm">
                   Try adjusting your search or filters
                 </p>
               </div>
@@ -329,42 +326,42 @@ export default function DirectoryPage() {
                   {filteredMembers.map((member) => (
                     <Card
                       key={member.id}
-                      className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group bg-white rounded-2xl"
+                      className="border border-neutral-200 shadow-sm hover:shadow-md hover:border-black transition-all duration-300 overflow-hidden group bg-white rounded-none flex flex-col justify-between"
                     >
                       <CardContent className="p-0">
                         {/* Header with Avatar */}
-                        <div className="relative bg-gradient-to-br from-gray-900 to-black p-6 text-white">
+                        <div className="relative bg-black p-6 text-white border-b border-neutral-800">
                           <div className="absolute top-4 right-4">
                             {member.verified && (
-                              <div className="flex items-center gap-1 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                              <div className="flex items-center gap-1 bg-white text-black px-2 py-0.5 text-[11px] font-mono uppercase tracking-wider">
                                 <Verified className="h-3 w-3" />
                                 Verified
                               </div>
                             )}
                           </div>
-                          <div className="flex items-center gap-4 mb-4">
-                            <Avatar className="w-16 h-16 border-3 border-white/20 shadow-lg">
+                          <div className="flex items-center gap-4 mb-3">
+                            <Avatar className="w-14 h-14 border border-neutral-700 rounded-none">
                               <AvatarImage
                                 src={member.image || "/placeholder.svg"}
                                 alt={member.name}
                               />
-                              <AvatarFallback className="bg-white/20 text-white font-semibold">
+                              <AvatarFallback className="bg-neutral-800 text-white font-mono text-sm rounded-none">
                                 {member.name
                                   .split(" ")
                                   .map((n) => n[0])
                                   .join("")}
                               </AvatarFallback>
                             </Avatar>
-                            <div className="flex-1">
-                              <h3 className="text-xl font-bold mb-1 text-white group-hover:text-gray-200 transition-colors">
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-lg font-serif text-white truncate">
                                 {member.name}
                               </h3>
-                              <p className="text-white/80 text-sm font-medium">
+                              <p className="text-neutral-300 text-xs font-sans truncate">
                                 {member.title}
                               </p>
                             </div>
                           </div>
-                          <p className="text-white/70 text-sm">
+                          <p className="text-neutral-400 text-xs font-sans truncate">
                             {member.organization}
                           </p>
                         </div>
@@ -372,34 +369,30 @@ export default function DirectoryPage() {
                         {/* Content */}
                         <div className="p-6">
                           {/* Location and Member Since */}
-                          <div className="flex items-center justify-between mb-4 text-sm">
-                            <div className="flex items-center text-gray-600">
-                              <MapPin className="h-4 w-4 mr-2 text-gray-400" />
-                              <span className="font-medium">
-                                {member.location}
-                              </span>
+                          <div className="flex items-center justify-between mb-4 text-xs font-mono uppercase tracking-wider text-neutral-500">
+                            <div className="flex items-center">
+                              <MapPin className="h-3.5 w-3.5 mr-1.5 text-neutral-400" />
+                              <span>{member.location}</span>
                             </div>
-                            <div className="flex items-center text-gray-600">
-                              <Star className="h-4 w-4 mr-1 text-yellow-500" />
-                              <span className="font-medium">
-                                Since {member.memberSince}
-                              </span>
+                            <div className="flex items-center">
+                              <Star className="h-3.5 w-3.5 mr-1 text-neutral-400" />
+                              <span>Since {member.memberSince}</span>
                             </div>
                           </div>
 
                           {/* Expertise */}
                           <div className="mb-4">
-                            <h4 className="text-sm font-semibold text-gray-900 mb-3">
+                            <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-2">
                               Expertise
                             </h4>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-1.5">
                               {member.expertise
                                 .slice(0, 3)
                                 .map((skill, index) => (
                                   <Badge
                                     key={index}
                                     variant="outline"
-                                    className="text-xs border-gray-300 text-gray-700 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                    className="text-[11px] rounded-none border-neutral-300 text-neutral-700 bg-neutral-50 hover:bg-neutral-100"
                                   >
                                     {skill}
                                   </Badge>
@@ -407,7 +400,7 @@ export default function DirectoryPage() {
                               {member.expertise.length > 3 && (
                                 <Badge
                                   variant="outline"
-                                  className="text-xs border-gray-300 text-gray-500 bg-gray-50"
+                                  className="text-[11px] rounded-none border-neutral-300 text-neutral-500 bg-neutral-50"
                                 >
                                   +{member.expertise.length - 3} more
                                 </Badge>
@@ -419,14 +412,14 @@ export default function DirectoryPage() {
                           {member.committees &&
                             member.committees.length > 0 && (
                               <div className="mb-6">
-                                <h4 className="text-sm font-semibold text-gray-900 mb-3">
+                                <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-2">
                                   Committees
                                 </h4>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5">
                                   {member.committees.map((committee, index) => (
                                     <Badge
                                       key={index}
-                                      className="bg-blue-50 text-blue-700 border-blue-200 text-xs font-medium"
+                                      className="bg-neutral-100 text-neutral-900 border border-neutral-300 rounded-none text-[11px] font-mono uppercase tracking-wider"
                                     >
                                       {committee}
                                     </Badge>
@@ -436,42 +429,42 @@ export default function DirectoryPage() {
                             )}
 
                           {/* Social Links */}
-                          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                            <div className="flex space-x-2">
+                          <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+                            <div className="flex space-x-1.5">
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="border-gray-300 text-gray-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
+                                className="border-neutral-300 text-neutral-700 hover:border-black hover:text-black hover:bg-neutral-100 rounded-none h-8 w-8 p-0"
                                 asChild
                               >
-                                <Link href={member.social.linkedin}>
-                                  <Linkedin className="h-4 w-4" />
+                                <Link href={member.social.linkedin} aria-label="LinkedIn">
+                                  <Linkedin className="h-3.5 w-3.5" />
                                 </Link>
                               </Button>
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="border-gray-300 text-gray-600 hover:border-blue-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg"
+                                className="border-neutral-300 text-neutral-700 hover:border-black hover:text-black hover:bg-neutral-100 rounded-none h-8 w-8 p-0"
                                 asChild
                               >
-                                <Link href={member.social.twitter}>
-                                  <Twitter className="h-4 w-4" />
+                                <Link href={member.social.twitter} aria-label="Twitter">
+                                  <Twitter className="h-3.5 w-3.5" />
                                 </Link>
                               </Button>
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-600 hover:bg-green-50 rounded-lg"
+                                className="border-neutral-300 text-neutral-700 hover:border-black hover:text-black hover:bg-neutral-100 rounded-none h-8 w-8 p-0"
                                 asChild
                               >
-                                <Link href={`mailto:${member.social.email}`}>
-                                  <Mail className="h-4 w-4" />
+                                <Link href={`mailto:${member.social.email}`} aria-label="Email">
+                                  <Mail className="h-3.5 w-3.5" />
                                 </Link>
                               </Button>
                             </div>
                             <Button
                               size="sm"
-                              className="bg-gray-900 hover:bg-black text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-lg px-4"
+                              className="bg-black hover:bg-neutral-800 !text-white rounded-none px-4 text-xs font-mono uppercase tracking-wider cursor-pointer"
                             >
                               Connect
                             </Button>
@@ -483,45 +476,13 @@ export default function DirectoryPage() {
                 </div>
 
                 {/* Results Info */}
-                <div className="text-center mt-16">
-                  <p className="text-sm text-gray-500">
+                <div className="text-center mt-12">
+                  <p className="text-xs font-mono uppercase tracking-wider text-neutral-500">
                     Showing {filteredMembers.length} of {members.length} members
                   </p>
                 </div>
               </>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Join Community CTA */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Join Our Community
-            </h2>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-              Connect with like-minded professionals and expand your network in
-              legal technology
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl px-8 py-3 font-semibold"
-                asChild
-              >
-                <Link href="/community/membership">Become a Member</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white bg-gray-900 hover:bg-white hover:text-gray-900 rounded-xl px-8 py-3 font-semibold transition-all duration-200"
-                asChild
-              >
-                <Link href="/about/mission">Learn More</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>

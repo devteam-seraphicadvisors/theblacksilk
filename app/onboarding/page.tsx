@@ -315,28 +315,28 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-neutral-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        <Card className="shadow-lg">
+        <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <CardTitle className="text-2xl font-bold">
+                <CardTitle className="text-2xl font-serif font-bold text-black">
                   Complete Your Profile
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
                   Step {currentStep} of {STEPS.length}:{" "}
                   {STEPS[currentStep - 1].title}
                 </CardDescription>
               </div>
               <div className="text-right">
-                <div className="text-sm text-gray-500">Progress</div>
-                <div className="text-lg font-semibold">
+                <div className="text-xs font-mono text-neutral-400 uppercase">Progress</div>
+                <div className="text-base font-mono font-bold text-black">
                   {Math.round(progress)}%
                 </div>
               </div>
             </div>
-            <Progress value={progress} className="w-full" />
+            <Progress value={progress} className="w-full h-1.5 rounded-none bg-neutral-200" />
           </CardHeader>
 
           <CardContent className="space-y-6">
@@ -349,19 +349,19 @@ export default function OnboardingPage() {
                     key={step.id}
                     className={`flex flex-col items-center space-y-1 ${
                       step.id === currentStep
-                        ? "text-blue-600"
+                        ? "text-black"
                         : step.id < currentStep
-                        ? "text-green-600"
-                        : "text-gray-400"
+                        ? "text-neutral-700"
+                        : "text-neutral-400"
                     }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      className={`w-8 h-8 rounded-none flex items-center justify-center ${
                         step.id === currentStep
-                          ? "bg-blue-100 border-2 border-blue-600"
+                          ? "bg-black text-white border border-black"
                           : step.id < currentStep
-                          ? "bg-green-100 border-2 border-green-600"
-                          : "bg-gray-100 border-2 border-gray-300"
+                          ? "bg-neutral-200 text-black border border-neutral-300"
+                          : "bg-neutral-100 text-neutral-400 border border-neutral-200"
                       }`}
                     >
                       {step.id < currentStep ? (
@@ -370,7 +370,7 @@ export default function OnboardingPage() {
                         <Icon className="h-4 w-4" />
                       )}
                     </div>
-                    <span className="text-xs text-center hidden sm:block">
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-center hidden sm:block">
                       {step.title}
                     </span>
                   </div>
@@ -389,7 +389,7 @@ export default function OnboardingPage() {
                 variant="outline"
                 onClick={prevStep}
                 disabled={currentStep === 1}
-                className="flex items-center space-x-2 bg-transparent"
+                className="flex items-center space-x-2 rounded-none border-neutral-300 hover:bg-neutral-50 text-xs font-mono uppercase"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span>Previous</span>
@@ -399,7 +399,7 @@ export default function OnboardingPage() {
                 <Button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex items-center space-x-2"
+                  className="flex items-center space-x-2 bg-black !text-white hover:bg-neutral-800 rounded-none text-xs font-mono uppercase tracking-wider px-6"
                 >
                   {isSubmitting ? (
                     <>
@@ -416,7 +416,7 @@ export default function OnboardingPage() {
               ) : (
                 <Button
                   onClick={nextStep}
-                  className="flex items-center space-x-2"
+                  className="flex items-center space-x-2 bg-black !text-white hover:bg-neutral-800 rounded-none text-xs font-mono uppercase tracking-wider px-6"
                 >
                   <span>Next</span>
                   <ArrowRight className="h-4 w-4" />

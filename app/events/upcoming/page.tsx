@@ -1,4 +1,4 @@
-﻿import { generateMetadata } from "@/lib/seo";
+import { generateMetadata } from "@/lib/seo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -49,29 +49,20 @@ export default async function UpcomingEventsPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/events-upcoming-hero.jpg"
-            alt="Upcoming Events"
-            fill
-            className="object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
-        </div>
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Calendar className="h-4 w-4 text-blue-400" />
-              <span className="text-sm font-medium">
+            <div className="inline-flex items-center gap-2 bg-neutral-900 border border-neutral-700 px-3 py-1 mb-8">
+              <Calendar className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-mono uppercase tracking-widest text-neutral-300">
                 {totalEvents} {totalEvents === 1 ? "Event" : "Events"} Coming
                 Soon
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Upcoming Events
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Join our upcoming symposiums, workshops, and networking events
             </p>
           </div>
@@ -79,15 +70,15 @@ export default async function UpcomingEventsPage() {
       </section>
 
       {/* Search and Filter */}
-      <section className="py-8 bg-gray-50 border-b">
+      <section className="py-6 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <div className="relative flex-1 max-w-md w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
                   placeholder="Search events..."
-                  className="pl-10 bg-white border-gray-200"
+                  className="pl-10 bg-white border-neutral-300 rounded-none text-sm focus:border-black focus:ring-black"
                 />
               </div>
               <div className="flex gap-2 flex-wrap">
@@ -96,11 +87,11 @@ export default async function UpcomingEventsPage() {
                     key={category}
                     variant={category === "All" ? "default" : "outline"}
                     size="sm"
-                    className={
+                    className={`rounded-none text-xs font-mono uppercase tracking-wider cursor-pointer ${
                       category === "All"
-                        ? "bg-black hover:bg-gray-800 text-white"
-                        : "hover:bg-gray-100"
-                    }
+                        ? "bg-black hover:bg-neutral-800 !text-white"
+                        : "border-neutral-300 text-black hover:bg-neutral-100"
+                    }`}
                   >
                     {category}
                   </Button>
@@ -116,19 +107,19 @@ export default async function UpcomingEventsPage() {
         <>
           {/* Featured Event */}
           {featuredEvent && (
-            <section className="py-20 bg-white">
+            <section className="py-16 lg:py-20 bg-white">
               <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
                   <div className="text-center mb-12">
-                    <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black mb-4 px-4 py-2">
-                      <Star className="h-4 w-4 mr-2" />
+                    <Badge className="bg-black text-white border border-neutral-700 mb-4 px-3 py-1 rounded-none font-mono text-xs uppercase tracking-wider">
+                      <Star className="h-3.5 w-3.5 mr-2 text-white" />
                       Featured Event
                     </Badge>
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-3xl md:text-4xl font-serif text-black mb-4">
                       Don&apos;t Miss Our Flagship Event
                     </h2>
                   </div>
-                  <Card className="border-0 shadow-2xl overflow-hidden">
+                  <Card className="border border-neutral-200 shadow-sm rounded-none overflow-hidden">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                       <div className="relative h-80 lg:h-auto">
                         <Image
@@ -139,7 +130,7 @@ export default async function UpcomingEventsPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         <div className="absolute top-6 left-6">
-                          <Badge className="bg-red-500 text-white">
+                          <Badge className="bg-black text-white border border-neutral-700 rounded-none font-mono text-xs uppercase tracking-wider">
                             {featuredEvent.status}
                           </Badge>
                         </div>
@@ -310,37 +301,6 @@ export default async function UpcomingEventsPage() {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Never Miss an Event</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Subscribe to our event calendar and get notified about upcoming
-              opportunities
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-black hover:bg-gray-100"
-                asChild
-              >
-                <Link href="/knowledge-hub/newsletter">
-                  Subscribe to Calendar
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-black"
-                asChild
-              >
-                <Link href="/events/past">View Past Events</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

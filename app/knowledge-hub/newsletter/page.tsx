@@ -131,13 +131,13 @@ export default function NewsletterPage() {
       label: "Open Rate",
       value: "68%",
       icon: TrendingUp,
-      color: "from-purple-500 to-purple-600",
+      color: "bg-black text-white",
     },
     {
       label: "Satisfaction",
       value: "4.8/5",
       icon: Star,
-      color: "from-yellow-500 to-yellow-600",
+      color: "bg-black text-white",
     },
   ];
 
@@ -175,22 +175,19 @@ export default function NewsletterPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/newsletter-hero.jpg')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-md rounded-full mb-8 border border-white/20">
-              <Mail className="h-5 w-5 mr-3" />
-              <span className="text-sm font-medium">Weekly Insights</span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Mail className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Weekly Insights</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Newsletter
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Stay ahead with weekly insights on legal technology, policy
               updates, and industry trends delivered to your inbox
             </p>
@@ -199,20 +196,20 @@ export default function NewsletterPage() {
       </section>
 
       {/* Newsletter Stats */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {newsletterStats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-lg text-center group hover:shadow-xl transition-all duration-300 rounded-2xl"
+                  className="border border-neutral-200 shadow-none hover:border-black transition-all duration-300 rounded-none bg-neutral-50"
                 >
-                  <CardContent className="p-8">
+                  <CardContent className="p-6 text-center">
                     <div
-                      className={`w-20 h-20 bg-gradient-to-r ${stat.color} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
+                      className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4"
                     >
-                      <stat.icon className="h-10 w-10 text-white" />
+                      <stat.icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="text-4xl font-bold text-gray-900 mb-2">
                       {stat.value}

@@ -79,26 +79,26 @@ export default async function CommitteeDetailPage({ params }: PageProps) {
               <Badge
                 className={
                   committee.status === "Accepting Members"
-                    ? "bg-green-500/20 text-green-300 border-green-400/30 backdrop-blur-sm"
+                    ? "bg-white text-black border-white font-mono text-xs uppercase tracking-wider rounded-none"
                     : committee.status === "Open for Collaboration"
-                    ? "bg-blue-500/20 text-blue-300 border-blue-400/30 backdrop-blur-sm"
-                    : "bg-gray-500/20 text-gray-300 border-gray-400/30 backdrop-blur-sm"
+                    ? "bg-neutral-800 text-white border-neutral-700 font-mono text-xs uppercase tracking-wider rounded-none"
+                    : "bg-neutral-900 text-neutral-300 border-neutral-800 font-mono text-xs uppercase tracking-wider rounded-none"
                 }
               >
                 {committee.status}
               </Badge>
-              <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
+              <Badge className="bg-white/10 text-white border-white/20 font-mono text-xs uppercase tracking-wider rounded-none">
                 Est. {committee.established}
               </Badge>
-              <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
+              <Badge className="bg-white/10 text-white border-white/20 font-mono text-xs uppercase tracking-wider rounded-none">
                 {committee.members} Members
               </Badge>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white leading-tight tracking-tight">
               {committee.name}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-10 max-w-3xl">
+            <p className="text-xl md:text-2xl text-neutral-300 font-sans font-light leading-relaxed mb-10 max-w-3xl">
               {committee.description}
             </p>
 
@@ -112,7 +112,7 @@ export default async function CommitteeDetailPage({ params }: PageProps) {
                   triggerButton={
                     <Button
                       size="lg"
-                      className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg rounded-xl px-8 py-3"
+                      className="bg-white !text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-wider rounded-none px-8 py-3 cursor-pointer"
                     >
                       Join Committee
                     </Button>
@@ -122,7 +122,7 @@ export default async function CommitteeDetailPage({ params }: PageProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-gray-900 rounded-xl px-8 py-3"
+                className="border-neutral-400 text-white hover:bg-white hover:!text-black font-mono text-xs uppercase tracking-wider rounded-none px-8 py-3 cursor-pointer"
                 asChild
               >
                 <Link href={`mailto:${committee.chair.email}`}>

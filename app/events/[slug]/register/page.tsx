@@ -192,38 +192,38 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <section className="bg-white border-b">
-        <div className="container mx-auto px-4 py-6">
+      <section className="bg-black text-white border-b border-neutral-800">
+        <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <Button variant="ghost" className="mb-4" asChild>
+            <Button variant="ghost" className="mb-4 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-none font-mono text-xs" asChild>
               <Link href={`/events/${params.slug}`}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Event Details
               </Link>
             </Button>
 
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 relative rounded-lg overflow-hidden">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 relative rounded-none overflow-hidden border border-neutral-700">
                 <Image
                   src={event.image || "/placeholder.svg"}
                   alt={event.title}
                   fill
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl md:text-3xl font-serif font-bold text-white">
                   {event.title}
                 </h1>
-                <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                <div className="flex items-center gap-4 text-xs font-mono text-neutral-400 mt-2">
                   <span className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
+                    <Calendar className="h-4 w-4 text-white" />
                     {event.date}
                   </span>
                   <span className="flex items-center gap-1">
-                    <MapPin className="h-4 w-4" />
+                    <MapPin className="h-4 w-4 text-white" />
                     {event.location}
                   </span>
                 </div>
@@ -240,58 +240,57 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Registration Form */}
               <div className="lg:col-span-2">
-                <Card className="border-0 shadow-lg">
+                <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
                   <CardHeader>
-                    <CardTitle className="text-2xl text-gray-900">
+                    <CardTitle className="text-2xl font-serif text-black">
                       Registration Details
                     </CardTitle>
-                    <p className="text-gray-600">
-                      Please fill in your information to register for this
-                      event.
+                    <p className="text-neutral-500 text-sm">
+                      Please fill in your information to register for this event.
                     </p>
                   </CardHeader>
                   <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-6">
                       {/* Personal Information */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-base font-serif font-bold text-black uppercase tracking-wider">
                           Personal Information
                         </h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="firstName">First Name *</Label>
+                            <Label htmlFor="firstName" className="text-xs uppercase font-mono tracking-wider text-neutral-700">First Name *</Label>
                             <Input
                               id="firstName"
                               value={formData.firstName}
                               onChange={(e) =>
                                 handleInputChange("firstName", e.target.value)
                               }
-                              className={
+                              className={`rounded-none border-neutral-300 focus-visible:ring-black ${
                                 errors.firstName ? "border-red-500" : ""
-                              }
+                              }`}
                             />
                             {errors.firstName && (
-                              <p className="text-sm text-red-600 mt-1">
+                              <p className="text-xs text-red-600 mt-1">
                                 {errors.firstName}
                               </p>
                             )}
                           </div>
 
                           <div>
-                            <Label htmlFor="lastName">Last Name *</Label>
+                            <Label htmlFor="lastName" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Last Name *</Label>
                             <Input
                               id="lastName"
                               value={formData.lastName}
                               onChange={(e) =>
                                 handleInputChange("lastName", e.target.value)
                               }
-                              className={
+                              className={`rounded-none border-neutral-300 focus-visible:ring-black ${
                                 errors.lastName ? "border-red-500" : ""
-                              }
+                              }`}
                             />
                             {errors.lastName && (
-                              <p className="text-sm text-red-600 mt-1">
+                              <p className="text-xs text-red-600 mt-1">
                                 {errors.lastName}
                               </p>
                             )}
@@ -300,7 +299,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="email">Email Address *</Label>
+                            <Label htmlFor="email" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Email Address *</Label>
                             <Input
                               id="email"
                               type="email"
@@ -308,27 +307,27 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                               onChange={(e) =>
                                 handleInputChange("email", e.target.value)
                               }
-                              className={errors.email ? "border-red-500" : ""}
+                              className={`rounded-none border-neutral-300 focus-visible:ring-black ${errors.email ? "border-red-500" : ""}`}
                             />
                             {errors.email && (
-                              <p className="text-sm text-red-600 mt-1">
+                              <p className="text-xs text-red-600 mt-1">
                                 {errors.email}
                               </p>
                             )}
                           </div>
 
                           <div>
-                            <Label htmlFor="phone">Phone Number *</Label>
+                            <Label htmlFor="phone" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Phone Number *</Label>
                             <Input
                               id="phone"
                               value={formData.phone}
                               onChange={(e) =>
                                 handleInputChange("phone", e.target.value)
                               }
-                              className={errors.phone ? "border-red-500" : ""}
+                              className={`rounded-none border-neutral-300 focus-visible:ring-black ${errors.phone ? "border-red-500" : ""}`}
                             />
                             {errors.phone && (
-                              <p className="text-sm text-red-600 mt-1">
+                              <p className="text-xs text-red-600 mt-1">
                                 {errors.phone}
                               </p>
                             )}
@@ -338,12 +337,12 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
 
                       {/* Professional Information */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-base font-serif font-bold text-black uppercase tracking-wider">
                           Professional Information
                         </h3>
 
                         <div>
-                          <Label htmlFor="organization">
+                          <Label htmlFor="organization" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
                             Organization/Company *
                           </Label>
                           <Input
@@ -352,12 +351,12 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                             onChange={(e) =>
                               handleInputChange("organization", e.target.value)
                             }
-                            className={
+                            className={`rounded-none border-neutral-300 focus-visible:ring-black ${
                               errors.organization ? "border-red-500" : ""
-                            }
+                            }`}
                           />
                           {errors.organization && (
-                            <p className="text-sm text-red-600 mt-1">
+                            <p className="text-xs text-red-600 mt-1">
                               {errors.organization}
                             </p>
                           )}
@@ -365,18 +364,19 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="designation">Designation</Label>
+                            <Label htmlFor="designation" className="text-xs uppercase font-mono tracking-wider text-neutral-700">Designation</Label>
                             <Input
                               id="designation"
                               value={formData.designation}
                               onChange={(e) =>
                                 handleInputChange("designation", e.target.value)
                               }
+                              className="rounded-none border-neutral-300 focus-visible:ring-black"
                             />
                           </div>
 
                           <div>
-                            <Label htmlFor="experience">
+                            <Label htmlFor="experience" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
                               Years of Experience
                             </Label>
                             <Select
@@ -384,10 +384,10 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                                 handleInputChange("experience", value)
                               }
                             >
-                              <SelectTrigger>
+                              <SelectTrigger className="rounded-none border-neutral-300">
                                 <SelectValue placeholder="Select experience" />
                               </SelectTrigger>
-                              <SelectContent>
+                              <SelectContent className="rounded-none">
                                 <SelectItem value="0-2">0-2 years</SelectItem>
                                 <SelectItem value="3-5">3-5 years</SelectItem>
                                 <SelectItem value="6-10">6-10 years</SelectItem>
@@ -400,7 +400,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
 
                       {/* Ticket Type */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-base font-serif font-bold text-black uppercase tracking-wider">
                           Ticket Type
                         </h3>
 
@@ -409,8 +409,9 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                           onValueChange={(value) =>
                             handleInputChange("ticketType", value)
                           }
+                          className="space-y-3"
                         >
-                          <div className="flex items-center space-x-2 p-4 border rounded-lg">
+                          <div className="flex items-center space-x-2 p-4 border border-neutral-300 rounded-none bg-white">
                             <RadioGroupItem value="regular" id="regular" />
                             <Label
                               htmlFor="regular"
@@ -418,14 +419,14 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                             >
                               <div className="flex justify-between items-center">
                                 <div>
-                                  <div className="font-medium">
+                                  <div className="font-medium text-black">
                                     Regular Ticket
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-neutral-500 font-mono">
                                     Standard registration
                                   </div>
                                 </div>
-                                <div className="text-lg font-bold">
+                                <div className="text-lg font-mono font-bold text-black">
                                   ₹{event.price.toLocaleString()}
                                 </div>
                               </div>
@@ -433,7 +434,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                           </div>
 
                           {event.earlyBirdPrice && (
-                            <div className="flex items-center space-x-2 p-4 border rounded-lg border-green-200 bg-green-50">
+                            <div className="flex items-center space-x-2 p-4 border border-black rounded-none bg-neutral-50">
                               <RadioGroupItem
                                 value="earlybird"
                                 id="earlybird"
@@ -444,24 +445,24 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                               >
                                 <div className="flex justify-between items-center">
                                   <div>
-                                    <div className="font-medium flex items-center gap-2">
+                                    <div className="font-medium flex items-center gap-2 text-black">
                                       Early Bird Ticket
-                                      <Badge className="bg-green-500 text-white">
+                                      <Badge className="bg-black text-white rounded-none border border-black font-mono text-[10px] uppercase">
                                         Save ₹
                                         {(
                                           event.price - event.earlyBirdPrice
                                         ).toLocaleString()}
                                       </Badge>
                                     </div>
-                                    <div className="text-sm text-gray-600">
+                                    <div className="text-xs text-neutral-500 font-mono">
                                       Limited time offer
                                     </div>
                                   </div>
                                   <div className="text-right">
-                                    <div className="text-lg font-bold text-green-600">
+                                    <div className="text-lg font-mono font-bold text-black">
                                       ₹{event.earlyBirdPrice.toLocaleString()}
                                     </div>
-                                    <div className="text-sm text-gray-500 line-through">
+                                    <div className="text-xs text-neutral-400 line-through font-mono">
                                       ₹{event.price.toLocaleString()}
                                     </div>
                                   </div>
@@ -474,12 +475,12 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
 
                       {/* Additional Information */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-base font-serif font-bold text-black uppercase tracking-wider">
                           Additional Information
                         </h3>
 
                         <div>
-                          <Label htmlFor="dietaryRequirements">
+                          <Label htmlFor="dietaryRequirements" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
                             Dietary Requirements
                           </Label>
                           <Input
@@ -492,11 +493,12 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                               )
                             }
                             placeholder="e.g., Vegetarian, Vegan, Allergies"
+                            className="rounded-none border-neutral-300 focus-visible:ring-black"
                           />
                         </div>
 
                         <div>
-                          <Label htmlFor="specialRequests">
+                          <Label htmlFor="specialRequests" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
                             Special Requests
                           </Label>
                           <Textarea
@@ -510,6 +512,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                             }
                             placeholder="Any special accommodations or requests"
                             rows={3}
+                            className="rounded-none border-neutral-300 focus-visible:ring-black"
                           />
                         </div>
                       </div>
@@ -526,22 +529,23 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                                 checked as boolean
                               )
                             }
+                            className="rounded-none"
                           />
                           <Label
                             htmlFor="agreeTerms"
-                            className="text-sm leading-relaxed cursor-pointer"
+                            className="text-xs leading-relaxed cursor-pointer text-neutral-700"
                           >
                             I agree to the{" "}
                             <Link
                               href="/terms"
-                              className="text-prussian-blue hover:underline"
+                              className="text-black underline"
                             >
                               Terms and Conditions
                             </Link>{" "}
                             and{" "}
                             <Link
                               href="/privacy"
-                              className="text-prussian-blue hover:underline"
+                              className="text-black underline"
                             >
                               Privacy Policy
                             </Link>
@@ -549,7 +553,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                           </Label>
                         </div>
                         {errors.agreeTerms && (
-                          <p className="text-sm text-red-600">
+                          <p className="text-xs text-red-600">
                             {errors.agreeTerms}
                           </p>
                         )}
@@ -564,10 +568,11 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                                 checked as boolean
                               )
                             }
+                            className="rounded-none"
                           />
                           <Label
                             htmlFor="agreeMarketing"
-                            className="text-sm leading-relaxed cursor-pointer"
+                            className="text-xs leading-relaxed cursor-pointer text-neutral-600"
                           >
                             I would like to receive updates about future events
                             and newsletters from The Black Silk
@@ -580,7 +585,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                         <Button
                           type="submit"
                           size="lg"
-                          className="w-full bg-black hover:bg-gray-800"
+                          className="w-full bg-black !text-white hover:bg-neutral-800 rounded-none h-12 uppercase font-medium tracking-wide text-xs"
                           disabled={isSubmitting}
                         >
                           {isSubmitting ? (
@@ -605,52 +610,52 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
               {/* Order Summary */}
               <div className="space-y-6">
                 {/* Event Summary */}
-                <Card className="border-0 shadow-lg sticky top-8">
+                <Card className="border border-neutral-200 bg-white rounded-none shadow-none sticky top-8">
                   <CardHeader>
-                    <CardTitle className="text-lg text-gray-900">
+                    <CardTitle className="text-lg font-serif text-black">
                       Event Summary
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="relative h-32 rounded-lg overflow-hidden">
+                    <div className="relative h-32 rounded-none overflow-hidden border border-neutral-200">
                       <Image
                         src={event.image || "/placeholder.svg"}
                         alt={event.title}
                         fill
-                        className="object-cover"
+                        className="object-cover grayscale"
                       />
                     </div>
 
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">
+                      <h3 className="font-serif font-bold text-black mb-2 text-base">
                         {event.title}
                       </h3>
-                      <div className="space-y-2 text-sm text-gray-600">
+                      <div className="space-y-2 text-xs font-mono text-neutral-600">
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-4 w-4 text-black" />
                           {event.date}
                         </div>
                         <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
+                          <Clock className="h-4 w-4 text-black" />
                           {event.time}
                         </div>
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4" />
+                          <MapPin className="h-4 w-4 text-black" />
                           {event.location}
                         </div>
                       </div>
                     </div>
 
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-600">Ticket Type:</span>
-                        <span className="font-medium">
+                    <div className="border-t border-neutral-200 pt-4">
+                      <div className="flex justify-between items-center mb-2 text-sm">
+                        <span className="text-neutral-600">Ticket Type:</span>
+                        <span className="font-medium text-black">
                           {formData.ticketType === "earlybird"
                             ? "Early Bird"
                             : "Regular"}
                         </span>
                       </div>
-                      <div className="flex justify-between items-center text-lg font-bold">
+                      <div className="flex justify-between items-center text-lg font-mono font-bold text-black">
                         <span>Total:</span>
                         <span>₹{ticketPrice.toLocaleString()}</span>
                       </div>
@@ -659,9 +664,9 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                 </Card>
 
                 {/* What's Included */}
-                <Card className="border-0 shadow-lg">
+                <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
                   <CardHeader>
-                    <CardTitle className="text-lg text-gray-900">
+                    <CardTitle className="text-lg font-serif text-black">
                       What's Included
                     </CardTitle>
                   </CardHeader>
@@ -669,8 +674,8 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                     <ul className="space-y-3">
                       {event.includes.map((item, index) => (
                         <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{item}</span>
+                          <CheckCircle className="h-4 w-4 text-black mt-0.5 flex-shrink-0" />
+                          <span className="text-xs text-neutral-700 leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -678,18 +683,17 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                 </Card>
 
                 {/* Security Notice */}
-                <Card className="border-0 shadow-lg bg-blue-50 border-blue-200">
+                <Card className="border border-neutral-300 bg-neutral-100 rounded-none shadow-none">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
-                      <Shield className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <Shield className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="font-medium text-blue-900 mb-1">
-                          Secure Payment with Stripe
+                        <h4 className="font-semibold text-black text-xs uppercase tracking-wider mb-1">
+                          Secure Payment
                         </h4>
-                        <p className="text-sm text-blue-700">
+                        <p className="text-xs text-neutral-600 leading-relaxed">
                           Your payment information is protected with
-                          industry-standard encryption and processed securely by
-                          Stripe.
+                          industry-standard encryption and processed securely.
                         </p>
                       </div>
                     </div>

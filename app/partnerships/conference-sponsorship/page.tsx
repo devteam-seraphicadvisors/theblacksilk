@@ -138,17 +138,17 @@ const additionalOpportunities = [
 
 export default function ConferenceSponsorshipPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-              <Calendar className="h-4 w-4 mr-2" />
-              <span className="text-sm font-medium">Conference Sponsorship</span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Calendar className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Event Partnerships</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Conference Sponsorship</h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">Conference Sponsorship</h1>
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
               Sponsor our flagship conferences and events to gain maximum exposure to legal technology leaders,
               decision-makers, and innovators across India.
             </p>
@@ -389,9 +389,9 @@ export default function ConferenceSponsorshipPage() {
                       ></textarea>
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-4">
+                    <Button type="submit" size="lg" className="w-full bg-black hover:bg-neutral-800 !text-white text-base py-3 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer">
                       Submit Sponsorship Inquiry
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
                     <p className="text-sm text-gray-500 text-center">

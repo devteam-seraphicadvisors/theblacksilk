@@ -193,18 +193,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                 {/* Main Content */}
                 <div className="lg:col-span-3">
-                  <Card className="border-0 shadow-lg rounded-2xl">
-                    <CardContent className="p-12">
+                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
+                    <CardContent className="p-8 md:p-12">
                       <div
-                        className="prose prose-lg prose-gray max-w-none
-                        prose-headings:text-gray-900 prose-headings:font-bold
-                        prose-p:text-gray-700 prose-p:leading-relaxed
-                        prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-gray-900
-                        prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                        prose-pre:bg-gray-900 prose-pre:text-white
-                        prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:pl-6
-                        prose-img:rounded-xl prose-img:shadow-lg"
+                        className="prose prose-lg prose-neutral max-w-none
+                        prose-headings:text-black prose-headings:font-serif prose-headings:font-bold
+                        prose-p:text-neutral-700 prose-p:leading-relaxed
+                        prose-a:text-black prose-a:underline hover:prose-a:text-neutral-600
+                        prose-strong:text-black
+                        prose-code:bg-neutral-100 prose-code:px-2 prose-code:py-1 prose-code:rounded-none prose-code:font-mono
+                        prose-pre:bg-black prose-pre:text-white prose-pre:rounded-none
+                        prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6
+                        prose-img:rounded-none prose-img:border prose-img:border-neutral-200"
                         dangerouslySetInnerHTML={{
                           __html: post.content?.html || post.brief,
                         }}
@@ -216,9 +216,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {/* Sidebar */}
                 <div className="space-y-8">
                   {/* Author Card */}
-                  <Card className="border-0 shadow-lg rounded-2xl">
-                    <CardContent className="p-8 text-center">
-                      <div className="relative w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
+                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
+                    <CardContent className="p-6 text-center">
+                      <div className="relative w-20 h-20 mx-auto mb-4 rounded-none overflow-hidden border border-neutral-200">
                         <Image
                           src={
                             post.author.profilePicture ||
@@ -226,17 +226,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           }
                           alt={post.author.name}
                           fill
-                          className="object-cover"
+                          className="object-cover grayscale"
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-lg font-serif font-bold text-black mb-1">
                         {post.author.name}
                       </h3>
-                      <p className="text-gray-600 mb-4">Author</p>
+                      <p className="text-neutral-500 mb-4 text-xs font-mono uppercase">Author</p>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-none border-neutral-300 hover:bg-neutral-50 text-xs font-mono uppercase"
                       >
                         <User className="h-4 w-4 mr-2" />
                         View Profile
@@ -245,9 +245,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </Card>
 
                   {/* Tags */}
-                  <Card className="border-0 shadow-lg rounded-2xl">
-                    <CardContent className="p-8">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
+                    <CardContent className="p-6">
+                      <h3 className="text-base font-serif font-bold text-black mb-4">
                         Tags
                       </h3>
                       <div className="flex flex-wrap gap-2">
@@ -255,7 +255,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           <Badge
                             key={tag.slug}
                             variant="secondary"
-                            className="px-3 py-1"
+                            className="px-2.5 py-1 rounded-none border border-neutral-200 bg-neutral-100 text-neutral-800 font-mono text-[11px]"
                           >
                             {tag.name}
                           </Badge>
@@ -265,15 +265,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </Card>
 
                   {/* Newsletter CTA */}
-                  <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl">
-                    <CardContent className="p-8">
-                      <BookOpen className="h-12 w-12 mb-4 text-blue-400" />
-                      <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
-                      <p className="text-gray-300 mb-6">
-                        Get the latest insights delivered to your inbox
+                  <Card className="border border-neutral-800 bg-black text-white rounded-none shadow-none">
+                    <CardContent className="p-6">
+                      <BookOpen className="h-10 w-10 mb-4 text-white" />
+                      <h3 className="text-lg font-serif font-bold mb-2 text-white">Stay Updated</h3>
+                      <p className="text-neutral-400 mb-6 text-xs leading-relaxed">
+                        Get the latest legal technology insights delivered to your inbox.
                       </p>
                       <Button
-                        className="w-full bg-white text-gray-900 hover:bg-gray-100 rounded-xl"
+                        className="w-full bg-white !text-black hover:bg-neutral-100 rounded-none h-11 text-xs font-mono uppercase tracking-wider font-semibold"
                         asChild
                       >
                         <Link href="/knowledge-hub/newsletter">
@@ -289,20 +289,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
 
         {/* Related Posts */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-20 bg-neutral-50 border-t border-neutral-200">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+              <h2 className="text-3xl font-serif font-bold text-black mb-12 text-center">
                 Related Articles
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedPosts.slice(0, 4).map((relatedPost) => (
                   <Card
                     key={relatedPost.id}
-                    className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group rounded-2xl"
+                    className="border border-neutral-200 bg-white hover:border-black transition-all group rounded-none shadow-none"
                   >
-                    <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                    <div className="relative h-44 overflow-hidden rounded-none border-b border-neutral-200">
                       <Image
                         src={
                           relatedPost.coverImage?.url ||
@@ -310,20 +310,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         }
                         alt={relatedPost.title}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="object-cover grayscale group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <CardContent className="p-6">
-                      <h3 className="font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    <CardContent className="p-5">
+                      <h3 className="font-serif font-bold text-black mb-2 line-clamp-2 text-sm group-hover:underline">
                         <Link href={`/knowledge-hub/blog/${relatedPost.slug}`}>
                           {relatedPost.title}
                         </Link>
                       </h3>
-                      <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                      <p className="text-neutral-600 text-xs line-clamp-3 mb-4 leading-relaxed">
                         {relatedPost.brief}
                       </p>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <Calendar className="h-3 w-3" />
+                      <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-500">
+                        <Calendar className="h-3 w-3 text-black" />
                         {formatDate(relatedPost.publishedAt)}
                       </div>
                     </CardContent>

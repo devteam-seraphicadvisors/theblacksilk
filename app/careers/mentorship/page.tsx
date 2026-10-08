@@ -87,29 +87,29 @@ const programStats = [
     label: "Active Mentors",
     value: "50+",
     icon: Users,
-    color: "text-blue-600",
-    bg: "bg-blue-100",
+    color: "text-white",
+    bg: "bg-black",
   },
   {
     label: "Success Rate",
     value: "92%",
     icon: Star,
-    color: "text-yellow-600",
-    bg: "bg-yellow-100",
+    color: "text-white",
+    bg: "bg-black",
   },
   {
     label: "Program Duration",
     value: "6 months",
     icon: Clock,
-    color: "text-emerald-600",
-    bg: "bg-emerald-100",
+    color: "text-white",
+    bg: "bg-black",
   },
   {
     label: "Career Advancement",
     value: "78%",
     icon: TrendingUp,
-    color: "text-purple-600",
-    bg: "bg-purple-100",
+    color: "text-white",
+    bg: "bg-black",
   },
 ];
 
@@ -226,37 +226,40 @@ export default function MentorshipPage() {
     );
   }
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/mentorship-pattern.svg')] opacity-10"></div>
+      <section className="py-24 bg-black text-white border-b border-neutral-800">
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full mb-8 border border-white/20">
-              <Users className="h-5 w-5 mr-3" />
-              <span className="text-sm font-medium">Career Development</span>
+            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+              <Users className="h-3.5 w-3.5 mr-2 text-white" />
+              <span>Career Development</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Mentorship Program
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed mb-8 max-w-3xl mx-auto">
               Connect with industry experts and accelerate your career in legal
               technology through personalized mentorship and structured guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold"
+                className="bg-white !text-black hover:bg-neutral-200 px-8 py-3 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer"
+                asChild
               >
-                Apply for Mentorship
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href="#application">
+                  Apply for Mentorship
+                  <ArrowRight className="ml-2 h-4 w-4 !text-black" />
+                </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 bg-white/10 text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg"
+                className="border-neutral-400 text-white hover:bg-white hover:!text-black px-8 py-3 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer"
+                asChild
               >
-                Meet Our Mentors
+                <Link href="#mentors">Meet Our Mentors</Link>
               </Button>
             </div>
           </div>
@@ -865,37 +868,6 @@ export default function MentorshipPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Ready to Transform Your Career?
-            </h2>
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed">
-              Join our mentorship program and take the next step in your legal
-              technology journey with expert guidance and support
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold"
-                asChild
-              >
-                <Link href="#application">Apply Now</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 bg-white/10 text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-                asChild
-              >
-                <Link href="/careers/jobs">Explore Careers</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

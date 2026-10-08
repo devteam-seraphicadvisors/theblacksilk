@@ -117,34 +117,34 @@ export default function MembershipSuccessPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-neutral-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        <Card className="shadow-lg">
+        <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
           <CardHeader className="text-center">
             {activationStatus === "success" && (
-              <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <CheckCircle className="h-8 w-8 text-green-600" />
+              <div className="mx-auto w-16 h-16 bg-black rounded-none flex items-center justify-center mb-4">
+                <CheckCircle className="h-8 w-8 text-white" />
               </div>
             )}
             {activationStatus === "pending" && (
-              <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Loader2 className="h-8 w-8 text-blue-600 animate-spin" />
+              <div className="mx-auto w-16 h-16 bg-neutral-100 rounded-none flex items-center justify-center mb-4">
+                <Loader2 className="h-8 w-8 text-black animate-spin" />
               </div>
             )}
             {activationStatus === "error" && (
-              <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <AlertCircle className="h-8 w-8 text-red-600" />
+              <div className="mx-auto w-16 h-16 bg-neutral-900 rounded-none flex items-center justify-center mb-4">
+                <AlertCircle className="h-8 w-8 text-white" />
               </div>
             )}
 
-            <CardTitle className="text-2xl font-bold">
-              {activationStatus === "success" && "Welcome to The Black Silk!"}
+            <CardTitle className="text-2xl font-serif font-bold text-black">
+              {activationStatus === "success" && "Welcome to The Black Silk"}
               {activationStatus === "pending" &&
                 "Activating Your Membership..."}
               {activationStatus === "error" && "Activation Failed"}
             </CardTitle>
 
-            <CardDescription className="text-lg">
+            <CardDescription className="text-sm text-neutral-600">
               {activationStatus === "success" &&
                 "Your membership has been successfully activated"}
               {activationStatus === "pending" &&
@@ -156,16 +156,16 @@ export default function MembershipSuccessPage() {
           <CardContent className="space-y-6">
             {membershipType && (
               <>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-neutral-100 border border-neutral-200 rounded-none p-4">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">Membership Type:</span>
-                    <Badge variant="secondary" className="text-sm">
+                    <span className="font-mono text-xs uppercase text-neutral-600">Membership Type:</span>
+                    <Badge variant="outline" className="border-black bg-black text-white rounded-none font-mono text-[10px] uppercase">
                       {getMembershipDisplayName(membershipType)}
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-medium">Annual Fee:</span>
-                    <span className="font-bold text-lg">
+                    <span className="font-mono text-xs uppercase text-neutral-600">Annual Fee:</span>
+                    <span className="font-mono font-bold text-lg text-black">
                       {getMembershipPrice(membershipType)}
                     </span>
                   </div>
@@ -174,34 +174,34 @@ export default function MembershipSuccessPage() {
                 <Separator />
 
                 <div className="space-y-3">
-                  <h3 className="font-semibold text-lg">
+                  <h3 className="font-serif font-bold text-base text-black uppercase tracking-wider">
                     Your Membership Benefits:
                   </h3>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <ul className="space-y-2 text-xs text-neutral-600">
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <CheckCircle className="h-4 w-4 text-black flex-shrink-0" />
                       <span>
                         Access to exclusive legal resources and publications
                       </span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <CheckCircle className="h-4 w-4 text-black flex-shrink-0" />
                       <span>
                         Networking opportunities with legal professionals
                       </span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <CheckCircle className="h-4 w-4 text-black flex-shrink-0" />
                       <span>
                         Priority registration for events and workshops
                       </span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <CheckCircle className="h-4 w-4 text-black flex-shrink-0" />
                       <span>Committee participation opportunities</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <CheckCircle className="h-4 w-4 text-black flex-shrink-0" />
                       <span>Member directory access</span>
                     </li>
                   </ul>
@@ -211,13 +211,12 @@ export default function MembershipSuccessPage() {
 
             {activationStatus === "success" && (
               <div className="text-center space-y-4">
-                <p className="text-sm text-gray-600">
-                  You will be redirected to complete your profile setup in a few
-                  seconds...
+                <p className="text-xs text-neutral-500 font-mono">
+                  You will be redirected to complete your profile setup in a few seconds...
                 </p>
                 <Button
                   onClick={() => router.push("/onboarding")}
-                  className="w-full"
+                  className="w-full bg-black !text-white hover:bg-neutral-800 rounded-none h-11 text-xs uppercase font-medium tracking-wide"
                 >
                   Complete Profile Setup
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -230,7 +229,7 @@ export default function MembershipSuccessPage() {
                 <Button
                   onClick={activateMembership}
                   disabled={isActivating}
-                  className="w-full"
+                  className="w-full bg-black !text-white hover:bg-neutral-800 rounded-none h-11 text-xs uppercase font-medium tracking-wide"
                 >
                   {isActivating ? (
                     <>
@@ -244,7 +243,7 @@ export default function MembershipSuccessPage() {
                 <Button
                   variant="outline"
                   onClick={() => router.push("/community/membership")}
-                  className="w-full"
+                  className="w-full rounded-none border-neutral-300 hover:bg-neutral-50 h-11 text-xs"
                 >
                   Back to Membership
                 </Button>
@@ -253,7 +252,7 @@ export default function MembershipSuccessPage() {
 
             {/* Debug Information (only in development) */}
             {process.env.NODE_ENV === "development" && (
-              <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
+              <div className="mt-8 p-4 bg-neutral-100 rounded-none border border-neutral-200 text-xs font-mono">
                 <h4 className="font-semibold mb-2">Debug Info:</h4>
                 <pre className="whitespace-pre-wrap">
                   {JSON.stringify(
