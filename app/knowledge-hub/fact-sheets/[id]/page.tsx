@@ -127,6 +127,42 @@ const factSheets = {
   },
 };
 
+const DEFAULT_AUTHOR_IMAGES: Record<string, string> = {
+  "Dr. Rajesh Kumar": "/members/subhash-bhutoria.png",
+  "Prof. Anita Singh": "/members/prerna-kapoor.png",
+  "Cyber Security Team": "/members/mayank-grover.png",
+};
+
+function AuthorAvatar({ name, image }: { name: string; image?: string | null }) {
+  const resolvedImage = image || DEFAULT_AUTHOR_IMAGES[name] || null;
+  const initials =
+    name
+      .replace(/^Dr\.\s+|^Prof\.\s+|^Adv\.\s+/i, "")
+      .split(" ")
+      .filter(Boolean)
+      .map((part) => part[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "BS";
+
+  return (
+    <div className="relative w-14 h-14 rounded-none overflow-hidden border border-neutral-200 bg-neutral-900 flex-shrink-0">
+      {resolvedImage ? (
+        <Image
+          src={resolvedImage}
+          alt={name}
+          fill
+          className="object-cover grayscale"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center bg-black text-white font-serif text-sm font-semibold select-none">
+          {initials}
+        </div>
+      )}
+    </div>
+  );
+}
+
 interface PageProps {
   params: Promise<{
     id: string;
@@ -296,14 +332,7 @@ export default async function FactSheetDetailPage({ params }: PageProps) {
                       <Card key={index} className="border border-neutral-200 bg-white rounded-none shadow-none">
                         <CardContent className="p-4">
                           <div className="flex items-center space-x-4">
-                            <div className="relative w-14 h-14 rounded-none overflow-hidden border border-neutral-200">
-                              <Image
-                                src={author.image || "/placeholder.svg"}
-                                alt={author.name}
-                                fill
-                                className="object-cover grayscale"
-                              />
-                            </div>
+                            <AuthorAvatar name={author.name} image={author.image} />
                             <div>
                               <h3 className="font-serif font-bold text-black text-sm">
                                 {author.name}

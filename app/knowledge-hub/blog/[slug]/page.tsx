@@ -93,242 +93,168 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <main className="min-h-screen bg-gray-50">
-        {/* Navigation */}
-        <section className="py-8 bg-white border-b border-gray-200">
+      <main className="min-h-screen bg-white">
+        {/* Header / Hero */}
+        <section className="py-20 bg-black text-white border-b border-neutral-800">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <Button variant="ghost" size="lg" asChild className="mb-4">
-                <Link
-                  href="/knowledge-hub/blog"
-                  className="flex items-center gap-2"
-                >
-                  <ArrowLeft className="h-5 w-5" />
-                  Back to Blog
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+              <Link
+                href="/knowledge-hub/blog"
+                className="inline-flex items-center text-neutral-400 hover:text-white mb-8 transition-colors text-xs font-mono uppercase tracking-wider"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Blog & Insights
+              </Link>
 
-        {/* Hero Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
               {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {post.tags.map((tag) => (
-                  <Badge key={tag.slug} variant="outline" className="px-3 py-1">
+              <div className="flex flex-wrap gap-2 mb-6">
+                {post.tags.map((tag, idx) => (
+                  <Badge
+                    key={tag.slug || idx}
+                    className="bg-neutral-900 text-neutral-300 border border-neutral-700 rounded-none font-mono text-[10px] uppercase tracking-wider"
+                  >
                     {tag.name}
                   </Badge>
                 ))}
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-serif font-normal text-white mb-6 leading-tight">
                 {post.title}
               </h1>
 
               {/* Brief */}
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed mb-8">
                 {post.brief}
               </p>
 
-              {/* Author and Meta */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                    <Image
-                      src={
-                        post.author.profilePicture ||
-                        "/placeholder.svg?height=64&width=64"
-                      }
-                      alt={post.author.name}
-                      fill
-                      className="object-cover"
-                    />
+              {/* Meta */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-neutral-800 text-xs font-mono text-neutral-400">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center font-serif text-white text-xs">
+                    {post.author.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 text-lg">
+                    <span className="text-white font-medium block">
                       {post.author.name}
-                    </p>
-                    <div className="flex items-center gap-4 text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {formatDate(post.publishedAt)}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {calculateReadTime(post.content?.html || post.brief)}
-                      </div>
-                    </div>
+                    </span>
                   </div>
                 </div>
 
-                <Button variant="outline" size="lg" className="rounded-full">
-                  <Share2 className="h-5 w-5 mr-2" />
-                  Share Article
-                </Button>
-              </div>
-
-              {/* Cover Image */}
-              {post.coverImage && (
-                <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden mb-12">
-                  <Image
-                    src={post.coverImage.url || "/placeholder.svg"}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
+                <div className="flex items-center gap-6">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-neutral-300" />
+                    {formatDate(post.publishedAt)}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-neutral-300" />
+                    {calculateReadTime(post.content?.html || post.brief)}
+                  </span>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Content */}
+        {/* Cover Image & Article Content */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              {post.coverImage?.url && (
+                <div className="relative h-80 md:h-[450px] w-full overflow-hidden mb-12 border border-neutral-200 bg-neutral-900">
+                  <Image
+                    src={post.coverImage.url}
+                    alt={post.title}
+                    fill
+                    className="object-cover grayscale"
+                  />
+                </div>
+              )}
+
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                {/* Main Content */}
+                {/* Main Article Body */}
                 <div className="lg:col-span-3">
-                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
-                    <CardContent className="p-8 md:p-12">
-                      <div
-                        className="prose prose-lg prose-neutral max-w-none
-                        prose-headings:text-black prose-headings:font-serif prose-headings:font-bold
-                        prose-p:text-neutral-700 prose-p:leading-relaxed
-                        prose-a:text-black prose-a:underline hover:prose-a:text-neutral-600
-                        prose-strong:text-black
-                        prose-code:bg-neutral-100 prose-code:px-2 prose-code:py-1 prose-code:rounded-none prose-code:font-mono
-                        prose-pre:bg-black prose-pre:text-white prose-pre:rounded-none
-                        prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6
-                        prose-img:rounded-none prose-img:border prose-img:border-neutral-200"
-                        dangerouslySetInnerHTML={{
-                          __html: post.content?.html || post.brief,
-                        }}
-                      />
-                    </CardContent>
-                  </Card>
+                  <div
+                    className="prose prose-lg prose-neutral max-w-none
+                    prose-headings:text-black prose-headings:font-serif prose-headings:font-normal
+                    prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:font-sans
+                    prose-a:text-black prose-a:underline hover:prose-a:text-neutral-600
+                    prose-strong:text-black
+                    prose-code:bg-neutral-100 prose-code:px-2 prose-code:py-1 prose-code:rounded-none prose-code:font-mono
+                    prose-pre:bg-black prose-pre:text-white prose-pre:rounded-none
+                    prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6
+                    prose-img:rounded-none prose-img:border prose-img:border-neutral-200"
+                    dangerouslySetInnerHTML={{
+                      __html: post.content?.html || post.brief,
+                    }}
+                  />
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-8">
+                <div className="space-y-6">
                   {/* Author Card */}
                   <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
                     <CardContent className="p-6 text-center">
-                      <div className="relative w-20 h-20 mx-auto mb-4 rounded-none overflow-hidden border border-neutral-200">
-                        <Image
-                          src={
-                            post.author.profilePicture ||
-                            "/placeholder.svg?height=80&width=80"
-                          }
-                          alt={post.author.name}
-                          fill
-                          className="object-cover grayscale"
-                        />
+                      <div className="w-16 h-16 mx-auto mb-4 bg-black text-white border border-neutral-800 flex items-center justify-center font-serif text-lg">
+                        {post.author.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase()}
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-black mb-1">
+                      <h3 className="font-serif text-black text-base mb-1">
                         {post.author.name}
                       </h3>
-                      <p className="text-neutral-500 mb-4 text-xs font-mono uppercase">Author</p>
+                      <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 mb-4">
+                        Contributing Author
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  {/* Share Card */}
+                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
+                    <CardContent className="p-6">
+                      <h4 className="text-xs font-mono uppercase tracking-wider text-black mb-3">
+                        Share Article
+                      </h4>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="rounded-none border-neutral-300 hover:bg-neutral-50 text-xs font-mono uppercase"
+                        className="w-full border-neutral-300 text-black hover:bg-neutral-100 rounded-none font-mono text-xs uppercase tracking-wider"
                       >
-                        <User className="h-4 w-4 mr-2" />
-                        View Profile
+                        <Share2 className="h-3.5 w-3.5 mr-2" />
+                        Copy Link
                       </Button>
                     </CardContent>
                   </Card>
 
-                  {/* Tags */}
-                  <Card className="border border-neutral-200 bg-white shadow-none rounded-none">
+                  {/* Related Articles */}
+                  <Card className="border border-neutral-800 bg-black text-white shadow-none rounded-none">
                     <CardContent className="p-6">
-                      <h3 className="text-base font-serif font-bold text-black mb-4">
-                        Tags
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {post.tags.map((tag) => (
-                          <Badge
-                            key={tag.slug}
-                            variant="secondary"
-                            className="px-2.5 py-1 rounded-none border border-neutral-200 bg-neutral-100 text-neutral-800 font-mono text-[11px]"
-                          >
-                            {tag.name}
-                          </Badge>
+                      <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-300 mb-4">
+                        Related Research
+                      </h4>
+                      <div className="space-y-3">
+                        {relatedPosts.slice(0, 3).map((related) => (
+                          <div key={related.slug} className="border-b border-neutral-800 pb-3 last:border-b-0 last:pb-0">
+                            <Link
+                              href={`/knowledge-hub/blog/${related.slug}`}
+                              className="text-xs font-serif text-white hover:text-neutral-300 block line-clamp-2 leading-snug"
+                            >
+                              {related.title}
+                            </Link>
+                          </div>
                         ))}
                       </div>
                     </CardContent>
                   </Card>
-
-                  {/* Newsletter CTA */}
-                  <Card className="border border-neutral-800 bg-black text-white rounded-none shadow-none">
-                    <CardContent className="p-6">
-                      <BookOpen className="h-10 w-10 mb-4 text-white" />
-                      <h3 className="text-lg font-serif font-bold mb-2 text-white">Stay Updated</h3>
-                      <p className="text-neutral-400 mb-6 text-xs leading-relaxed">
-                        Get the latest legal technology insights delivered to your inbox.
-                      </p>
-                      <Button
-                        className="w-full bg-white !text-black hover:bg-neutral-100 rounded-none h-11 text-xs font-mono uppercase tracking-wider font-semibold"
-                        asChild
-                      >
-                        <Link href="/knowledge-hub/newsletter">
-                          Subscribe Now
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Related Posts */}
-        <section className="py-20 bg-neutral-50 border-t border-neutral-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-serif font-bold text-black mb-12 text-center">
-                Related Articles
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {relatedPosts.slice(0, 4).map((relatedPost) => (
-                  <Card
-                    key={relatedPost.id}
-                    className="border border-neutral-200 bg-white hover:border-black transition-all group rounded-none shadow-none"
-                  >
-                    <div className="relative h-44 overflow-hidden rounded-none border-b border-neutral-200">
-                      <Image
-                        src={
-                          relatedPost.coverImage?.url ||
-                          "/placeholder.svg?height=200&width=300"
-                        }
-                        alt={relatedPost.title}
-                        fill
-                        className="object-cover grayscale group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <CardContent className="p-5">
-                      <h3 className="font-serif font-bold text-black mb-2 line-clamp-2 text-sm group-hover:underline">
-                        <Link href={`/knowledge-hub/blog/${relatedPost.slug}`}>
-                          {relatedPost.title}
-                        </Link>
-                      </h3>
-                      <p className="text-neutral-600 text-xs line-clamp-3 mb-4 leading-relaxed">
-                        {relatedPost.brief}
-                      </p>
-                      <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-500">
-                        <Calendar className="h-3 w-3 text-black" />
-                        {formatDate(relatedPost.publishedAt)}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
               </div>
             </div>
           </div>

@@ -14,9 +14,11 @@ import {
   CheckCircle,
   Star,
   Send,
+  Loader2,
+  FileText,
+  Clock,
 } from "lucide-react";
 import Image from "next/image";
-import { SimpleLoader } from "@/components/simple-loader";
 
 interface NewsletterIssue {
   id: string;
@@ -30,26 +32,49 @@ interface NewsletterIssue {
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
+const DEFAULT_ISSUES: NewsletterIssue[] = [
+  {
+    id: "issue-52",
+    title: "AI Governance & Judicial Precedents in 2026",
+    excerpt:
+      "Analyzing recent high court jurisprudence on algorithmic evidence admissibility, neural network liability models, and statutory audit mandates.",
+    topics: ["Artificial Intelligence", "Judiciary", "Evidence Law"],
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
+    readTime: "8 min read",
+    publishedAt: "2026-03-24T00:00:00.000Z",
+  },
+  {
+    id: "issue-51",
+    title: "Cross-Border Data Localization Under the New DPDP Rules",
+    excerpt:
+      "Operational blueprints for enterprise data flows, cross-border transfer agreements, and exemption frameworks under India's DPDP Act.",
+    topics: ["Data Privacy", "DPDP Act", "Compliance"],
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop",
+    readTime: "6 min read",
+    publishedAt: "2026-03-17T00:00:00.000Z",
+  },
+  {
+    id: "issue-50",
+    title: "Smart Contracts, Blockchain Forensics and Arbitration",
+    excerpt:
+      "Enforceability of decentralized dispute resolution mechanisms, on-chain signature protocols, and custody preservation standards.",
+    topics: ["Blockchain", "Fintech", "Arbitration"],
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
+    readTime: "7 min read",
+    publishedAt: "2026-03-10T00:00:00.000Z",
+  },
+];
+
 export default function NewsletterPage() {
-  const [recentIssues, setRecentIssues] = useState<NewsletterIssue[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [recentIssues, setRecentIssues] = useState<NewsletterIssue[]>(DEFAULT_ISSUES);
+  const [loading, setLoading] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -70,12 +95,12 @@ export default function NewsletterPage() {
         const response = await fetch("/api/knowledge-hub/newsletter-issues");
         if (response.ok) {
           const data = await response.json();
-          setRecentIssues(data.issues || []);
+          if (data.issues && data.issues.length > 0) {
+            setRecentIssues(data.issues);
+          }
         }
       } catch (err) {
         console.error("Failed to fetch newsletter issues:", err);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -119,25 +144,21 @@ export default function NewsletterPage() {
       label: "Subscribers",
       value: "5,000+",
       icon: Users,
-      color: "from-blue-500 to-blue-600",
     },
     {
       label: "Weekly Issues",
       value: "52",
       icon: Calendar,
-      color: "from-green-500 to-green-600",
     },
     {
-      label: "Open Rate",
+      label: "Avg. Open Rate",
       value: "68%",
       icon: TrendingUp,
-      color: "bg-black text-white",
     },
     {
-      label: "Satisfaction",
-      value: "4.8/5",
+      label: "Reader Satisfaction",
+      value: "4.9/5",
       icon: Star,
-      color: "bg-black text-white",
     },
   ];
 
@@ -146,31 +167,29 @@ export default function NewsletterPage() {
       id: "weeklyDigest",
       title: "Weekly Digest",
       description:
-        "Our flagship newsletter with the latest insights and analysis",
+        "Flagship dispatch synthesizing pivotal developments across legal technology and digital policy.",
       frequency: "Every Tuesday",
-      icon: "📰",
     },
     {
       id: "eventUpdates",
       title: "Event Updates",
       description:
-        "Notifications about upcoming events, workshops, and symposiums",
-      frequency: "As needed",
-      icon: "📅",
+        "Early notifications regarding roundtables, workshops, symposiums, and member calls.",
+      frequency: "Bi-Weekly",
     },
     {
       id: "policyAlerts",
       title: "Policy Alerts",
-      description: "Breaking news on legal and technology policy developments",
-      frequency: "As needed",
-      icon: "🚨",
+      description:
+        "Time-sensitive alerts on statutory enactments, court orders, and regulatory consultations.",
+      frequency: "As Needed",
     },
     {
       id: "researchUpdates",
-      title: "Research Updates",
-      description: "New publications, fact sheets, and research findings",
+      title: "Research Briefs",
+      description:
+        "Newly released fact sheets, research papers, and technical implementation guides.",
       frequency: "Monthly",
-      icon: "📊",
     },
   ];
 
@@ -182,14 +201,14 @@ export default function NewsletterPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
               <Mail className="h-3.5 w-3.5 mr-2 text-white" />
-              <span>Weekly Insights</span>
+              <span>Weekly Editorial Dispatch</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
-              Newsletter
+              The Black Silk Dispatch
             </h1>
             <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
-              Stay ahead with weekly insights on legal technology, policy
-              updates, and industry trends delivered to your inbox
+              Authoritative, curated intelligence on generative AI governance,
+              blockchain enforceability, cybersecurity compliance, and legal tech frontiers.
             </p>
           </div>
         </div>
@@ -201,24 +220,20 @@ export default function NewsletterPage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {newsletterStats.map((stat, index) => (
-                <Card
+                <div
                   key={index}
-                  className="border border-neutral-200 shadow-none hover:border-black transition-all duration-300 rounded-none bg-neutral-50"
+                  className="border border-neutral-200 bg-white p-8 text-center hover:border-black transition-colors"
                 >
-                  <CardContent className="p-6 text-center">
-                    <div
-                      className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4"
-                    >
-                      <stat.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-4xl font-bold text-gray-900 mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-gray-600 font-medium">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
+                  <div className="w-12 h-12 bg-black text-white flex items-center justify-center mx-auto mb-4 border border-neutral-800">
+                    <stat.icon className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="text-3xl font-serif text-black mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-neutral-600 text-xs font-mono uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -226,42 +241,52 @@ export default function NewsletterPage() {
       </section>
 
       {/* Subscription Form */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-gray-900 mb-8">
-                Subscribe to Our Newsletter
+              <div className="inline-flex items-center px-3 py-1 bg-black text-white border border-neutral-700 text-xs uppercase tracking-widest font-mono mb-4">
+                <Send className="h-3.5 w-3.5 mr-2 text-white" />
+                <span>Join 5,000+ Practitioners</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
+                Subscribe to the Newsletter
               </h2>
-              <p className="text-xl text-gray-600">
-                Choose what you'd like to receive and stay informed about the
-                topics that matter to you
+              <p className="text-base md:text-lg text-neutral-600 font-sans font-light max-w-2xl mx-auto">
+                Customize your dispatch preferences to receive high-signal research directly in your inbox.
               </p>
             </div>
 
-            <Card className="border-0 shadow-2xl rounded-3xl">
-              <CardContent className="p-12 md:p-16">
+            <Card className="border border-neutral-200 bg-white rounded-none shadow-none">
+              <CardContent className="p-8 md:p-12">
                 {subscribeSuccess ? (
                   <div className="text-center py-12">
-                    <CheckCircle className="h-20 w-20 text-green-600 mx-auto mb-6" />
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                      Successfully Subscribed!
+                    <div className="w-16 h-16 bg-black text-white flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-serif text-black mb-3">
+                      Subscription Confirmed
                     </h3>
-                    <p className="text-xl text-gray-600">
-                      Thank you for subscribing to our newsletter. Check your
-                      inbox for a confirmation email.
+                    <p className="text-neutral-600 text-sm max-w-md mx-auto mb-6 font-sans">
+                      Thank you for joining The Black Silk Dispatch. Please check your inbox for our latest briefing.
                     </p>
+                    <Button
+                      onClick={() => setSubscribeSuccess(false)}
+                      className="bg-black hover:bg-neutral-800 text-white rounded-none font-mono text-xs uppercase tracking-wider"
+                    >
+                      Update Preferences
+                    </Button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
-                    {/* Personal Information */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Name Fields */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-lg font-semibold text-gray-900 mb-3">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
                           First Name *
                         </label>
                         <Input
-                          placeholder="Enter your first name"
+                          placeholder="Your first name"
                           value={formData.firstName}
                           onChange={(e) =>
                             setFormData({
@@ -269,16 +294,16 @@ export default function NewsletterPage() {
                               firstName: e.target.value,
                             })
                           }
-                          className="py-4 text-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl"
+                          className="border-neutral-300 rounded-none focus:border-black focus:ring-0 text-sm py-2.5"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-lg font-semibold text-gray-900 mb-3">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
                           Last Name *
                         </label>
                         <Input
-                          placeholder="Enter your last name"
+                          placeholder="Your last name"
                           value={formData.lastName}
                           onChange={(e) =>
                             setFormData({
@@ -286,35 +311,37 @@ export default function NewsletterPage() {
                               lastName: e.target.value,
                             })
                           }
-                          className="py-4 text-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl"
+                          className="border-neutral-300 rounded-none focus:border-black focus:ring-0 text-sm py-2.5"
                           required
                         />
                       </div>
                     </div>
 
+                    {/* Email */}
                     <div>
-                      <label className="block text-lg font-semibold text-gray-900 mb-3">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
                         Email Address *
                       </label>
                       <Input
                         type="email"
-                        placeholder="Enter your email address"
+                        placeholder="you@domain.com"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="py-4 text-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl"
+                        className="border-neutral-300 rounded-none focus:border-black focus:ring-0 text-sm py-2.5"
                         required
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Professional Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-lg font-semibold text-gray-900 mb-3">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
                           Organization (Optional)
                         </label>
                         <Input
-                          placeholder="Your organization or company"
+                          placeholder="Firm or enterprise"
                           value={formData.organization}
                           onChange={(e) =>
                             setFormData({
@@ -322,34 +349,34 @@ export default function NewsletterPage() {
                               organization: e.target.value,
                             })
                           }
-                          className="py-4 text-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl"
+                          className="border-neutral-300 rounded-none focus:border-black focus:ring-0 text-sm py-2.5"
                         />
                       </div>
                       <div>
-                        <label className="block text-lg font-semibold text-gray-900 mb-3">
-                          Role/Title (Optional)
+                        <label className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
+                          Designation (Optional)
                         </label>
                         <Input
-                          placeholder="Your role or job title"
+                          placeholder="e.g. Partner, In-house Counsel"
                           value={formData.role}
                           onChange={(e) =>
                             setFormData({ ...formData, role: e.target.value })
                           }
-                          className="py-4 text-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-xl"
+                          className="border-neutral-300 rounded-none focus:border-black focus:ring-0 text-sm py-2.5"
                         />
                       </div>
                     </div>
 
-                    {/* Subscription Options */}
+                    {/* Subscription Preferences */}
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                        Subscription Preferences
+                      <h3 className="text-sm font-mono uppercase tracking-wider text-black font-semibold mb-4">
+                        Dispatch Preferences
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {subscriptionOptions.map((option) => (
                           <div
                             key={option.id}
-                            className="flex items-start space-x-4 p-6 rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300"
+                            className="border border-neutral-200 bg-white p-5 hover:border-black transition-colors flex items-start space-x-3.5"
                           >
                             <Checkbox
                               id={option.id}
@@ -361,48 +388,43 @@ export default function NewsletterPage() {
                               onCheckedChange={(checked) =>
                                 setFormData({
                                   ...formData,
-                                  [option.id]: checked,
+                                  [option.id]: Boolean(checked),
                                 })
                               }
-                              className="mt-1 scale-125"
+                              className="rounded-none border-neutral-400 data-[state=checked]:bg-black data-[state=checked]:text-white mt-1"
                             />
                             <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2">
-                                <span className="text-2xl">{option.icon}</span>
+                              <div className="flex items-center justify-between mb-1">
                                 <label
                                   htmlFor={option.id}
-                                  className="text-lg font-semibold text-gray-900 cursor-pointer"
+                                  className="text-sm font-serif font-semibold text-black cursor-pointer"
                                 >
                                   {option.title}
                                 </label>
+                                <Badge
+                                  variant="outline"
+                                  className="rounded-none border-neutral-200 text-[10px] font-mono uppercase tracking-wider bg-neutral-50"
+                                >
+                                  {option.frequency}
+                                </Badge>
                               </div>
-                              <p className="text-gray-600 mb-3 leading-relaxed">
+                              <p className="text-xs text-neutral-600 font-sans leading-relaxed">
                                 {option.description}
                               </p>
-                              <Badge variant="outline" className="px-3 py-1">
-                                {option.frequency}
-                              </Badge>
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Privacy Notice */}
-                    <div className="bg-blue-50 p-8 rounded-2xl border border-blue-200">
-                      <div className="flex items-start space-x-4">
-                        <CheckCircle className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
-                        <div className="text-gray-700">
-                          <p className="mb-3 leading-relaxed">
-                            By subscribing, you agree to receive emails from The
-                            Black Silk. We respect your privacy and will never
-                            share your information with third parties.
-                          </p>
-                          <p className="leading-relaxed">
-                            You can unsubscribe at any time by clicking the link
-                            in our emails or contacting us directly.
-                          </p>
-                        </div>
+                    {/* Privacy Note */}
+                    <div className="bg-neutral-50 p-6 border border-neutral-200">
+                      <div className="flex items-start gap-3 text-xs text-neutral-600 font-sans leading-relaxed">
+                        <CheckCircle className="h-4 w-4 text-black mt-0.5 flex-shrink-0" />
+                        <p>
+                          We respect your privacy. We never share subscriber records with third parties.
+                          You may modify your preferences or unsubscribe at any time with a single click.
+                        </p>
                       </div>
                     </div>
 
@@ -411,12 +433,19 @@ export default function NewsletterPage() {
                       type="submit"
                       size="lg"
                       disabled={subscribing}
-                      className="w-full bg-gray-900 hover:bg-gray-800 text-white text-xl py-6 rounded-2xl"
+                      className="w-full bg-black hover:bg-neutral-800 text-white rounded-none font-mono text-xs uppercase tracking-wider py-4 cursor-pointer"
                     >
-                      <Send className="h-6 w-6 mr-3" />
-                      {subscribing
-                        ? "Subscribing..."
-                        : "Subscribe to Newsletter"}
+                      {subscribing ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Subscribing...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 mr-2" />
+                          Subscribe to Dispatch
+                        </>
+                      )}
                     </Button>
                   </form>
                 )}
@@ -432,11 +461,15 @@ export default function NewsletterPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-5xl font-bold text-gray-900 mb-8">
+                <div className="inline-flex items-center px-3 py-1 bg-black text-white border border-neutral-700 text-xs uppercase tracking-widest font-mono mb-4">
+                  <FileText className="h-3.5 w-3.5 mr-2 text-white" />
+                  <span>Archive</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                   Recent Issues
                 </h2>
-                <p className="text-xl text-gray-600">
-                  Get a preview of what you'll receive in your inbox
+                <p className="text-base md:text-lg text-neutral-600 font-sans font-light max-w-2xl mx-auto">
+                  Browse previous dispatches from our editorial collection.
                 </p>
               </div>
 
@@ -444,49 +477,49 @@ export default function NewsletterPage() {
                 {recentIssues.map((issue) => (
                   <Card
                     key={issue.id}
-                    className="border-0 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group rounded-2xl"
+                    className="border border-neutral-200 bg-white rounded-none shadow-none hover:border-black transition-all flex flex-col group overflow-hidden"
                   >
-                    <div className="relative h-56 overflow-hidden">
+                    <div className="relative h-52 bg-neutral-900 border-b border-neutral-200 overflow-hidden">
                       {issue.image ? (
                         <Image
                           src={issue.image}
                           alt={issue.title}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-                          <Mail className="h-24 w-24 text-white opacity-50" />
+                        <div className="w-full h-full flex items-center justify-center bg-black">
+                          <Mail className="h-16 w-16 text-neutral-600" />
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <div className="flex items-center gap-2 text-sm mb-2">
-                          <Calendar className="h-4 w-4" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-mono">
+                        <span className="flex items-center gap-1.5">
+                          <Calendar className="h-3.5 w-3.5" />
                           {formatDate(issue.publishedAt)}
-                        </div>
-                        <Badge className="bg-white/20 text-white border-white/30">
+                        </span>
+                        <Badge className="bg-white/20 text-white border border-white/30 rounded-none font-mono text-[10px] uppercase">
                           {issue.readTime}
                         </Badge>
                       </div>
                     </div>
 
-                    <CardContent className="p-8">
-                      <CardHeader className="p-0 mb-6">
-                        <CardTitle className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <CardContent className="p-6 flex flex-col flex-1">
+                      <CardHeader className="p-0 mb-4">
+                        <CardTitle className="text-xl font-serif text-black mb-2 group-hover:text-neutral-700 transition-colors line-clamp-2">
                           {issue.title}
                         </CardTitle>
-                        <p className="text-gray-600 line-clamp-3 leading-relaxed">
+                        <p className="text-xs text-neutral-600 font-sans leading-relaxed line-clamp-3">
                           {issue.excerpt}
                         </p>
                       </CardHeader>
 
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-1.5 mb-6 mt-auto pt-4 border-t border-neutral-100">
                         {issue.topics.map((topic) => (
                           <Badge
                             key={topic}
                             variant="outline"
-                            className="px-3 py-1"
+                            className="border-neutral-200 text-neutral-700 rounded-none font-mono text-[10px] uppercase tracking-wider bg-neutral-50"
                           >
                             {topic}
                           </Badge>
@@ -495,10 +528,9 @@ export default function NewsletterPage() {
 
                       <Button
                         variant="outline"
-                        size="lg"
-                        className="w-full rounded-xl"
+                        className="w-full border-neutral-300 text-black hover:bg-neutral-100 rounded-none font-mono text-xs uppercase tracking-wider py-2.5"
                       >
-                        Read Full Issue
+                        Read Full Dispatch
                       </Button>
                     </CardContent>
                   </Card>

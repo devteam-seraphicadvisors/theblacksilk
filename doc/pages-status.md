@@ -119,6 +119,8 @@
 ---
 
 ### G. Knowledge Hub
+- [x] `/knowledge-hub` (`app/knowledge-hub/page.tsx`) — **Completed**
+  - **Theme**: Central Knowledge Hub directory in pure B&W with high-contrast section cards for Blog, Fact Sheets, and Newsletter.
 - [x] `/knowledge-hub/blog` (`app/knowledge-hub/blog/page.tsx`) — **Completed**
   - **Theme**: Blog index with pure B&W article cards, monochrome author credits, tags, and newsletter card.
 - [x] `/knowledge-hub/blog/[slug]` (`app/knowledge-hub/blog/[slug]/page.tsx`) — **Completed**
@@ -126,9 +128,9 @@
 - [x] `/knowledge-hub/fact-sheets` (`app/knowledge-hub/fact-sheets/page.tsx`) — **Completed**
   - **Theme**: Research & fact sheets index in clean monochrome styling, high-contrast download buttons.
 - [x] `/knowledge-hub/fact-sheets/[id]` (`app/knowledge-hub/fact-sheets/[id]/page.tsx`) — **Completed**
-  - **Theme**: Fact sheet reader in pure B&W with monochrome key insight borders (`border-l-black`), author cards, and download actions.
+  - **Theme**: Fact sheet reader in pure B&W with monochrome key insight borders (`border-l-black`), author portrait fallback (`AuthorAvatar`), and download actions.
 - [x] `/knowledge-hub/newsletter` (`app/knowledge-hub/newsletter/page.tsx`) — **Completed**
-  - **Theme**: Newsletter signup and issue archive with pure B&W stats and sharp inputs.
+  - **Theme**: Newsletter signup and issue archive with pure B&W stats, sharp inputs, and rich fallback issues archive.
 
 ---
 
