@@ -93,18 +93,26 @@ const authMiddleware = withAuth(
     }
 
     // Admin route protection
-    if (isAdmin && (!isAuth || token?.role !== "admin")) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+    if (isAdmin) {
+      if (!isAuth) {
+        return NextResponse.redirect(
+          new URL(`/login?callbackUrl=${encodeURIComponent(pathname)}`, req.url)
+        );
+      }
+      if (token?.role !== "admin") {
+        return NextResponse.redirect(new URL("/dashboard", req.url));
+      }
     }
 
     return NextResponse.next();
   },
   {
+    pages: {
+      signIn: "/login",
+    },
     callbacks: {
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
-
-
 
         // Check if the current path is a public route or starts with a public route
         const isPublicRoute = publicRoutes.some(

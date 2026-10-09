@@ -378,10 +378,10 @@ export function Navbar() {
                         <DropdownMenuItem asChild>
                           <Link
                             href="/admin"
-                            className="cursor-pointer bg-red-50 focus:bg-red-100"
+                            className="cursor-pointer bg-black text-white hover:bg-neutral-800 focus:bg-neutral-800 focus:text-white rounded-none flex items-center px-3 py-2"
                           >
-                            <Shield className="w-4 h-4 mr-2 text-red-600" />
-                            <span className="text-red-600 font-semibold">
+                            <Shield className="w-4 h-4 mr-2 text-white" />
+                            <span className="text-white font-mono text-xs uppercase tracking-wider font-semibold">
                               Admin Panel
                             </span>
                           </Link>

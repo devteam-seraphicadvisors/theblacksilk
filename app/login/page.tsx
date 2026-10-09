@@ -43,12 +43,20 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Invalid email or password");
       } else {
-        // Get fresh session to check membership status
+        // Get fresh session to check membership status and role
         const session = await getSession();
         console.log("Login successful, session:", session);
 
-        // Let middleware handle the redirect based on membership status
-        router.push("/dashboard");
+        const searchParams = new URLSearchParams(window.location.search);
+        const callbackUrl = searchParams.get("callbackUrl");
+
+        if (callbackUrl) {
+          router.push(callbackUrl);
+        } else if ((session as any)?.user?.role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/dashboard");
+        }
       }
     } catch (error) {
       setError("An unexpected error occurred");
