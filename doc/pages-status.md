@@ -70,23 +70,15 @@
 
 ---
 
-### D. Events Section
-- [x] `/events` (`app/events/page.tsx`) — **Completed**
-  - **Theme**: Converted colored event stats (`bg-blue-500`, `bg-green-500`, etc.) to pure B&W badges, sharp monochrome event cards.
-  - **Duplicate CTA**: Removed duplicate "Never Miss an Event" bottom CTA section.
-- [x] `/events/upcoming` (`app/events/upcoming/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W event cards, monochrome search/filters, and sharp badges.
-  - **Duplicate CTA**: Removed duplicate "Never Miss an Event" bottom CTA section.
-- [x] `/events/past` (`app/events/past/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W event archive and monochrome recording links.
-  - **Duplicate CTA**: Removed duplicate "Join Our Next Event" bottom CTA section.
-- [x] `/events/[slug]` (`app/events/[slug]/page.tsx`) — **Completed**
-  - **Theme**: Converted `getStatusBadge` colored pills (`bg-blue-100`, `bg-green-100`, `bg-red-100`) to monochrome badges; high-contrast registration buttons.
-  - **Duplicate CTA**: Removed duplicate "Don't Miss This Event" bottom CTA section.
-- [x] `/events/[slug]/register` (`app/events/[slug]/register/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W header, monochrome forms, sharp inputs, high-contrast radio cards, monochrome security banner.
-- [x] `/events/[slug]/register/success` (`app/events/[slug]/register/success/page.tsx`) — **Completed**
-  - **Theme**: Monochrome checkmark, pure B&W cards, high-contrast step indicators, monochrome support callout.
+### D. Events Section (Combined Events & Podcasts)
+- [x] `/events` (`app/events/page.tsx`) — **Completed & Combined**
+  - **Architecture**: Unified all upcoming and past events into a single, high-contrast B&W podcast showcase with direct YouTube streaming.
+  - **Upcoming Section**: First displays upcoming broadcasts and scheduled premieres with flags (`UPCOMING`, `NEW`, `PREMIERES SOON`, `IN PRODUCTION`), panellist portraits, and synopsis.
+  - **Past Section**: Displays recorded episodes and roundtables with flags (`RECORDED`, `WATCH NOW`, `DPDP SERIES`, `AI & VENTURE`), inline interactive YouTube video players, and direct YouTube external links.
+  - **No Dedicated Pages Needed**: Sub-routes `/events/upcoming`, `/events/past`, and `/events/[slug]` seamlessly redirect to the combined `/events` page sections (`#upcoming` and `#past`), eliminating redundant sub-pages and ticket checkout flows.
+- [x] `/events/upcoming` (`app/events/upcoming/page.tsx`) — **Redirects to `/events#upcoming`**
+- [x] `/events/past` (`app/events/past/page.tsx`) — **Redirects to `/events#past`**
+- [x] `/events/[slug]` (`app/events/[slug]/page.tsx`) — **Redirects to `/events`**
 
 ---
 

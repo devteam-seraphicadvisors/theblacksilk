@@ -56,8 +56,9 @@ const navigation = [
     name: "Events",
     href: "/events",
     children: [
-      { name: "Upcoming", href: "/events/upcoming" },
-      { name: "Past Events", href: "/events/past" },
+      { name: "All Podcasts", href: "/events" },
+      { name: "Upcoming", href: "/events#upcoming" },
+      { name: "Past Episodes", href: "/events#past" },
     ],
   },
   {
