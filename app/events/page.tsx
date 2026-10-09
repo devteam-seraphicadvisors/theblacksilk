@@ -411,7 +411,7 @@ export default function EventsAndPodcastsPage() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
               Events & Podcasts
             </h1>
-            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto mb-10">
+            <p className="text-lg md:text-xl text-neutral-100 font-sans font-normal leading-relaxed max-w-3xl mx-auto mb-10">
               Direct discussions with senior jurists, venture leaders, and legal engineers on the Digital Personal Data Protection Act, generative AI jurisprudence, and cross-border tech policy.
             </p>
 
@@ -444,38 +444,6 @@ export default function EventsAndPodcastsPage() {
               >
                 <Link href="#past">Watch Past Episodes</Link>
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Broadcast Quick Stats */}
-      <section className="py-8 bg-neutral-50 border-b border-neutral-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white border border-neutral-200 p-4 text-center">
-              <div className="text-2xl font-serif font-bold text-black">100%</div>
-              <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                Direct YouTube Streams
-              </div>
-            </div>
-            <div className="bg-white border border-neutral-200 p-4 text-center">
-              <div className="text-2xl font-serif font-bold text-black">DPDP & AI</div>
-              <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                Core Practice Tracks
-              </div>
-            </div>
-            <div className="bg-white border border-neutral-200 p-4 text-center">
-              <div className="text-2xl font-serif font-bold text-black">Free</div>
-              <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                Public Access Always
-              </div>
-            </div>
-            <div className="bg-white border border-neutral-200 p-4 text-center">
-              <div className="text-2xl font-serif font-bold text-black">New Delhi</div>
-              <div className="text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                Symposium Origins
-              </div>
             </div>
           </div>
         </div>
@@ -643,22 +611,29 @@ export default function EventsAndPodcastsPage() {
                           )}
                         </div>
 
-                        <h3 className="text-xl font-serif text-black font-medium leading-snug mb-3 group-hover:text-neutral-700 transition-colors">
+                        <h3 className="text-xl font-serif text-black font-medium leading-snug mb-3 group-hover:text-neutral-700 transition-colors line-clamp-2 min-h-[3.5rem]">
                           {episode.title}
                         </h3>
 
-                        <p className="text-xs text-neutral-600 font-sans leading-relaxed line-clamp-3 mb-6">
+                        <p className="text-xs text-neutral-600 font-sans leading-relaxed line-clamp-3 mb-6 min-h-[3.6rem]">
                           {episode.description}
                         </p>
 
                         {/* Speakers Section */}
                         {episode.speakers.length > 0 && (
                           <div className="mt-auto pt-4 border-t border-neutral-100 mb-6">
-                            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 mb-2">
-                              Featuring
-                            </p>
-                            <div className="space-y-2">
-                              {episode.speakers.map((sp, idx) => (
+                            <div className="flex items-center justify-between mb-2.5">
+                              <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+                                Featuring
+                              </p>
+                              {episode.speakers.length > 2 && (
+                                <span className="inline-flex items-center text-[10px] font-mono uppercase tracking-wider text-black bg-neutral-100 border border-neutral-300 px-1.5 py-0.5 font-medium">
+                                  +{episode.speakers.length - 2} more
+                                </span>
+                              )}
+                            </div>
+                            <div className="space-y-2 min-h-[5rem]">
+                              {episode.speakers.slice(0, 2).map((sp, idx) => (
                                 <SpeakerAvatar key={idx} speaker={sp} />
                               ))}
                             </div>
@@ -846,22 +821,29 @@ export default function EventsAndPodcastsPage() {
                           )}
                         </div>
 
-                        <h3 className="text-xl font-serif text-black font-medium leading-snug mb-3 group-hover:text-neutral-700 transition-colors">
+                        <h3 className="text-xl font-serif text-black font-medium leading-snug mb-3 group-hover:text-neutral-700 transition-colors line-clamp-2 min-h-[3.5rem]">
                           {episode.title}
                         </h3>
 
-                        <p className="text-xs text-neutral-600 font-sans leading-relaxed line-clamp-3 mb-6">
+                        <p className="text-xs text-neutral-600 font-sans leading-relaxed line-clamp-3 mb-6 min-h-[3.6rem]">
                           {episode.description}
                         </p>
 
                         {/* Speakers Section */}
                         {episode.speakers.length > 0 && (
                           <div className="mt-auto pt-4 border-t border-neutral-100 mb-6">
-                            <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 mb-2">
-                              Panellists & Speakers
-                            </p>
-                            <div className="space-y-2">
-                              {episode.speakers.map((sp, idx) => (
+                            <div className="flex items-center justify-between mb-2.5">
+                              <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+                                Panellists & Speakers
+                              </p>
+                              {episode.speakers.length > 2 && (
+                                <span className="inline-flex items-center text-[10px] font-mono uppercase tracking-wider text-black bg-neutral-100 border border-neutral-300 px-1.5 py-0.5 font-medium">
+                                  +{episode.speakers.length - 2} more
+                                </span>
+                              )}
+                            </div>
+                            <div className="space-y-2 min-h-[5rem]">
+                              {episode.speakers.slice(0, 2).map((sp, idx) => (
                                 <SpeakerAvatar key={idx} speaker={sp} />
                               ))}
                             </div>
