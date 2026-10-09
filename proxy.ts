@@ -1,6 +1,36 @@
 import { withAuth } from "next-auth/middleware";
+import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequestWithAuth } from "next-auth/middleware";
+
+// Public routes that don't require authentication
+const publicRoutes = [
+  "/",
+  "/about",
+  "/events",
+  "/knowledge-hub",
+  "/community",
+  "/membership",
+  "/careers",
+  "/get-involved",
+  "/partnerships",
+  "/forum",
+  "/privacy",
+  "/terms",
+  "/cookies",
+  "/maintenance",
+  "/api/auth",
+  "/api/payment/webhook",
+  "/api/maintenance",
+  "/api/community",
+  "/api/careers",
+  "/api/knowledge-hub",
+  "/api/newsletter",
+  "/api/events",
+  "/api/publications",
+  "/api/committees",
+  "/api/stats",
+];
 
 const authMiddleware = withAuth(
   function middleware(req: NextRequestWithAuth) {
@@ -74,26 +104,7 @@ const authMiddleware = withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
 
-        // Public routes that don't require authentication
-        const publicRoutes = [
-          "/",
-          "/about",
-          "/events",
-          "/knowledge-hub",
-          "/community",
-          "/membership",
-          "/careers",
-          "/get-involved",
-          "/partnerships",
-          "/forum",
-          "/privacy",
-          "/terms",
-          "/cookies",
-          "/maintenance",
-          "/api/auth",
-          "/api/payment/webhook",
-          "/api/maintenance",
-        ];
+
 
         // Check if the current path is a public route or starts with a public route
         const isPublicRoute = publicRoutes.some(
@@ -169,6 +180,24 @@ export default async function proxy(req: any) {
       httpOnly: false,
     });
     return res;
+  }
+
+  // Handle API routes specifically to avoid redirecting API fetches to HTML login pages
+  if (pathname.startsWith("/api/")) {
+    const isPublic = publicRoutes.some(
+      (route) => pathname === route || pathname.startsWith(route + "/")
+    );
+    if (isPublic) {
+      return NextResponse.next();
+    }
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    if (pathname.startsWith("/api/admin") && token.role !== "admin") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+    return NextResponse.next();
   }
 
   return (authMiddleware as any)(req);

@@ -318,7 +318,7 @@ export default async function EventDetailPage({
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {speakers.map((speaker, index) => (
                     <Card
-                      key={index}
+                      key={speaker.name ? `speaker-${speaker.name}-${index}` : `speaker-${index}`}
                       className="border-0 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <CardContent className="p-6">
@@ -380,7 +380,10 @@ export default async function EventDetailPage({
                 </h2>
                 <div className="space-y-6">
                   {timeline.map((item, index) => (
-                    <div key={index} className="flex gap-6">
+                    <div
+                      key={item.time ? `timeline-${item.time}-${index}` : `timeline-${index}`}
+                      className="flex gap-6"
+                    >
                       <div className="flex flex-col items-center">
                         <div className="w-12 h-12 rounded-full bg-prussian-blue text-white flex items-center justify-center font-semibold">
                           <Clock className="h-5 w-5" />

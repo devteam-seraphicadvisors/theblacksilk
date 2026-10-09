@@ -44,7 +44,13 @@ export default async function UpcomingEventsPage() {
   const otherEvents = upcomingEvents.filter((e) => e.id !== featuredEvent?.id);
   const categories = [
     "All",
-    ...Array.from(new Set(upcomingEvents.map((e) => e.category))),
+    ...Array.from(
+      new Set(
+        upcomingEvents
+          .map((e) => e.eventType)
+          .filter((cat): cat is string => Boolean(cat && cat.trim()))
+      )
+    ),
   ];
 
   return (
@@ -82,9 +88,9 @@ export default async function UpcomingEventsPage() {
                 />
               </div>
               <div className="flex gap-2 flex-wrap">
-                {categories.map((category) => (
+                {categories.map((category, index) => (
                   <Button
-                    key={category}
+                    key={category || `cat-${index}`}
                     variant={category === "All" ? "default" : "outline"}
                     size="sm"
                     className={`rounded-none text-xs font-mono uppercase tracking-wider cursor-pointer ${
@@ -144,9 +150,9 @@ export default async function UpcomingEventsPage() {
                       <div className="p-8 lg:p-12">
                         <Badge
                           variant="outline"
-                          className="text-prussian-blue border-prussian-blue mb-4"
+                          className="text-prussian-blue border-prussian-blue mb-4 capitalize"
                         >
-                          {featuredEvent.category}
+                          {featuredEvent.eventType || "Event"}
                         </Badge>
                         <h3 className="text-3xl font-bold text-gray-900 mb-4">
                           {featuredEvent.title}
@@ -227,8 +233,8 @@ export default async function UpcomingEventsPage() {
                           <Badge className="absolute top-4 left-4 bg-blue-500 text-white">
                             {event.status}
                           </Badge>
-                          <Badge className="absolute top-4 right-4 bg-white/90 text-gray-900">
-                            {event.category}
+                          <Badge className="absolute top-4 right-4 bg-white/90 text-gray-900 capitalize">
+                            {event.eventType || "Event"}
                           </Badge>
                         </div>
                         <CardContent className="p-6">

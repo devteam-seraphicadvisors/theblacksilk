@@ -40,7 +40,13 @@ export default async function PastEventsPage() {
   const totalEvents = pastEvents.length;
   const categories = [
     "All",
-    ...Array.from(new Set(pastEvents.map((e) => e.category))),
+    ...Array.from(
+      new Set(
+        pastEvents
+          .map((e) => e.eventType)
+          .filter((cat): cat is string => Boolean(cat && cat.trim()))
+      )
+    ),
   ];
 
   return (
@@ -75,15 +81,15 @@ export default async function PastEventsPage() {
                 />
               </div>
               <div className="flex gap-2 flex-wrap">
-                {categories.map((cat) => (
+                {categories.map((cat, index) => (
                   <Button
-                    key={cat}
+                    key={cat || `cat-${index}`}
                     variant={cat === "All" ? "default" : "outline"}
                     size="sm"
                     className={
                       cat === "All"
-                        ? "bg-black hover:bg-gray-800 text-white"
-                        : ""
+                        ? "bg-black hover:bg-neutral-800 text-white"
+                        : "border-neutral-300 text-black hover:bg-neutral-100"
                     }
                   >
                     {cat}
@@ -115,8 +121,8 @@ export default async function PastEventsPage() {
                       <Badge className="absolute top-4 left-4 bg-green-600 text-white">
                         Completed
                       </Badge>
-                      <Badge className="absolute top-4 right-4 bg-white/90 text-gray-900">
-                        {event.category}
+                      <Badge className="absolute top-4 right-4 bg-white/90 text-gray-900 capitalize">
+                        {event.eventType || "Event"}
                       </Badge>
                       <div className="absolute bottom-4 left-4 flex gap-2">
                         <div className="bg-black/80 text-white text-xs px-2 py-1 rounded">

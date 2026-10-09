@@ -44,6 +44,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${dmSerifDisplay.variable}`}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <head>
         {/* Google Analytics */}

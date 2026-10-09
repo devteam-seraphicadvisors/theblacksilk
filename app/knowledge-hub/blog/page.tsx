@@ -170,9 +170,9 @@ export default async function BlogPage() {
                   <div className="p-12">
                     <CardHeader className="p-0 mb-8">
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {featuredPost.tags.slice(0, 3).map((tag) => (
+                        {featuredPost.tags?.slice(0, 3).map((tag, idx) => (
                           <Badge
-                            key={tag.slug}
+                            key={tag.slug || `tag-${idx}`}
                             variant="outline"
                             className="text-sm px-3 py-1"
                           >
@@ -275,9 +275,9 @@ export default async function BlogPage() {
 
                         <CardContent className="md:w-2/3 p-8">
                           <div className="flex flex-wrap gap-2 mb-4">
-                            {post.tags.slice(0, 2).map((tag) => (
+                            {post.tags?.slice(0, 2).map((tag, idx) => (
                               <Badge
-                                key={tag.slug}
+                                key={tag.slug || `tag-${idx}`}
                                 variant="outline"
                                 className="text-xs px-2 py-1"
                               >
