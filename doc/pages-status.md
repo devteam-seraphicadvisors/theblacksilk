@@ -144,7 +144,7 @@ Previously still contained blue/purple buttons and focus rings, green checkmarks
 ## 4. Open Items Before Launch
 
 1. **Legal text review** — `/privacy`, `/terms`, `/cookies` copy is a draft.
-2. **Unknown URLs redirect to `/login`** instead of showing the 404 page, because `proxy.ts` treats every path not in `publicRoutes` as protected.
+2. ~~**Unknown URLs redirect to `/login`**~~ — **Fixed 2026-10-12.** `proxy.ts` now lists only protected page sections (`/dashboard`, `/admin`, `/onboarding`); all other pages are public, so unknown URLs show the 404 page. API routes are unchanged (protected unless listed in `publicApiRoutes`).
 3. **Contact details are inconsistent** — footer shows `info@blacksilk.org` / `+91 11 1234 5678`; contact page shows `info@theblacksilk.org` / `+91 11 4567 8900`.
 4. **Missing images** — `/images/office-*.jpg` (contact), several partner/success-story logos, and volunteer-story avatars return 404.
 5. **Unused components** — `components/latest-content.tsx`, `components/feature-cards.tsx`, `components/committees/page.tsx` are not imported anywhere and still contain off-theme styles.

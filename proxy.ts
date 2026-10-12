@@ -3,22 +3,17 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequestWithAuth } from "next-auth/middleware";
 
-// Public routes that don't require authentication
-const publicRoutes = [
-  "/",
-  "/about",
-  "/events",
-  "/knowledge-hub",
-  "/community",
-  "/membership",
-  "/careers",
-  "/get-involved",
-  "/partnerships",
-  "/forum",
-  "/privacy",
-  "/terms",
-  "/cookies",
-  "/maintenance",
+// Pages that require authentication. Every other page is public, so unknown
+// URLs fall through to the 404 page instead of redirecting to /login.
+// Add new member-only or admin-only page sections here.
+const protectedPageRoutes = ["/dashboard", "/admin", "/onboarding"];
+
+// True when pathname is `route` itself or nested under it (not "/dashboardx")
+const isUnder = (pathname: string, route: string) =>
+  pathname === route || pathname.startsWith(route + "/");
+
+// API routes that don't require authentication. All other API routes do.
+const publicApiRoutes = [
   "/api/auth",
   "/api/payment/webhook",
   "/api/maintenance",
@@ -41,12 +36,12 @@ const authMiddleware = withAuth(
     // Define route categories
     const isAuthPage =
       pathname.startsWith("/login") || pathname.startsWith("/register");
-    const isDashboard = pathname.startsWith("/dashboard");
-    const isAdmin = pathname.startsWith("/admin");
+    const isDashboard = isUnder(pathname, "/dashboard");
+    const isAdmin = isUnder(pathname, "/admin");
     const isMembershipPage =
       pathname.startsWith("/community/membership") ||
       pathname.startsWith("/membership");
-    const isOnboarding = pathname.startsWith("/onboarding");
+    const isOnboarding = isUnder(pathname, "/onboarding");
 
     // If user is authenticated and tries to access auth pages, redirect appropriately
     if (isAuthPage && isAuth) {
@@ -114,23 +109,12 @@ const authMiddleware = withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
 
-        // Check if the current path is a public route or starts with a public route
-        const isPublicRoute = publicRoutes.some(
-          (route) => pathname === route || pathname.startsWith(route + "/")
+        const isProtectedRoute = protectedPageRoutes.some((route) =>
+          isUnder(pathname, route)
         );
 
-        // Allow access to public routes and auth pages
-        if (
-          isPublicRoute ||
-          pathname.startsWith("/login") ||
-          pathname.startsWith("/register") ||
-          pathname.startsWith("/maintenance")
-        ) {
-          return true;
-        }
-
-        // For protected routes, require authentication
-        return !!token;
+        // Only protected sections require authentication
+        return !isProtectedRoute || !!token;
       },
     },
   }
@@ -192,9 +176,7 @@ export default async function proxy(req: any) {
 
   // Handle API routes specifically to avoid redirecting API fetches to HTML login pages
   if (pathname.startsWith("/api/")) {
-    const isPublic = publicRoutes.some(
-      (route) => pathname === route || pathname.startsWith(route + "/")
-    );
+    const isPublic = publicApiRoutes.some((route) => isUnder(pathname, route));
     if (isPublic) {
       return NextResponse.next();
     }
