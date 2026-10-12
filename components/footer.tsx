@@ -32,8 +32,8 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-7xl pt-16 pb-12">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
-          {/* Brand & Organization Column (5 cols on lg) */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Brand & Organization Column (3 cols on lg) */}
+          <div className="lg:col-span-3 space-y-6">
             <Link href="/" className="inline-block group">
               {/* Exact Logo from Navbar, inverted for crisp display on pure black */}
               <div className="relative w-[150px] h-[42px] sm:w-[170px] sm:h-[48px] invert">
@@ -146,7 +146,32 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Navigation Column 3: Newsletter (3 cols on lg) */}
+          {/* Navigation Column 3: Get Involved (2 cols on lg) */}
+          <div className="lg:col-span-2 space-y-4">
+            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
+              Get Involved
+            </span>
+            <ul className="space-y-3">
+              {[
+                { name: "Volunteer", href: "/get-involved/volunteer" },
+                { name: "Partner With Us", href: "/get-involved/partnerships" },
+                { name: "Sponsorship", href: "/partnerships/sponsor" },
+                { name: "Contact Us", href: "/get-involved/contact" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
+                  >
+                    <span>{link.name}</span>
+                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Navigation Column 4: Newsletter (3 cols on lg) */}
           <div className="lg:col-span-3 space-y-4">
             <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
               Stay Informed

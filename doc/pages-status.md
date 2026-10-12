@@ -1,7 +1,8 @@
 # The Black Silk — Page Theme & Duplicate CTA Audit Status
 
-> **Audit Date**: 2026-10-08  
+> **Audit Date**: 2026-10-09 (re-audit of the 2026-10-08 pass)
 > **Target Theme**: Pure Black & White (`#000000`, `#ffffff`, neutral grayscale borders/typography; no colored badges like green/purple/blue/orange pills, no colored icons, no pastel/gradient backgrounds, high-contrast buttons, single global `CallToAction` rendered above footer).
+> **Verification**: every public route returns 200 on the dev server, `npm run build` passes, and each changed page was checked with full-page screenshots.
 
 ---
 
@@ -15,16 +16,27 @@
 | **Events Section** | 6 | 6 | 0 |
 | **Careers Section** | 4 | 4 | 0 |
 | **Get Involved Section** | 3 | 3 | 0 |
-| **Knowledge Hub** | 5 | 5 | 0 |
+| **Knowledge Hub** | 6 | 6 | 0 |
 | **Partnerships** | 4 | 4 | 0 |
 | **Community Forum** | 1 | 1 | 0 |
+| **Legal** | 3 | 3 (draft copy) | Legal review of text |
 | **Authentication & User Flow** | 4 | 4 | 0 |
-| **Maintenance** | 1 | 1 | 0 |
-| **Dashboard / Admin** | 25+ | - | Protected / Internal |
+| **Maintenance & 404** | 2 | 2 | 0 |
+| **Dashboard / Admin / Onboarding** | 25+ | - | Protected / Internal |
 
 ---
 
-## 2. Detailed Page Tracking
+## 2. Site-wide Fixes (2026-10-09)
+
+- **Hero text invisible on ~20 pages** — `app/globals.css` default text-color rules (`.bg-white p`, `.bg-white div`, …) out-ranked Tailwind utilities, so any black hero inside `<main className="bg-white">` rendered its subtitle and eyebrow label dark gray on black. Rules now use `:where()` (zero specificity) so explicit `text-*` classes always win, and dark sections reset nested text.
+- **Navbar** — "Join Us" / "Login" buttons, mobile menu, and search inputs converted from rounded slate (`btn-primary`) to square black.
+- **Footer** — added a "Get Involved" column (Volunteer, Partner With Us, Sponsorship, Contact Us); these pages were previously unreachable from navigation.
+- **Sitemap** — `app/sitemap.ts` rewritten to list only real public routes (previously listed ~15 non-existent URLs such as `/advocacy/*`, `/auth/login`, `/careers/internships`).
+- **Legal pages** — `/privacy`, `/terms`, `/cookies` created (were 404 but linked from the footer and payment page). Shared layout in `components/legal-page.tsx`.
+
+---
+
+## 3. Detailed Page Tracking
 
 ### A. Home & Core
 - [x] `/` (`app/page.tsx`) — **Completed**
@@ -35,125 +47,104 @@
 
 ### B. About Section
 - [x] `/about` (`app/about/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W overview page with official copy from `content.md`.
-  - **Duplicate CTA**: Single global CTA active.
 - [x] `/about/mission` (`app/about/mission/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W styling, mission statements, pillars, and principles.
-  - **Duplicate CTA**: Single global CTA active.
-- [x] `/about/leadership` (`app/about/leadership/page.tsx`) — **Completed**
-  - **Theme**: Monochrome leadership grid with grayscale portraits and bio dialogs.
-  - **Duplicate CTA**: Single global CTA active.
+- [x] `/about/leadership` (`app/about/leadership/page.tsx`) — **Completed** (hover shadow replaced with border hover)
 - [x] `/about/approach` (`app/about/approach/page.tsx`) — **Completed**
-  - **Theme**: 4-stage methodological framework in high-contrast B&W cards.
-  - **Duplicate CTA**: Single global CTA active.
 - [x] `/about/impact` (`app/about/impact/page.tsx`) — **Completed**
-  - **Theme**: 4 strategic pillars and impact metrics in crisp monochrome styling.
-  - **Duplicate CTA**: Single global CTA active.
+  - All five: hero subtitle/eyebrow visibility fixed by the `globals.css` change; single global CTA.
 
 ---
 
 ### C. Community Section
 - [x] `/community/membership` (`app/community/membership/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W styling, 6 individual tiers, 4 institutional tiers, FAQ accordions.
-  - **Duplicate CTA**: Redundant bottom CTA removed; buttons have high contrast.
-- [x] `/community/membership/payment` (`app/community/membership/payment/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W checkout & payment selection interface with official tier pricing.
-- [x] `/community/committees` (`app/community/committees/page.tsx`) — **Completed**
-  - **Theme**: Converted colored status badges (green, purple, blue, orange) to sharp monochrome tokens (`border-black bg-black text-white`, `border-neutral-300 bg-neutral-100 text-neutral-900 font-mono text-[11px] uppercase`). Hero updated to B&W border.
-  - **Duplicate CTA**: Removed duplicate "Ready to Contribute?" bottom CTA section.
-- [x] `/community/committees/[slug]` (`app/community/committees/[slug]/page.tsx`) — **Completed**
-  - **Theme**: Converted status badges from colored pills to sharp monochrome badges. Hero and action buttons adhere to B&W styling.
-  - **Duplicate CTA**: Verified single global CTA.
-- [x] `/community/directory` (`app/community/directory/page.tsx`) — **Completed**
-  - **Theme**: Removed green verified badge and colored filter pills; applied pure B&W tokens and sharp cards (`rounded-none`).
-  - **Duplicate CTA**: Removed duplicate "Join Our Community" bottom CTA section.
+- [x] `/community/membership/payment` (`app/community/membership/payment/page.tsx`) — **Completed 2026-10-09**
+  - **Theme**: Removed gradient card headers, rounded corners, shadows, green/blue info boxes; monospace labels, square inputs, black pay button.
+- [x] `/community/committees` (`app/community/committees/page.tsx`) — **Completed** (hover shadows removed)
+- [x] `/community/committees/[slug]` (`app/community/committees/[slug]/page.tsx`) — **Completed 2026-10-09**
+  - **Theme**: Gray gradient hero replaced with black overlay; 27 rounded corners and 15 shadows removed; green badge converted; outline buttons squared.
+  - **Bug fixes**: "Contact Chair" hero button was invisible (white text on the outline variant's white background). `ApplicationDialog` ignored its `triggerButton` prop, so the hero showed a full-width rounded button instead of "Join Committee".
+  - **Application form** (`components/committees/application-form.tsx`, dialog): fields, labels, checkboxes, buttons converted.
+- [x] `/community/directory` (`app/community/directory/page.tsx`) — **Completed** (hover shadows removed)
 
 ---
 
 ### D. Events Section (Combined Events & Podcasts)
 - [x] `/events` (`app/events/page.tsx`) — **Completed & Combined**
-  - **Architecture**: Unified all upcoming and past events into a single, high-contrast B&W podcast showcase with direct YouTube streaming.
-  - **Upcoming Section**: First displays upcoming broadcasts and scheduled premieres with flags (`UPCOMING`, `NEW`, `PREMIERES SOON`, `IN PRODUCTION`), panellist portraits, and synopsis.
-  - **Past Section**: Displays recorded episodes and roundtables with flags (`RECORDED`, `WATCH NOW`, `DPDP SERIES`, `AI & VENTURE`), inline interactive YouTube video players, and direct YouTube external links.
-  - **No Dedicated Pages Needed**: Sub-routes `/events/upcoming`, `/events/past`, and `/events/[slug]` seamlessly redirect to the combined `/events` page sections (`#upcoming` and `#past`), eliminating redundant sub-pages and ticket checkout flows.
-- [x] `/events/upcoming` (`app/events/upcoming/page.tsx`) — **Redirects to `/events#upcoming`**
-- [x] `/events/past` (`app/events/past/page.tsx`) — **Redirects to `/events#past`**
-- [x] `/events/[slug]` (`app/events/[slug]/page.tsx`) — **Redirects to `/events`**
+  - Sub-routes `/events/upcoming`, `/events/past`, and `/events/[slug]` redirect to `/events` sections.
+- [x] `/events/upcoming` — **Redirects to `/events#upcoming`**
+- [x] `/events/past` — **Redirects to `/events#past`**
+- [x] `/events/[slug]` — **Redirects to `/events`**
+- [x] `/events/[slug]/register` (`app/events/[slug]/register/page.tsx`) — **Completed** (radio buttons were navy; now black. Red is kept for validation errors only.)
+- [x] `/events/[slug]/register/success` — **Completed**
 
 ---
 
 ### E. Careers Section
 - [x] `/careers/jobs` (`app/careers/jobs/page.tsx`) — **Completed**
-  - **Theme**: Converted colored urgency pills and gradient cards to pure monochrome tokens (`bg-black text-white`, `border-neutral-300 bg-neutral-100`).
-  - **Duplicate CTA**: Removed duplicate "Ready to Make an Impact?" bottom CTA section.
-- [x] `/careers/jobs/[id]` (`app/careers/jobs/[id]/page.tsx`) — **Completed**
-  - **Theme**: Clean monochrome typography, monochrome checkmarks (`text-black`), sharp cards, high-contrast buttons.
-  - **Duplicate CTA**: Restyled inline application callout into a clean B&W card without redundant footer text.
-- [x] `/careers/jobs/[id]/apply` (`app/careers/jobs/[id]/apply/page.tsx`) — **Completed**
-  - **Theme**: Clean B&W application form, sharp inputs, monochrome alert badges, high-contrast submit button.
+- [x] `/careers/jobs/[id]` (`app/careers/jobs/[id]/page.tsx`) — **Completed** (not-found/error state restyled)
+- [x] `/careers/jobs/[id]/apply` (`app/careers/jobs/[id]/apply/page.tsx`) — **Completed** (error state restyled; red icon → black)
 - [x] `/careers/mentorship` (`app/careers/mentorship/page.tsx`) — **Completed**
-  - **Theme**: Converted colored mentor badges, colored stats cards, and gradient backgrounds to pure B&W tokens.
-  - **Duplicate CTA**: Removed duplicate "Ready to Transform Your Career?" bottom CTA section.
 
 ---
 
-### F. Get Involved Section
+### F. Get Involved Section — **Rebuilt 2026-10-09**
+Previously only the hero had been converted; the page bodies used undefined legacy classes (`gradient-navy`, `shadow-brand`, `bg-brand-gold-600`, `text-text-primary`, `font-heading`, `bg-surface-primary`), which rendered white icons on white tiles (invisible) and unstyled headings.
 - [x] `/get-involved/contact` (`app/get-involved/contact/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W contact form, monochrome contact information cards, sharp inputs and buttons.
-  - **Duplicate CTA**: Removed duplicate "Ready to Collaborate?" bottom CTA section.
+  - **FAQ (2026-10-10)**: Static FAQ cards in the side column replaced with a full-width accordion section matching `/community/membership` (single-open, square items, black border when open). FAQPage JSON-LD unchanged.
 - [x] `/get-involved/partnerships` (`app/get-involved/partnerships/page.tsx`) — **Completed**
-  - **Theme**: Monochrome partnership tier cards, benefits lists, and sharp high-contrast submit button.
-  - **Duplicate CTA**: Removed duplicate "Ready to Transform Legal Technology Together?" bottom CTA section.
 - [x] `/get-involved/volunteer` (`app/get-involved/volunteer/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W volunteer opportunities, role cards, and application form.
-  - **Duplicate CTA**: Removed duplicate "Ready to Make an Impact?" bottom CTA section.
+  - All three: black icon tiles, serif headings, square bordered cards, monospace form labels, square inputs, black/outline buttons, monochrome badges and checkboxes.
 
 ---
 
 ### G. Knowledge Hub
 - [x] `/knowledge-hub` (`app/knowledge-hub/page.tsx`) — **Completed**
-  - **Theme**: Central Knowledge Hub directory in pure B&W with high-contrast section cards for Blog, Fact Sheets, and Newsletter.
 - [x] `/knowledge-hub/blog` (`app/knowledge-hub/blog/page.tsx`) — **Completed**
-  - **Theme**: Blog index with pure B&W article cards, monochrome author credits, tags, and newsletter card.
-- [x] `/knowledge-hub/blog/[slug]` (`app/knowledge-hub/blog/[slug]/page.tsx`) — **Completed**
-  - **Theme**: Article reading experience with clean serif typography, monochrome sidebar, black-and-white prose links and blockquotes.
+- [x] `/knowledge-hub/blog/[slug]` (`app/knowledge-hub/blog/[slug]/page.tsx`) — **Completed** (loading skeleton squared)
 - [x] `/knowledge-hub/fact-sheets` (`app/knowledge-hub/fact-sheets/page.tsx`) — **Completed**
-  - **Theme**: Research & fact sheets index in clean monochrome styling, high-contrast download buttons.
 - [x] `/knowledge-hub/fact-sheets/[id]` (`app/knowledge-hub/fact-sheets/[id]/page.tsx`) — **Completed**
-  - **Theme**: Fact sheet reader in pure B&W with monochrome key insight borders (`border-l-black`), author portrait fallback (`AuthorAvatar`), and download actions.
 - [x] `/knowledge-hub/newsletter` (`app/knowledge-hub/newsletter/page.tsx`) — **Completed**
-  - **Theme**: Newsletter signup and issue archive with pure B&W stats, sharp inputs, and rich fallback issues archive.
 
 ---
 
-### H. Partnerships Section
+### H. Partnerships Section — **Converted 2026-10-09**
+Previously still contained blue/purple buttons and focus rings, green checkmarks, purple-to-blue gradient cards, a yellow crown icon, rounded corners, and heavy shadows.
 - [x] `/partnerships/sponsor` (`app/partnerships/sponsor/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W sponsorship hero, sharp input fields, and high-contrast submit button.
 - [x] `/partnerships/global-sponsor` (`app/partnerships/global-sponsor/page.tsx`) — **Completed**
-  - **Theme**: Converted gradient metrics and purple/blue badges to pure B&W tokens.
 - [x] `/partnerships/allied-organizations` (`app/partnerships/allied-organizations/page.tsx`) — **Completed**
-  - **Theme**: Monochrome organizational partnership tiers and benefits.
 - [x] `/partnerships/conference-sponsorship` (`app/partnerships/conference-sponsorship/page.tsx`) — **Completed**
-  - **Theme**: Monochrome conference sponsorship tiers and inquiry form.
+  - Shared sidebar (`components/partnership-sidebar.tsx`): blue info box and badges converted.
 
 ---
 
 ### I. Community Forum, Auth & User Flow
-- [x] `/forum` (`app/forum/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W forum hero and category cards.
+- [x] `/forum` (`app/forum/page.tsx`) — **Completed 2026-10-09** (blue pin / green trending icons → black; cards, inputs, buttons squared)
 - [x] `/login` (`app/login/page.tsx`) — **Completed**
-  - **Theme**: Sharp monochrome authentication card, high-contrast inputs, and pure black submit button (`!text-white`).
 - [x] `/register` (`app/register/page.tsx`) — **Completed**
-  - **Theme**: Sharp monochrome registration card, black-and-white password validation checklist, high-contrast buttons.
-- [x] `/onboarding` (`app/onboarding/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W multi-step onboarding wizard, monochrome step indicators, sharp cards and inputs.
+- [ ] `/onboarding` (`app/onboarding/page.tsx`) — **Protected (requires login); not re-audited.** Inputs/badges still use default rounded styling.
 - [x] `/membership/success` (`app/membership/success/page.tsx`) — **Completed**
-  - **Theme**: Pure B&W membership activation screen, monochrome checkmarks, sharp cards and buttons.
 
 ---
 
-### J. Maintenance & Utilities
-- [x] `/maintenance` (`app/maintenance/page.tsx`) — **Completed**
-  - **Theme**: Sharp pure Black & White scheduled maintenance page with 7-day recurring countdown timer.
-- [x] `/membership` (`app/membership/page.tsx`) — **Completed**
-  - Redirect route directly forwarding to `/community/membership`.
+### J. Legal — **Created 2026-10-09**
+- [x] `/privacy` (`app/privacy/page.tsx`)
+- [x] `/terms` (`app/terms/page.tsx`)
+- [x] `/cookies` (`app/cookies/page.tsx`)
+  - **Status**: Layout complete. **Text is a draft** based on what the code actually does (accounts, Google sign-in, Stripe/Razorpay, Google Analytics, session cookies). It must be reviewed by leadership / legal counsel before launch (see `content.md` §8). No retention periods, refund windows, or grievance-officer details have been invented.
+
+---
+
+### K. Maintenance, 404 & Utilities
+- [x] `/maintenance` (`app/maintenance/page.tsx`) — **Completed** (rounded pill, rounded panels, and shadows squared)
+- [x] 404 (`app/not-found.tsx`) — **Completed 2026-10-09** (serif heading, square black/outline buttons)
+- [x] `/membership` (`app/membership/page.tsx`) — Redirect to `/community/membership`.
+
+---
+
+## 4. Open Items Before Launch
+
+1. **Legal text review** — `/privacy`, `/terms`, `/cookies` copy is a draft.
+2. **Unknown URLs redirect to `/login`** instead of showing the 404 page, because `proxy.ts` treats every path not in `publicRoutes` as protected.
+3. **Contact details are inconsistent** — footer shows `info@blacksilk.org` / `+91 11 1234 5678`; contact page shows `info@theblacksilk.org` / `+91 11 4567 8900`.
+4. **Missing images** — `/images/office-*.jpg` (contact), several partner/success-story logos, and volunteer-story avatars return 404.
+5. **Unused components** — `components/latest-content.tsx`, `components/feature-cards.tsx`, `components/committees/page.tsx` are not imported anywhere and still contain off-theme styles.
