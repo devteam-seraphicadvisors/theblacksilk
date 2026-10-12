@@ -127,7 +127,7 @@ export default function ApplicationForm({
   if (status === "loading") {
     return (
       <div className="flex items-center justify-center p-12">
-        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-neutral-400" />
       </div>
     );
   }
@@ -139,7 +139,7 @@ export default function ApplicationForm({
           Please{" "}
           <Button
             variant="link"
-            className="p-0 h-auto"
+            className="p-0 h-auto text-black underline"
             onClick={() => router.push("/login")}
           >
             sign in
@@ -152,17 +152,17 @@ export default function ApplicationForm({
 
   if (success) {
     return (
-      <Card className="border-0 shadow-lg">
+      <Card className="border border-neutral-200 rounded-none shadow-none">
         <CardContent className="p-12 text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <CheckCircle className="h-16 w-16 text-black mx-auto mb-6" />
+          <h3 className="text-2xl font-serif font-normal text-black mb-4">
             Application Submitted!
           </h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-neutral-600 mb-6">
             Thank you for your interest in joining the {committeeName}. We'll
             review your application and get back to you soon.
           </p>
-          <Button onClick={() => router.push("/dashboard/committees")}>
+          <Button className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider" onClick={() => router.push("/dashboard/committees")}>
             View My Applications
           </Button>
         </CardContent>
@@ -171,9 +171,9 @@ export default function ApplicationForm({
   }
 
   return (
-    <Card className="border-0 shadow-lg">
+    <Card className="border border-neutral-200 rounded-none shadow-none">
       <CardHeader>
-        <CardTitle className="text-3xl font-bold">Apply to Join</CardTitle>
+        <CardTitle className="text-3xl font-serif font-normal">Apply to Join</CardTitle>
         <CardDescription className="text-lg">{committeeName}</CardDescription>
       </CardHeader>
       <CardContent>
@@ -187,7 +187,7 @@ export default function ApplicationForm({
 
           {/* Motivation */}
           <div className="space-y-2">
-            <Label htmlFor="motivation" className="text-base font-semibold">
+            <Label htmlFor="motivation" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               Why do you want to join this committee? *
             </Label>
             <Textarea
@@ -197,17 +197,17 @@ export default function ApplicationForm({
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, motivation: e.target.value }))
               }
-              className="min-h-[120px] resize-none"
+              className="min-h-[120px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
               required
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               {formData.motivation.length}/50 characters minimum
             </p>
           </div>
 
           {/* Experience */}
           <div className="space-y-2">
-            <Label htmlFor="experience" className="text-base font-semibold">
+            <Label htmlFor="experience" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               Relevant Experience *
             </Label>
             <Textarea
@@ -217,17 +217,17 @@ export default function ApplicationForm({
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, experience: e.target.value }))
               }
-              className="min-h-[120px] resize-none"
+              className="min-h-[120px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
               required
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               {formData.experience.length}/50 characters minimum
             </p>
           </div>
 
           {/* Contribution */}
           <div className="space-y-2">
-            <Label htmlFor="contribution" className="text-base font-semibold">
+            <Label htmlFor="contribution" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               How can you contribute? *
             </Label>
             <Textarea
@@ -240,17 +240,17 @@ export default function ApplicationForm({
                   contribution: e.target.value,
                 }))
               }
-              className="min-h-[120px] resize-none"
+              className="min-h-[120px] resize-none rounded-none border-neutral-300 focus-visible:ring-black"
               required
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               {formData.contribution.length}/50 characters minimum
             </p>
           </div>
 
           {/* Availability */}
           <div className="space-y-2">
-            <Label htmlFor="availability" className="text-base font-semibold">
+            <Label htmlFor="availability" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               Availability *
             </Label>
             <Select
@@ -260,7 +260,7 @@ export default function ApplicationForm({
               }
               required
             >
-              <SelectTrigger>
+              <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black">
                 <SelectValue placeholder="Select your availability" />
               </SelectTrigger>
               <SelectContent>
@@ -277,13 +277,13 @@ export default function ApplicationForm({
 
           {/* Expertise */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">
+            <Label className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               Areas of Expertise * (Select at least one)
             </Label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto p-4 border rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto p-4 border rounded-none">
               {expertiseOptions.map((expertise) => (
                 <div key={expertise} className="flex items-center space-x-2">
-                  <Checkbox
+                  <Checkbox className="rounded-none border-black data-[state=checked]:bg-black data-[state=checked]:text-white"
                     id={expertise}
                     checked={formData.expertise.includes(expertise)}
                     onCheckedChange={(checked) =>
@@ -299,18 +299,19 @@ export default function ApplicationForm({
                 </div>
               ))}
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Selected: {formData.expertise.length}
             </p>
           </div>
 
           {/* LinkedIn URL */}
           <div className="space-y-2">
-            <Label htmlFor="linkedinUrl" className="text-base font-semibold">
+            <Label htmlFor="linkedinUrl" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
               LinkedIn Profile (Optional)
             </Label>
             <Input
               id="linkedinUrl"
+              className="rounded-none border-neutral-300 focus-visible:ring-black"
               type="url"
               placeholder="https://linkedin.com/in/your-profile"
               value={formData.linkedinUrl}
@@ -328,7 +329,7 @@ export default function ApplicationForm({
             <Button
               type="submit"
               size="lg"
-              className="flex-1"
+              className="flex-1 bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
               disabled={
                 isSubmitting ||
                 formData.motivation.length < 50 ||
@@ -353,6 +354,7 @@ export default function ApplicationForm({
                 variant="outline"
                 size="lg"
                 onClick={onClose}
+                className="rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider"
                 disabled={isSubmitting}
               >
                 Cancel

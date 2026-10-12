@@ -67,39 +67,20 @@
     scroll-behavior: smooth;
   }
 
-  /* Default heading colors for light backgrounds only */
-  .bg-white h1,
-  .bg-white h2,
-  .bg-white h3,
-  .bg-white h4,
-  .bg-white h5,
-  .bg-white h6,
-  .bg-gray-50 h1,
-  .bg-gray-50 h2,
-  .bg-gray-50 h3,
-  .bg-gray-50 h4,
-  .bg-gray-50 h5,
-  .bg-gray-50 h6,
-  .bg-gray-100 h1,
-  .bg-gray-100 h2,
-  .bg-gray-100 h3,
-  .bg-gray-100 h4,
-  .bg-gray-100 h5,
-  .bg-gray-100 h6 {
-    @apply text-gray-900;
+  /*
+   * Default text colors for elements without an explicit text-* class.
+   * Wrapped in :where() so they have zero specificity: any text-* utility
+   * always wins, and among these defaults the later rule wins. That ordering
+   * lets a dark section nested inside a light wrapper (e.g. a black hero
+   * inside <main className="bg-white">) reset its text, and a light card
+   * inside a dark section switch back.
+   */
+  :where(.bg-white, .bg-gray-50, .bg-gray-100) :where(h1, h2, h3, h4, h5, h6) {
+    color: rgb(17 24 39);
   }
 
-  /* Default paragraph colors for light backgrounds only */
-  .bg-white p,
-  .bg-white span:not(.text-white):not([class*="text-"]),
-  .bg-white div:not(.text-white):not([class*="text-"]),
-  .bg-gray-50 p,
-  .bg-gray-50 span:not(.text-white):not([class*="text-"]),
-  .bg-gray-50 div:not(.text-white):not([class*="text-"]),
-  .bg-gray-100 p,
-  .bg-gray-100 span:not(.text-white):not([class*="text-"]),
-  .bg-gray-100 div:not(.text-white):not([class*="text-"]) {
-    @apply text-gray-700;
+  :where(.bg-white, .bg-gray-50, .bg-gray-100) :where(p, span, div) {
+    color: rgb(55 65 81);
   }
 
   /* Ensure dark backgrounds have white text by default */
@@ -111,14 +92,20 @@
     @apply text-white;
   }
 
-  .bg-gray-900 *,
-  .bg-gray-800 *,
-  .bg-neutral-950 *,
-  .bg-neutral-900 *,
-  .bg-black *,
-  .bg-black p,
-  .bg-neutral-950 p,
-  .bg-neutral-900 p {
+  :where(.bg-gray-900, .bg-gray-800, .bg-neutral-950, .bg-neutral-900, .bg-black)
+    :where(p, span, div, h1, h2, h3, h4, h5, h6) {
+    color: inherit;
+  }
+
+  /* Light surfaces nested inside dark sections */
+  :where(.bg-gray-900, .bg-gray-800, .bg-neutral-950, .bg-neutral-900, .bg-black)
+    :where(.bg-white, .bg-gray-50, .bg-gray-100, .bg-neutral-50) {
+    color: rgb(55 65 81);
+  }
+
+  :where(.bg-gray-900, .bg-gray-800, .bg-neutral-950, .bg-neutral-900, .bg-black)
+    :where(.bg-white, .bg-gray-50, .bg-gray-100, .bg-neutral-50)
+    :where(p, span, div) {
     color: inherit;
   }
 

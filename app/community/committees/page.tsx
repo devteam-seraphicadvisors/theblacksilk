@@ -274,7 +274,7 @@ export default function CommitteesPage() {
                 return (
                   <Card
                     key={committee.id}
-                    className="border border-neutral-200 shadow-sm hover:shadow-md hover:border-black transition-all duration-300 bg-white rounded-none overflow-hidden group flex flex-col justify-between"
+                    className="border border-neutral-200 shadow-none hover:border-black transition-colors bg-white rounded-none overflow-hidden group flex flex-col justify-between"
                   >
                     <CardHeader className="pb-4">
                       <div className="flex items-start justify-between mb-4">

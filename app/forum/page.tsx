@@ -143,20 +143,20 @@ export default function ForumPage() {
           <div className="lg:col-span-1">
             <Card className="mb-6 border border-neutral-200 shadow-none rounded-none bg-white">
               <CardHeader className="pb-3">
-                <CardTitle className="text-base font-serif">Categories</CardTitle>
+                <CardTitle className="text-lg font-serif font-normal">Categories</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {categories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`w-full text-left p-3 rounded-lg transition-colors ${
-                      selectedCategory === category.id ? "bg-black text-white" : "hover:bg-gray-100"
+                    className={`w-full text-left p-3 rounded-none transition-colors ${
+                      selectedCategory === category.id ? "bg-black text-white" : "hover:bg-neutral-100"
                     }`}
                   >
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">{category.name}</span>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                         {category.count}
                       </Badge>
                     </div>
@@ -166,28 +166,28 @@ export default function ForumPage() {
             </Card>
 
             {/* Forum Stats */}
-            <Card>
+            <Card className="border border-neutral-200 rounded-none shadow-none">
               <CardHeader>
-                <CardTitle className="text-lg">Forum Stats</CardTitle>
+                <CardTitle className="text-lg font-serif font-normal">Forum Stats</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4 text-gray-500" />
+                    <MessageSquare className="h-4 w-4 text-neutral-500" />
                     <span className="text-sm">Total Posts</span>
                   </div>
                   <span className="font-semibold">1,234</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-gray-500" />
+                    <Users className="h-4 w-4 text-neutral-500" />
                     <span className="text-sm">Active Members</span>
                   </div>
                   <span className="font-semibold">456</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-gray-500" />
+                    <Clock className="h-4 w-4 text-neutral-500" />
                     <span className="text-sm">This Week</span>
                   </div>
                   <span className="font-semibold">89</span>
@@ -201,16 +201,16 @@ export default function ForumPage() {
             {/* Search and Actions */}
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
                   placeholder="Search discussions..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 rounded-none border-neutral-300 focus-visible:ring-black"
                 />
               </div>
               {session && (
-                <Button onClick={() => setShowNewPost(true)} className="bg-black hover:bg-gray-800">
+                <Button onClick={() => setShowNewPost(true)} className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider">
                   <Plus className="mr-2 h-4 w-4" />
                   New Discussion
                 </Button>
@@ -219,13 +219,13 @@ export default function ForumPage() {
 
             {/* New Post Form */}
             {showNewPost && session && (
-              <Card className="mb-6">
+              <Card className="border border-neutral-200 rounded-none shadow-none mb-6">
                 <CardHeader>
-                  <CardTitle>Start a New Discussion</CardTitle>
+                  <CardTitle className="text-xl font-serif font-normal">Start a New Discussion</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Input placeholder="Discussion title..." />
-                  <select className="w-full p-2 border rounded-md">
+                  <Input placeholder="Discussion title..." className="rounded-none border-neutral-300 focus-visible:ring-black" />
+                  <select className="w-full p-2 border rounded-none">
                     <option value="">Select Category</option>
                     {categories.slice(1).map((cat) => (
                       <option key={cat.id} value={cat.id}>
@@ -233,10 +233,10 @@ export default function ForumPage() {
                       </option>
                     ))}
                   </select>
-                  <Textarea placeholder="What would you like to discuss?" rows={4} />
+                  <Textarea placeholder="What would you like to discuss?" rows={4} className="rounded-none border-neutral-300 focus-visible:ring-black" />
                   <div className="flex gap-2">
-                    <Button className="bg-black hover:bg-gray-800">Post Discussion</Button>
-                    <Button variant="outline" onClick={() => setShowNewPost(false)}>
+                    <Button className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider">Post Discussion</Button>
+                    <Button variant="outline" className="rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider" onClick={() => setShowNewPost(false)}>
                       Cancel
                     </Button>
                   </div>
@@ -247,7 +247,7 @@ export default function ForumPage() {
             {/* Posts List */}
             <div className="space-y-4">
               {filteredPosts.map((post) => (
-                <Card key={post.id} className="hover:shadow-md transition-shadow">
+                <Card key={post.id} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <Avatar>
@@ -258,20 +258,20 @@ export default function ForumPage() {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            {post.isPinned && <Pin className="h-4 w-4 text-blue-500" />}
-                            {post.isTrending && <TrendingUp className="h-4 w-4 text-green-500" />}
+                            {post.isPinned && <Pin className="h-4 w-4 text-black" />}
+                            {post.isTrending && <TrendingUp className="h-4 w-4 text-black" />}
                             <Link href={`/forum/${post.id}`} className="hover:underline">
                               <h3 className="font-semibold text-lg leading-tight">{post.title}</h3>
                             </Link>
                           </div>
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                             {post.category}
                           </Badge>
                         </div>
 
-                        <p className="text-gray-600 mb-4 line-clamp-2">{post.content}</p>
+                        <p className="text-neutral-600 mb-4 line-clamp-2">{post.content}</p>
 
-                        <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center justify-between text-sm text-neutral-500">
                           <div className="flex items-center gap-4">
                             <span>By {post.author.name}</span>
                             <span>{post.lastActivity}</span>
@@ -292,13 +292,13 @@ export default function ForumPage() {
             </div>
 
             {filteredPosts.length === 0 && (
-              <Card>
+              <Card className="border border-neutral-200 rounded-none shadow-none">
                 <CardContent className="p-12 text-center">
-                  <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No discussions found</h3>
-                  <p className="text-gray-600 mb-4">Try adjusting your search or browse different categories</p>
+                  <MessageSquare className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-black mb-2">No discussions found</h3>
+                  <p className="text-neutral-600 mb-4">Try adjusting your search or browse different categories</p>
                   {session && (
-                    <Button onClick={() => setShowNewPost(true)} className="bg-black hover:bg-gray-800">
+                    <Button onClick={() => setShowNewPost(true)} className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider">
                       Start the first discussion
                     </Button>
                   )}

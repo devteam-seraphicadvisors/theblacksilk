@@ -91,7 +91,7 @@ export async function FeaturedContent() {
             return (
               <Card
                 key={item.id || index}
-                className="border border-black bg-white rounded-none shadow-none hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                className="border border-black bg-white rounded-none shadow-none hover:bg-neutral-50 transition-colors flex flex-col justify-between"
               >
                 <CardHeader className="p-8 pb-4">
                   <div className="flex items-center justify-between text-xs font-mono text-neutral-500 mb-4 border-b border-neutral-100 pb-3">

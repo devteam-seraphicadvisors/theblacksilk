@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   Mail,
   Phone,
   MapPin,
@@ -179,30 +185,30 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Information */}
-        <section className="py-16 bg-surface-primary">
+        <section className="py-16 bg-white border-b border-neutral-200">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {contactInfo.map((info, index) => (
                   <Card
                     key={index}
-                    className="border-0 shadow-brand text-center group hover:shadow-brand-lg transition-all duration-300 interactive-lift"
+                    className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
                   >
                     <CardContent className="p-8">
-                      <div className="w-16 h-16 gradient-navy rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                      <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
                         <info.icon className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-lg font-heading text-text-primary mb-4">
+                      <h3 className="text-lg font-serif font-normal text-black mb-4">
                         {info.title}
                       </h3>
                       <div className="space-y-2 mb-4">
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-text-secondary text-sm">
+                          <p key={idx} className="text-neutral-600 text-sm">
                             {detail}
                           </p>
                         ))}
                       </div>
-                      <p className="text-text-tertiary text-xs">
+                      <p className="text-neutral-500 text-xs">
                         {info.description}
                       </p>
                     </CardContent>
@@ -214,87 +220,87 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form */}
-        <section className="py-24 gradient-surface">
+        <section className="py-24 bg-neutral-50 border-b border-neutral-200">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Form */}
                 <div>
                   <div className="mb-8">
-                    <h2 className="text-3xl font-heading text-text-primary mb-4">
+                    <h2 className="text-3xl font-serif font-normal text-black mb-4">
                       Send us a Message
                     </h2>
-                    <p className="text-text-secondary">
+                    <p className="text-neutral-600">
                       Fill out the form below and we'll get back to you as soon
                       as possible.
                     </p>
                   </div>
 
-                  <Card className="border-0 shadow-brand-lg">
+                  <Card className="border border-neutral-200 rounded-none shadow-none">
                     <CardContent className="p-8">
                       <form className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-medium text-text-secondary mb-2">
+                            <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                               First Name *
                             </label>
                             <Input
                               placeholder="Enter your first name"
-                              className="border-border-primary focus:border-gray-900"
+                              className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                               required
                             />
                           </div>
                           <div>
-                            <label className="block text-sm font-medium text-text-secondary mb-2">
+                            <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                               Last Name *
                             </label>
                             <Input
                               placeholder="Enter your last name"
-                              className="border-border-primary focus:border-gray-900"
+                              className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                               required
                             />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Email Address *
                           </label>
                           <Input
                             type="email"
                             placeholder="Enter your email address"
-                            className="border-border-primary focus:border-gray-900"
+                            className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                             required
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Phone Number
                           </label>
                           <Input
                             type="tel"
                             placeholder="Enter your phone number"
-                            className="border-border-primary focus:border-gray-900"
+                            className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Organization
                           </label>
                           <Input
                             placeholder="Your organization or company"
-                            className="border-border-primary focus:border-gray-900"
+                            className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Department *
                           </label>
                           <Select required>
-                            <SelectTrigger className="border-border-primary focus:border-gray-900">
+                            <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                               <SelectValue placeholder="Select the relevant department" />
                             </SelectTrigger>
                             <SelectContent>
@@ -313,23 +319,23 @@ export default function ContactPage() {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Subject *
                           </label>
                           <Input
                             placeholder="Brief subject of your inquiry"
-                            className="border-border-primary focus:border-gray-900"
+                            className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                             required
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-text-secondary mb-2">
+                          <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                             Message *
                           </label>
                           <Textarea
                             placeholder="Please provide details about your inquiry..."
-                            className="border-border-primary focus:border-gray-900 min-h-[150px]"
+                            className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[150px]"
                             required
                           />
                         </div>
@@ -337,7 +343,7 @@ export default function ContactPage() {
                         <Button
                           type="submit"
                           size="lg"
-                          className="w-full bg-black hover:bg-gray-800"
+                          className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
                         >
                           <Send className="h-4 w-4 mr-2" />
                           Send Message
@@ -347,54 +353,33 @@ export default function ContactPage() {
                   </Card>
                 </div>
 
-                {/* Departments & FAQs */}
+                {/* Departments */}
                 <div className="space-y-8">
                   {/* Departments */}
                   <div>
-                    <h3 className="text-2xl font-heading text-text-primary mb-6">
+                    <h3 className="text-2xl font-serif font-normal text-black mb-6">
                       Departments
                     </h3>
                     <div className="space-y-4">
                       {departments.map((dept, index) => (
                         <Card
                           key={index}
-                          className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-300"
+                          className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors"
                         >
                           <CardContent className="p-6">
                             <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                <h4 className="font-medium text-text-primary mb-2">
+                                <h4 className="font-medium text-black mb-2">
                                   {dept.name}
                                 </h4>
-                                <p className="text-sm text-text-secondary mb-3">
+                                <p className="text-sm text-neutral-600 mb-3">
                                   {dept.description}
                                 </p>
-                                <Badge variant="outline" className="text-xs">
+                                <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                                   {dept.email}
                                 </Badge>
                               </div>
                             </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* FAQs */}
-                  <div>
-                    <h3 className="text-2xl font-heading text-text-primary mb-6">
-                      Frequently Asked Questions
-                    </h3>
-                    <div className="space-y-4">
-                      {faqs.map((faq, index) => (
-                        <Card key={index} className="border-0 shadow-brand">
-                          <CardContent className="p-6">
-                            <h4 className="font-medium text-text-primary mb-3">
-                              {faq.question}
-                            </h4>
-                            <p className="text-sm text-text-secondary leading-relaxed">
-                              {faq.answer}
-                            </p>
                           </CardContent>
                         </Card>
                       ))}
@@ -407,14 +392,14 @@ export default function ContactPage() {
         </section>
 
         {/* Office Locations */}
-        <section className="py-24 bg-surface-primary">
+        <section className="py-24 bg-white border-b border-neutral-200">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-heading text-text-primary mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                   Our Offices
                 </h2>
-                <p className="text-xl text-text-secondary">
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                   Visit us at our offices across India or connect with us
                   virtually
                 </p>
@@ -424,7 +409,7 @@ export default function ContactPage() {
                 {officeLocations.map((office, index) => (
                   <Card
                     key={index}
-                    className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-500 overflow-hidden group interactive-lift"
+                    className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors overflow-hidden group"
                   >
                     <div className="relative h-48 overflow-hidden">
                       <Image
@@ -435,12 +420,12 @@ export default function ContactPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-brand-gold-600 text-white">
+                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider">
                           {office.type}
                         </Badge>
                       </div>
                       <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-heading mb-1">
+                        <h3 className="text-xl font-serif font-normal mb-1">
                           {office.city}
                         </h3>
                       </div>
@@ -449,20 +434,20 @@ export default function ContactPage() {
                     <CardContent className="p-6">
                       <div className="space-y-4">
                         <div className="flex items-start gap-3">
-                          <MapPin className="h-4 w-4 text-gray-700 mt-1 flex-shrink-0" />
-                          <p className="text-sm text-text-secondary">
+                          <MapPin className="h-4 w-4 text-neutral-700 mt-1 flex-shrink-0" />
+                          <p className="text-sm text-neutral-600">
                             {office.address}
                           </p>
                         </div>
                         <div className="flex items-center gap-3">
-                          <Phone className="h-4 w-4 text-gray-700 flex-shrink-0" />
-                          <p className="text-sm text-text-secondary">
+                          <Phone className="h-4 w-4 text-neutral-700 flex-shrink-0" />
+                          <p className="text-sm text-neutral-600">
                             {office.phone}
                           </p>
                         </div>
                         <div className="flex items-center gap-3">
-                          <Mail className="h-4 w-4 text-gray-700 flex-shrink-0" />
-                          <p className="text-sm text-text-secondary">
+                          <Mail className="h-4 w-4 text-neutral-700 flex-shrink-0" />
+                          <p className="text-sm text-neutral-600">
                             {office.email}
                           </p>
                         </div>
@@ -471,7 +456,7 @@ export default function ContactPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full mt-6"
+                        className="w-full rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider mt-6"
                       >
                         <MapPin className="h-4 w-4 mr-2" />
                         View on Map
@@ -484,6 +469,40 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* Frequently Asked Questions (FAQ) */}
+        <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-200">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="max-w-2xl mb-16">
+              <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                Before You Write
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-black tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="mt-4 text-neutral-600 text-base sm:text-lg font-sans">
+                Quick answers about getting involved, consulting, speaking at
+                our events, and research collaborations.
+              </p>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`faq-${index}`}
+                  className="border border-neutral-200 bg-white px-6 py-2 rounded-none hover:border-black transition-colors data-[state=open]:border-black"
+                >
+                  <AccordionTrigger className="text-left font-serif text-lg sm:text-xl font-medium text-black hover:no-underline py-4">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed pt-2 pb-6 border-t border-neutral-100">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
       </main>
     </>
   );

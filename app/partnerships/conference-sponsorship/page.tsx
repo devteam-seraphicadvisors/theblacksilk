@@ -167,10 +167,10 @@ export default function ConferenceSponsorshipPage() {
           <div className="lg:col-span-3 space-y-12">
             {/* Upcoming Events */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Upcoming Events</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Upcoming Events</h2>
               <div className="space-y-6">
                 {upcomingEvents.map((event, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                     <div className="md:flex">
                       <div className="md:w-1/3">
                         <div className="relative h-48 md:h-full">
@@ -178,41 +178,41 @@ export default function ConferenceSponsorshipPage() {
                             src={event.image || "/placeholder.svg"}
                             alt={event.name}
                             fill
-                            className="object-cover rounded-l-lg"
+                            className="object-cover rounded-none"
                           />
                           <div className="absolute top-4 left-4">
-                            <Badge className="bg-blue-600 text-white">{event.type}</Badge>
+                            <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider">{event.type}</Badge>
                           </div>
                         </div>
                       </div>
                       <div className="md:w-2/3 p-6">
                         <div className="flex items-start justify-between mb-4">
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{event.name}</h3>
-                            <p className="text-gray-600 mb-4">{event.description}</p>
+                            <h3 className="text-xl font-serif font-normal text-black mb-2">{event.name}</h3>
+                            <p className="text-neutral-600 mb-4">{event.description}</p>
                           </div>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                           <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">{event.date}</span>
+                            <Calendar className="h-4 w-4 text-neutral-500" />
+                            <span className="text-sm text-neutral-600">{event.date}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">{event.location}</span>
+                            <MapPin className="h-4 w-4 text-neutral-500" />
+                            <span className="text-sm text-neutral-600">{event.location}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Users className="h-4 w-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">{event.attendees} attendees</span>
+                            <Users className="h-4 w-4 text-neutral-500" />
+                            <span className="text-sm text-neutral-600">{event.attendees} attendees</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-gray-500" />
-                            <span className="text-sm text-gray-600">Deadline: {event.sponsorshipDeadline}</span>
+                            <Clock className="h-4 w-4 text-neutral-500" />
+                            <span className="text-sm text-neutral-600">Deadline: {event.sponsorshipDeadline}</span>
                           </div>
                         </div>
 
-                        <Button className="bg-blue-600 hover:bg-blue-700" asChild>
+                        <Button className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider" asChild>
                           <Link href="#sponsorship-packages">
                             View Sponsorship Options
                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -228,45 +228,45 @@ export default function ConferenceSponsorshipPage() {
             {/* Sponsorship Packages */}
             <section id="sponsorship-packages">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Sponsorship Packages</h2>
-                <p className="text-xl text-gray-600">Choose the sponsorship level that maximizes your event ROI</p>
+                <h2 className="text-3xl font-serif font-normal text-black mb-4">Sponsorship Packages</h2>
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed">Choose the sponsorship level that maximizes your event ROI</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {sponsorshipPackages.map((pkg, index) => (
                   <Card
                     key={index}
-                    className={`border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative ${
-                      pkg.exclusive ? "ring-2 ring-purple-500" : ""
+                    className={`border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors relative ${
+                      pkg.exclusive ? "ring-2 ring-black" : ""
                     }`}
                   >
                     {pkg.exclusive && (
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-purple-600 text-white px-4 py-1">Exclusive</Badge>
+                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider px-4 py-1">Exclusive</Badge>
                       </div>
                     )}
 
                     <CardHeader className="text-center pb-4">
                       <div className="flex items-center justify-center gap-2 mb-2">
                         <Star className={`h-5 w-5 text-${pkg.color}-500`} />
-                        <CardTitle className="text-xl font-bold text-gray-900">{pkg.name}</CardTitle>
+                        <CardTitle className="text-xl font-serif font-normal text-black">{pkg.name}</CardTitle>
                       </div>
-                      <div className="text-3xl font-bold text-gray-900">{pkg.price}</div>
-                      <p className="text-sm text-gray-600">per event</p>
+                      <div className="text-3xl font-serif font-normal text-black">{pkg.price}</div>
+                      <p className="text-sm text-neutral-600">per event</p>
                     </CardHeader>
 
                     <CardContent className="space-y-4">
                       <ul className="space-y-3">
                         {pkg.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-gray-600">
-                            <CheckCircle className="h-4 w-4 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                          <li key={idx} className="flex items-start text-sm text-neutral-600">
+                            <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0 mt-0.5" />
                             {benefit}
                           </li>
                         ))}
                       </ul>
 
                       <Button
-                        className={`w-full ${pkg.exclusive ? "bg-purple-600 hover:bg-purple-700" : "bg-gray-900 hover:bg-gray-800"}`}
+                        className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
                         asChild
                       >
                         <Link href="#contact-form">
@@ -282,21 +282,21 @@ export default function ConferenceSponsorshipPage() {
 
             {/* Additional Opportunities */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Additional Sponsorship Opportunities</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Additional Sponsorship Opportunities</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {additionalOpportunities.map((opportunity, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{opportunity.name}</h3>
-                          <p className="text-gray-600 text-sm mb-3">{opportunity.description}</p>
+                          <h3 className="text-lg font-semibold text-black mb-2">{opportunity.name}</h3>
+                          <p className="text-neutral-600 text-sm mb-3">{opportunity.description}</p>
                         </div>
                         <div className="text-right">
-                          <div className="text-xl font-bold text-gray-900">{opportunity.price}</div>
+                          <div className="text-xl font-serif font-normal text-black">{opportunity.price}</div>
                         </div>
                       </div>
-                      <Button size="sm" variant="outline" className="w-full" asChild>
+                      <Button size="sm" variant="outline" className="w-full rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider" asChild>
                         <Link href="#contact-form">Learn More</Link>
                       </Button>
                     </CardContent>
@@ -307,12 +307,12 @@ export default function ConferenceSponsorshipPage() {
 
             {/* Contact Form */}
             <section id="contact-form">
-              <Card className="border-0 shadow-xl">
+              <Card className="border border-neutral-200 rounded-none shadow-none">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900 text-center">
+                  <CardTitle className="text-2xl font-serif font-normal text-black text-center">
                     Conference Sponsorship Inquiry
                   </CardTitle>
-                  <p className="text-gray-600 text-center">
+                  <p className="text-neutral-600 text-center">
                     Interested in sponsoring our events? Let's discuss the perfect package for your goals.
                   </p>
                 </CardHeader>
@@ -320,18 +320,18 @@ export default function ConferenceSponsorshipPage() {
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Name *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter your company name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Event of Interest *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Event of Interest *</label>
                         <select
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           required
                         >
                           <option value="">Select an event</option>
@@ -345,19 +345,19 @@ export default function ConferenceSponsorshipPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Contact Person *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter contact person's name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Email Address *</label>
                         <input
                           type="email"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter email address"
                           required
                         />
@@ -365,10 +365,10 @@ export default function ConferenceSponsorshipPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Preferred Sponsorship Package
                       </label>
-                      <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                      <select className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black">
                         <option value="">Select a package</option>
                         <option value="title">Title Sponsor - ₹10,00,000</option>
                         <option value="platinum">Platinum Sponsor - ₹5,00,000</option>
@@ -379,11 +379,11 @@ export default function ConferenceSponsorshipPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Sponsorship Goals & Requirements
                       </label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={4}
                         placeholder="Tell us about your sponsorship goals and any specific requirements..."
                       ></textarea>
@@ -394,7 +394,7 @@ export default function ConferenceSponsorshipPage() {
                       <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
-                    <p className="text-sm text-gray-500 text-center">
+                    <p className="text-sm text-neutral-500 text-center">
                       We'll respond within 24 hours with detailed sponsorship information and next steps.
                     </p>
                   </form>

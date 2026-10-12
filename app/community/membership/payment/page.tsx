@@ -197,24 +197,24 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-neutral-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-serif font-normal text-black mb-4">
               Complete Your Membership
             </h1>
-            <p className="text-gray-600 text-lg">
+            <p className="text-neutral-600 text-lg">
               Join The Black Silk community today
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Order Summary */}
-            <Card className="border-0 shadow-lg bg-white rounded-2xl">
-              <CardHeader className="bg-gradient-to-br from-gray-50 to-white rounded-t-2xl">
-                <CardTitle className="flex items-center gap-3 text-gray-900">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center">
+            <Card className="border border-neutral-200 rounded-none shadow-none bg-white">
+              <CardHeader className="bg-neutral-50 border-b border-neutral-200 rounded-none">
+                <CardTitle className="flex items-center gap-3 text-black text-xl font-serif font-normal">
+                  <div className="w-10 h-10 bg-black rounded-none flex items-center justify-center">
                     <CreditCard className="h-5 w-5 text-white" />
                   </div>
                   Order Summary
@@ -223,21 +223,21 @@ export default function PaymentPage() {
               <CardContent className="space-y-6 p-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center">
                       <plan.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">
+                      <h3 className="text-lg font-serif font-normal text-black">
                         {plan.name} Membership
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-neutral-600">
                         Annual subscription
                       </p>
                     </div>
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-gray-700 border-gray-300 bg-gray-50"
+                    className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider"
                   >
                     {tier}
                   </Badge>
@@ -246,31 +246,31 @@ export default function PaymentPage() {
                 <Separator />
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-black">
                     Included Features:
                   </h4>
                   {plan.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Check className="h-3 w-3 text-green-600" />
+                      <div className="w-5 h-5 bg-neutral-100 border border-neutral-200 flex items-center justify-center flex-shrink-0">
+                        <Check className="h-3 w-3 text-black" />
                       </div>
-                      <span className="text-sm text-gray-700">{feature}</span>
+                      <span className="text-sm text-neutral-700">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <Separator />
 
-                <div className="flex items-center justify-between text-xl font-bold">
-                  <span className="text-gray-900">Total</span>
-                  <span className="text-gray-900">
+                <div className="flex items-center justify-between text-xl font-serif font-normal">
+                  <span className="text-black">Total</span>
+                  <span className="text-black">
                     ₹{plan.price.toLocaleString()}
                     {plan.period}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3 text-sm text-gray-600 bg-blue-50 p-4 rounded-xl border border-blue-200">
-                  <Shield className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-sm text-neutral-600 bg-neutral-50 p-4 rounded-none border border-neutral-200">
+                  <Shield className="h-5 w-5 text-black flex-shrink-0" />
                   <span>
                     Secure payment powered by Stripe with 256-bit SSL encryption
                   </span>
@@ -279,10 +279,10 @@ export default function PaymentPage() {
             </Card>
 
             {/* Payment Form */}
-            <Card className="border-0 shadow-lg bg-white rounded-2xl">
-              <CardHeader className="bg-gradient-to-br from-gray-50 to-white rounded-t-2xl">
-                <CardTitle className="flex items-center gap-3 text-gray-900">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center">
+            <Card className="border border-neutral-200 rounded-none shadow-none bg-white">
+              <CardHeader className="bg-neutral-50 border-b border-neutral-200 rounded-none">
+                <CardTitle className="flex items-center gap-3 text-black text-xl font-serif font-normal">
+                  <div className="w-10 h-10 bg-black rounded-none flex items-center justify-center">
                     <Lock className="h-5 w-5 text-white" />
                   </div>
                   Member Information
@@ -291,7 +291,7 @@ export default function PaymentPage() {
               <CardContent className="space-y-6 p-6">
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="name" className="text-gray-700 font-medium">
+                    <Label htmlFor="name" className="text-xs uppercase font-mono tracking-wider text-neutral-700">
                       Full Name *
                     </Label>
                     <Input
@@ -304,7 +304,7 @@ export default function PaymentPage() {
                         }))
                       }
                       required
-                      className="mt-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded-xl"
+                      className="mt-2 border-neutral-300 focus:border-black focus-visible:ring-black rounded-none"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -312,7 +312,7 @@ export default function PaymentPage() {
                   <div>
                     <Label
                       htmlFor="email"
-                      className="text-gray-700 font-medium"
+                      className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                     >
                       Email Address *
                     </Label>
@@ -327,7 +327,7 @@ export default function PaymentPage() {
                         }))
                       }
                       required
-                      className="mt-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded-xl"
+                      className="mt-2 border-neutral-300 focus:border-black focus-visible:ring-black rounded-none"
                       placeholder="Enter your email address"
                     />
                   </div>
@@ -335,7 +335,7 @@ export default function PaymentPage() {
                   <div>
                     <Label
                       htmlFor="phone"
-                      className="text-gray-700 font-medium"
+                      className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                     >
                       Phone Number *
                     </Label>
@@ -350,7 +350,7 @@ export default function PaymentPage() {
                         }))
                       }
                       required
-                      className="mt-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded-xl"
+                      className="mt-2 border-neutral-300 focus:border-black focus-visible:ring-black rounded-none"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -358,7 +358,7 @@ export default function PaymentPage() {
                   <div>
                     <Label
                       htmlFor="organization"
-                      className="text-gray-700 font-medium"
+                      className="text-xs uppercase font-mono tracking-wider text-neutral-700"
                     >
                       Organization
                     </Label>
@@ -371,7 +371,7 @@ export default function PaymentPage() {
                           organization: e.target.value,
                         }))
                       }
-                      className="mt-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded-xl"
+                      className="mt-2 border-neutral-300 focus:border-black focus-visible:ring-black rounded-none"
                       placeholder="Enter your organization (optional)"
                     />
                   </div>
@@ -385,7 +385,7 @@ export default function PaymentPage() {
                     !formData.email ||
                     !formData.phone
                   }
-                  className="w-full bg-gray-900 hover:bg-black text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl py-3 font-semibold text-lg"
+                  className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none py-3 h-auto font-mono text-sm uppercase tracking-wider"
                   size="lg"
                 >
                   {loading ? (
@@ -394,25 +394,25 @@ export default function PaymentPage() {
                       Processing...
                     </div>
                   ) : (
-                    <div className="flex items-center gap-2 text-white hover:text-gray-200">
+                    <div className="flex items-center gap-2 text-white">
                       <CreditCard className="h-5 w-5" />
                       Pay ₹{plan.price.toLocaleString()}
                     </div>
                   )}
                 </Button>
 
-                <p className="text-xs text-gray-500 text-center leading-relaxed">
+                <p className="text-xs text-neutral-500 text-center leading-relaxed">
                   By completing this purchase, you agree to our{" "}
                   <Link
                     href="/terms"
-                    className="text-gray-700 hover:text-gray-900 underline"
+                    className="text-neutral-700 hover:text-black underline"
                   >
                     Terms of Service
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/privacy"
-                    className="text-gray-700 hover:text-gray-900 underline"
+                    className="text-neutral-700 hover:text-black underline"
                   >
                     Privacy Policy
                   </Link>

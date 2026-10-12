@@ -3,9 +3,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function BlogPostLoading() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-neutral-50">
       {/* Navigation */}
-      <section className="py-8 bg-white border-b border-gray-200">
+      <section className="py-8 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Skeleton className="h-10 w-32" />
@@ -40,7 +40,7 @@ export default function BlogPostLoading() {
             </div>
 
             {/* Cover Image */}
-            <Skeleton className="h-96 w-full rounded-3xl" />
+            <Skeleton className="h-96 w-full rounded-none" />
           </div>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default function BlogPostLoading() {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
               {/* Main Content */}
               <div className="lg:col-span-3">
-                <Card className="border-0 shadow-lg rounded-2xl">
+                <Card className="border border-neutral-200 rounded-none shadow-none">
                   <CardContent className="p-12 space-y-4">
                     <Skeleton className="h-4 w-full" />
                     <Skeleton className="h-4 w-full" />
@@ -68,7 +68,7 @@ export default function BlogPostLoading() {
 
               {/* Sidebar */}
               <div className="space-y-8">
-                <Card className="border-0 shadow-lg rounded-2xl">
+                <Card className="border border-neutral-200 rounded-none shadow-none">
                   <CardContent className="p-8 text-center space-y-4">
                     <Skeleton className="h-20 w-20 rounded-full mx-auto" />
                     <Skeleton className="h-6 w-32 mx-auto" />

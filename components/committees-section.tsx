@@ -105,7 +105,7 @@ export function CommitteesSection() {
             return (
               <Card
                 key={committee.id}
-                className="group border border-black bg-white rounded-none shadow-none hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                className="group border border-black bg-white rounded-none shadow-none hover:bg-neutral-50 transition-colors flex flex-col justify-between"
               >
                 <CardHeader className="p-6">
                   <div className="w-12 h-12 bg-black text-white flex items-center justify-center mb-4">

@@ -326,7 +326,7 @@ export default function DirectoryPage() {
                   {filteredMembers.map((member) => (
                     <Card
                       key={member.id}
-                      className="border border-neutral-200 shadow-sm hover:shadow-md hover:border-black transition-all duration-300 overflow-hidden group bg-white rounded-none flex flex-col justify-between"
+                      className="border border-neutral-200 shadow-none hover:border-black transition-colors overflow-hidden group bg-white rounded-none flex flex-col justify-between"
                     >
                       <CardContent className="p-0">
                         {/* Header with Avatar */}

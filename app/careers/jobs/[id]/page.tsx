@@ -93,24 +93,24 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Loader2 className="h-12 w-12 animate-spin text-gray-400" />
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-neutral-400" />
       </div>
     );
   }
 
   if (error || !job) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="max-w-md mx-4">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <Card className="max-w-md mx-4 border border-neutral-200 rounded-none shadow-none bg-white">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl font-serif font-normal text-black mb-4">
               Job Not Found
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-neutral-600 mb-6">
               {error || "The job you're looking for doesn't exist."}
             </p>
-            <Button asChild>
+            <Button asChild className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider">
               <Link href="/careers/jobs">Back to Jobs</Link>
             </Button>
           </CardContent>

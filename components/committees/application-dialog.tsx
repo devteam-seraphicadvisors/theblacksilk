@@ -52,16 +52,20 @@ export default function ApplicationDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <Button
-        size="lg"
-        className={
-          triggerClassName ||
-          "w-full bg-white text-gray-900 hover:bg-gray-100 rounded-xl"
-        }
-        onClick={handleButtonClick}
-      >
-        {status === "unauthenticated" ? "Sign in to Apply" : "Apply to Join"}
-      </Button>
+      {triggerButton ? (
+        <span onClick={handleButtonClick}>{triggerButton}</span>
+      ) : (
+        <Button
+          size="lg"
+          className={
+            triggerClassName ||
+            "w-full bg-white !text-black hover:bg-neutral-200 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer"
+          }
+          onClick={handleButtonClick}
+        >
+          {status === "unauthenticated" ? "Sign in to Apply" : "Apply to Join"}
+        </Button>
+      )}
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <ApplicationForm
           committeeSlug={committeeSlug}

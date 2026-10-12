@@ -242,23 +242,23 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Partnership Stats */}
-      <section className="py-16 bg-surface-primary">
+      <section className="py-16 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {partnershipStats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand text-center group hover:shadow-brand-lg transition-all duration-300 interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
                 >
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 gradient-navy rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
                       <stat.icon className="h-8 w-8 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-2">
+                    <div className="text-3xl font-serif font-normal text-black mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-text-secondary">{stat.label}</div>
+                    <div className="text-neutral-600">{stat.label}</div>
                   </CardContent>
                 </Card>
               ))}
@@ -268,14 +268,14 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Featured Partnership Types */}
-      <section className="py-24 gradient-surface">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Partnership Opportunities
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Explore different ways to collaborate with us and make a
                 meaningful impact
               </p>
@@ -285,41 +285,41 @@ export default function PartnershipsPage() {
               {featuredPartnerships.map((partnership) => (
                 <Card
                   key={partnership.id}
-                  className="border-0 shadow-brand-lg hover:shadow-brand-xl transition-all duration-500 group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors group"
                 >
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4 mb-4">
                       <div
-                        className={`w-12 h-12 gradient-${partnership.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-12 h-12 bg-black border border-neutral-800 rounded-none flex items-center justify-center group-hover:bg-neutral-900 transition-colors`}
                       >
                         <partnership.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <Badge className="bg-brand-gold-600 text-white mb-2">
+                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider mb-2">
                           Featured
                         </Badge>
-                        <CardTitle className="text-xl font-heading text-text-primary group-hover:text-gray-900 transition-colors">
+                        <CardTitle className="text-xl font-serif font-normal text-black group-hover:text-neutral-700 transition-colors">
                           {partnership.title}
                         </CardTitle>
                       </div>
                     </div>
-                    <p className="text-text-secondary leading-relaxed">
+                    <p className="text-neutral-600 leading-relaxed">
                       {partnership.description}
                     </p>
                   </CardHeader>
 
                   <CardContent>
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-text-secondary mb-3">
+                      <h4 className="text-xs uppercase font-mono tracking-wider text-neutral-700 mb-3">
                         Partnership Benefits
                       </h4>
                       <ul className="space-y-2">
                         {partnership.benefits.map((benefit, index) => (
                           <li
                             key={index}
-                            className="text-sm text-text-secondary flex items-start"
+                            className="text-sm text-neutral-600 flex items-start"
                           >
-                            <CheckCircle className="h-4 w-4 text-brand-emerald-600 mt-0.5 mr-3 flex-shrink-0" />
+                            <CheckCircle className="h-4 w-4 text-black mt-0.5 mr-3 flex-shrink-0" />
                             {benefit}
                           </li>
                         ))}
@@ -327,7 +327,7 @@ export default function PartnershipsPage() {
                     </div>
 
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-text-secondary mb-3">
+                      <h4 className="text-xs uppercase font-mono tracking-wider text-neutral-700 mb-3">
                         Collaboration Examples
                       </h4>
                       <div className="flex flex-wrap gap-2">
@@ -335,13 +335,13 @@ export default function PartnershipsPage() {
                           <Badge
                             key={example}
                             variant="outline"
-                            className="text-xs"
+                            className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider"
                           >
                             {example}
                           </Badge>
                         ))}
                         {partnership.examples.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                             +{partnership.examples.length - 3} more
                           </Badge>
                         )}
@@ -349,7 +349,7 @@ export default function PartnershipsPage() {
                     </div>
 
                     <Button
-                      className="w-full bg-black hover:bg-gray-800"
+                      className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
                       asChild
                     >
                       <Link href="#partnership-form">
@@ -367,26 +367,26 @@ export default function PartnershipsPage() {
               {regularPartnerships.map((partnership) => (
                 <Card
                   key={partnership.id}
-                  className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-500 group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors group"
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <div
-                        className={`w-10 h-10 gradient-${partnership.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-10 h-10 bg-black border border-neutral-800 rounded-none flex items-center justify-center group-hover:bg-neutral-900 transition-colors`}
                       >
                         <partnership.icon className="h-5 w-5 text-white" />
                       </div>
-                      <h3 className="text-lg font-heading text-text-primary group-hover:text-gray-900 transition-colors">
+                      <h3 className="text-lg font-serif font-normal text-black group-hover:text-neutral-700 transition-colors">
                         {partnership.title}
                       </h3>
                     </div>
 
-                    <p className="text-sm text-text-secondary mb-4">
+                    <p className="text-sm text-neutral-600 mb-4">
                       {partnership.description}
                     </p>
 
                     <div className="mb-4">
-                      <h4 className="text-xs font-semibold text-text-secondary mb-2">
+                      <h4 className="text-[11px] uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Key Benefits
                       </h4>
                       <ul className="space-y-1">
@@ -395,9 +395,9 @@ export default function PartnershipsPage() {
                           .map((benefit, index) => (
                             <li
                               key={index}
-                              className="text-xs text-text-secondary flex items-start"
+                              className="text-xs text-neutral-600 flex items-start"
                             >
-                              <div className="w-1 h-1 bg-brand-emerald-600 rounded-full mt-1.5 mr-2 flex-shrink-0" />
+                              <div className="w-1 h-1 bg-black rounded-full mt-1.5 mr-2 flex-shrink-0" />
                               {benefit}
                             </li>
                           ))}
@@ -407,7 +407,7 @@ export default function PartnershipsPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full"
+                      className="w-full rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider"
                       asChild
                     >
                       <Link href="#partnership-form">Learn More</Link>
@@ -421,14 +421,14 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Current Partners */}
-      <section className="py-24 bg-surface-primary">
+      <section className="py-24 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Our Partners
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 We're proud to collaborate with leading organizations across
                 various sectors
               </p>
@@ -438,9 +438,9 @@ export default function PartnershipsPage() {
               {currentPartners.map((partner, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-500 overflow-hidden group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors overflow-hidden group"
                 >
-                  <div className="relative h-32 overflow-hidden bg-surface-tertiary">
+                  <div className="relative h-32 overflow-hidden bg-neutral-100">
                     <Image
                       src={partner.logo || "/placeholder.svg"}
                       alt={partner.name}
@@ -448,20 +448,20 @@ export default function PartnershipsPage() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute top-4 right-4">
-                      <Badge variant="outline" className="text-xs bg-white/90">
+                      <Badge variant="outline" className="rounded-none border-neutral-300 bg-white text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                         {partner.type}
                       </Badge>
                     </div>
                   </div>
 
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-heading text-text-primary mb-2 group-hover:text-gray-900 transition-colors">
+                    <h3 className="text-lg font-serif font-normal text-black mb-2 group-hover:text-neutral-700 transition-colors">
                       {partner.name}
                     </h3>
-                    <p className="text-sm text-text-secondary mb-3 line-clamp-3">
+                    <p className="text-sm text-neutral-600 mb-3 line-clamp-3">
                       {partner.description}
                     </p>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                       {partner.partnership}
                     </Badge>
                   </CardContent>
@@ -473,14 +473,14 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Success Stories */}
-      <section className="py-24 gradient-surface">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Success Stories
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Discover the impact of our collaborative partnerships
               </p>
             </div>
@@ -489,7 +489,7 @@ export default function PartnershipsPage() {
               {successStories.map((story, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-500 overflow-hidden group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors overflow-hidden group"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -500,20 +500,20 @@ export default function PartnershipsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 text-white">
-                      <Badge className="bg-brand-emerald-600 text-white mb-2">
+                      <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider mb-2">
                         {story.impact}
                       </Badge>
                     </div>
                   </div>
 
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-heading text-text-primary mb-2 group-hover:text-gray-900 transition-colors">
+                    <h3 className="text-lg font-serif font-normal text-black mb-2 group-hover:text-neutral-700 transition-colors">
                       {story.title}
                     </h3>
-                    <p className="text-sm text-brand-gold-700 font-medium mb-3">
+                    <p className="text-sm text-black font-medium mb-3">
                       with {story.partner}
                     </p>
-                    <p className="text-sm text-text-secondary leading-relaxed">
+                    <p className="text-sm text-neutral-600 leading-relaxed">
                       {story.description}
                     </p>
                   </CardContent>
@@ -525,14 +525,14 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Partnership Benefits */}
-      <section className="py-24 bg-surface-primary">
+      <section className="py-24 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Why Partner with Us?
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Discover the unique advantages of collaborating with The Black
                 Silk
               </p>
@@ -542,16 +542,16 @@ export default function PartnershipsPage() {
               {partnershipBenefits.map((benefit, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand text-center group hover:shadow-brand-lg transition-all duration-300 interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
                 >
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 gradient-emerald rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
                       <benefit.icon className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-heading text-text-primary mb-4">
+                    <h3 className="text-lg font-serif font-normal text-black mb-4">
                       {benefit.title}
                     </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed">
+                    <p className="text-neutral-600 text-sm leading-relaxed">
                       {benefit.description}
                     </p>
                   </CardContent>
@@ -563,44 +563,44 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Partnership Form */}
-      <section className="py-24 gradient-surface" id="partnership-form">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200" id="partnership-form">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Start a Partnership
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Ready to collaborate? Fill out the form below and we'll get in
                 touch to discuss opportunities
               </p>
             </div>
 
-            <Card className="border-0 shadow-brand-xl">
+            <Card className="border border-neutral-200 rounded-none shadow-none">
               <CardContent className="p-8 md:p-12">
                 <form className="space-y-8">
                   {/* Organization Information */}
                   <div>
-                    <h3 className="text-lg font-heading text-text-primary mb-6">
+                    <h3 className="text-lg font-serif font-normal text-black mb-6">
                       Organization Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-text-secondary mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           Organization Name *
                         </label>
                         <Input
                           placeholder="Enter your organization name"
-                          className="border-border-primary focus:border-gray-900"
+                          className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-text-secondary mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           Organization Type *
                         </label>
                         <Select required>
-                          <SelectTrigger className="border-border-primary focus:border-gray-900">
+                          <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                             <SelectValue placeholder="Select organization type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -627,20 +627,20 @@ export default function PartnershipsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Industry/Sector
                       </label>
                       <Input
                         placeholder="e.g., Legal Technology, Education, Government"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Organization Size
                       </label>
                       <Select>
-                        <SelectTrigger className="border-border-primary focus:border-gray-900">
+                        <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                           <SelectValue placeholder="Select organization size" />
                         </SelectTrigger>
                         <SelectContent>
@@ -665,39 +665,39 @@ export default function PartnershipsPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Website
                     </label>
                     <Input
                       type="url"
                       placeholder="https://your-organization.com"
-                      className="border-border-primary focus:border-gray-900"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                     />
                   </div>
 
                   {/* Contact Information */}
                   <div>
-                    <h3 className="text-lg font-heading text-text-primary mb-6">
+                    <h3 className="text-lg font-serif font-normal text-black mb-6">
                       Contact Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-text-secondary mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           Contact Person Name *
                         </label>
                         <Input
                           placeholder="Enter contact person's full name"
-                          className="border-border-primary focus:border-gray-900"
+                          className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-text-secondary mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           Job Title *
                         </label>
                         <Input
                           placeholder="Enter job title or position"
-                          className="border-border-primary focus:border-gray-900"
+                          className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
@@ -706,39 +706,39 @@ export default function PartnershipsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Email Address *
                       </label>
                       <Input
                         type="email"
                         placeholder="Enter email address"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Phone Number
                       </label>
                       <Input
                         type="tel"
                         placeholder="Enter phone number"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                       />
                     </div>
                   </div>
 
                   {/* Partnership Details */}
                   <div>
-                    <h3 className="text-lg font-heading text-text-primary mb-6">
+                    <h3 className="text-lg font-serif font-normal text-black mb-6">
                       Partnership Details
                     </h3>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Partnership Type of Interest *
                       </label>
                       <Select required>
-                        <SelectTrigger className="border-border-primary focus:border-gray-900">
+                        <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                           <SelectValue placeholder="Select partnership type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -767,33 +767,33 @@ export default function PartnershipsPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Partnership Objectives *
                     </label>
                     <Textarea
                       placeholder="Describe what you hope to achieve through this partnership..."
-                      className="border-border-primary focus:border-gray-900 min-h-[120px]"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[120px]"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Proposed Collaboration Areas
                     </label>
                     <Textarea
                       placeholder="Describe specific areas where you'd like to collaborate (e.g., research, technology development, events, training)..."
-                      className="border-border-primary focus:border-gray-900 min-h-[120px]"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[120px]"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Expected Timeline
                       </label>
                       <Select>
-                        <SelectTrigger className="border-border-primary focus:border-gray-900">
+                        <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                           <SelectValue placeholder="Select expected timeline" />
                         </SelectTrigger>
                         <SelectContent>
@@ -816,11 +816,11 @@ export default function PartnershipsPage() {
                       </Select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Budget Range (Optional)
                       </label>
                       <Select>
-                        <SelectTrigger className="border-border-primary focus:border-gray-900">
+                        <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -841,12 +841,12 @@ export default function PartnershipsPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Additional Information
                     </label>
                     <Textarea
                       placeholder="Any additional information about your organization, previous partnerships, or specific requirements..."
-                      className="border-border-primary focus:border-gray-900 min-h-[100px]"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[100px]"
                     />
                   </div>
 
@@ -854,13 +854,13 @@ export default function PartnershipsPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-black hover:bg-gray-800 text-lg py-4"
+                    className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-sm uppercase tracking-wider py-4 h-auto"
                   >
                     Submit Partnership Proposal
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
 
-                  <p className="text-sm text-text-tertiary text-center">
+                  <p className="text-sm text-neutral-500 text-center">
                     We'll review your proposal and get back to you within 5
                     business days to discuss next steps.
                   </p>

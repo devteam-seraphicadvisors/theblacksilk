@@ -185,15 +185,15 @@ export default function GlobalSponsorPage() {
             {/* Partnership Overview */}
             <section>
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Global Sponsorship?</h2>
-                <p className="text-xl text-gray-600">
+                <h2 className="text-3xl font-serif font-normal text-black mb-4">Why Choose Global Sponsorship?</h2>
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed">
                   Exclusive partnership benefits designed for maximum impact and strategic value
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {globalBenefits.map((benefit, index) => (
-                  <Card key={index} className="border border-neutral-200 shadow-none hover:border-black transition-all duration-300 rounded-none bg-white">
+                  <Card key={index} className="border border-neutral-200 shadow-none hover:border-black transition-colors rounded-none bg-white">
                     <CardContent className="p-6 text-center">
                       <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4">
                         <benefit.icon className="h-6 w-6 text-white" />
@@ -238,8 +238,8 @@ export default function GlobalSponsorPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {section.benefits.map((benefit, idx) => (
                           <div key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-700">{benefit}</span>
+                            <CheckCircle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
+                            <span className="text-neutral-700">{benefit}</span>
                           </div>
                         ))}
                       </div>
@@ -251,37 +251,37 @@ export default function GlobalSponsorPage() {
 
             {/* Current Global Partner */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Current Global Partner Success Story</h2>
-              <Card className="border-0 shadow-xl bg-gradient-to-r from-purple-50 to-blue-50">
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Current Global Partner Success Story</h2>
+              <Card className="border border-neutral-200 rounded-none shadow-none bg-neutral-50">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6 mb-6">
-                    <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                    <div className="w-16 h-16 bg-white rounded-none flex items-center justify-center shadow-none">
                       <Image
                         src={currentGlobalPartner.logo || "/placeholder.svg"}
                         alt={currentGlobalPartner.name}
                         width={48}
                         height={48}
-                        className="rounded"
+                        className="rounded-none accent-black"
                       />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{currentGlobalPartner.name}</h3>
-                      <Badge className="bg-purple-600 text-white">
+                      <h3 className="text-2xl font-serif font-normal text-black mb-2">{currentGlobalPartner.name}</h3>
+                      <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider">
                         Global Partner since {currentGlobalPartner.since}
                       </Badge>
                     </div>
                   </div>
 
-                  <blockquote className="text-lg text-gray-700 italic mb-6 leading-relaxed">
+                  <blockquote className="text-lg text-neutral-700 italic mb-6 leading-relaxed">
                     "{currentGlobalPartner.testimonial}"
                   </blockquote>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {currentGlobalPartner.results.map((result, index) => (
-                      <div key={index} className="bg-white rounded-lg p-4 shadow-sm">
+                      <div key={index} className="bg-white rounded-none p-4 shadow-none">
                         <div className="flex items-center gap-2">
-                          <CheckCircle className="h-5 w-5 text-green-600" />
-                          <span className="text-sm font-medium text-gray-900">{result}</span>
+                          <CheckCircle className="h-5 w-5 text-black" />
+                          <span className="text-sm font-medium text-black">{result}</span>
                         </div>
                       </div>
                     ))}
@@ -292,43 +292,43 @@ export default function GlobalSponsorPage() {
 
             {/* Investment & Application */}
             <section>
-              <Card className="border-0 shadow-xl bg-gradient-to-r from-gray-900 to-purple-900 text-white">
+              <Card className="border border-neutral-200 rounded-none shadow-none bg-black text-white">
                 <CardContent className="p-8 text-center">
-                  <Crown className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
-                  <h2 className="text-3xl font-bold mb-4">Global Sponsorship Investment</h2>
-                  <div className="text-5xl font-bold mb-2">₹25,00,000</div>
-                  <p className="text-xl text-gray-300 mb-6">Annual Partnership Investment</p>
+                  <Crown className="h-16 w-16 text-white mx-auto mb-6" />
+                  <h2 className="text-3xl font-serif font-normal mb-4">Global Sponsorship Investment</h2>
+                  <div className="text-5xl font-serif font-normal mb-2">₹25,00,000</div>
+                  <p className="text-xl text-neutral-300 mb-6">Annual Partnership Investment</p>
 
-                  <div className="bg-white/10 rounded-lg p-6 mb-8">
+                  <div className="bg-white/10 rounded-none p-6 mb-8">
                     <h3 className="text-xl font-semibold mb-4">What's Included</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400" />
+                        <CheckCircle className="h-5 w-5 text-white" />
                         <span>Exclusive global partnership status</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400" />
+                        <CheckCircle className="h-5 w-5 text-white" />
                         <span>All event title sponsorships</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400" />
+                        <CheckCircle className="h-5 w-5 text-white" />
                         <span>Strategic advisory board seat</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400" />
+                        <CheckCircle className="h-5 w-5 text-white" />
                         <span>Custom partnership benefits</span>
                       </div>
                     </div>
                   </div>
 
-                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4" asChild>
+                  <Button size="lg" className="bg-white text-black hover:bg-neutral-100 rounded-none font-mono text-sm uppercase tracking-wider px-8 py-4 h-auto" asChild>
                     <Link href="#application-form">
                       Apply for Global Partnership
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
 
-                  <p className="text-sm text-gray-300 mt-4">
+                  <p className="text-sm text-neutral-300 mt-4">
                     Limited to one exclusive partner. Application review process required.
                   </p>
                 </CardContent>
@@ -337,12 +337,12 @@ export default function GlobalSponsorPage() {
 
             {/* Application Form */}
             <section id="application-form">
-              <Card className="border-0 shadow-xl">
+              <Card className="border border-neutral-200 rounded-none shadow-none">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900 text-center">
+                  <CardTitle className="text-2xl font-serif font-normal text-black text-center">
                     Global Partnership Application
                   </CardTitle>
-                  <p className="text-gray-600 text-center">
+                  <p className="text-neutral-600 text-center">
                     Apply for our exclusive global partnership. We'll review your application and schedule a strategic
                     discussion.
                   </p>
@@ -351,18 +351,18 @@ export default function GlobalSponsorPage() {
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Name *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter your company name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Company Size *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Size *</label>
                         <select
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           required
                         >
                           <option value="">Select company size</option>
@@ -376,20 +376,20 @@ export default function GlobalSponsorPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           CEO/Decision Maker Name *
                         </label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter CEO or decision maker's name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Annual Revenue Range *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Annual Revenue Range *</label>
                         <select
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           required
                         >
                           <option value="">Select revenue range</option>
@@ -403,19 +403,19 @@ export default function GlobalSponsorPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Email *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Contact Email *</label>
                         <input
                           type="email"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter email address"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Phone Number *</label>
                         <input
                           type="tel"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter phone number"
                           required
                         />
@@ -423,11 +423,11 @@ export default function GlobalSponsorPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Strategic Partnership Goals *
                       </label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={4}
                         placeholder="Describe your strategic goals for this global partnership..."
                         required
@@ -435,20 +435,20 @@ export default function GlobalSponsorPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Previous Partnership Experience
                       </label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={3}
                         placeholder="Describe any previous strategic partnerships or sponsorships..."
                       ></textarea>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Investment Readiness *</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Investment Readiness *</label>
                       <select
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         required
                       >
                         <option value="">Select investment readiness</option>
@@ -468,7 +468,7 @@ export default function GlobalSponsorPage() {
                       <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
-                    <p className="text-sm text-gray-500 text-center">
+                    <p className="text-sm text-neutral-500 text-center">
                       Applications are reviewed by our executive team. We'll contact qualified candidates within 5
                       business days to schedule a strategic partnership discussion.
                     </p>

@@ -221,13 +221,13 @@ export default function AlliedOrganizationsPage() {
               <h2 className="text-3xl font-serif text-black mb-8">Benefits of Allied Partnership</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {alliedBenefits.map((benefit, index) => (
-                  <Card key={index} className="border border-neutral-200 shadow-none hover:border-black transition-all duration-300 rounded-none bg-white">
+                  <Card key={index} className="border border-neutral-200 shadow-none hover:border-black transition-colors rounded-none bg-white">
                     <CardContent className="p-6 text-center">
                       <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4">
                         <benefit.icon className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+                      <h3 className="text-lg font-semibold text-black mb-3">{benefit.title}</h3>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{benefit.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -236,38 +236,38 @@ export default function AlliedOrganizationsPage() {
 
             {/* Organization Types */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Types of Allied Organizations</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Types of Allied Organizations</h2>
               <div className="space-y-6">
                 {organizationTypes.map((orgType, index) => (
-                  <Card key={index} className="border-0 shadow-lg">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none">
                     <CardHeader>
-                      <CardTitle className="text-xl font-bold text-gray-900 flex items-center gap-3">
-                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                      <CardTitle className="text-xl font-serif font-normal text-black flex items-center gap-3">
+                        <div className="w-8 h-8 bg-black rounded-none flex items-center justify-center">
                           <Building2 className="h-4 w-4 text-white" />
                         </div>
                         {orgType.type}
                       </CardTitle>
-                      <p className="text-gray-600">{orgType.description}</p>
+                      <p className="text-neutral-600">{orgType.description}</p>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">Examples</h4>
+                          <h4 className="font-semibold text-black mb-3">Examples</h4>
                           <ul className="space-y-2">
                             {orgType.examples.map((example, idx) => (
-                              <li key={idx} className="flex items-center text-sm text-gray-600">
-                                <div className="w-2 h-2 bg-blue-600 rounded-full mr-3" />
+                              <li key={idx} className="flex items-center text-sm text-neutral-600">
+                                <div className="w-2 h-2 bg-black rounded-full mr-3" />
                                 {example}
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">Collaboration Benefits</h4>
+                          <h4 className="font-semibold text-black mb-3">Collaboration Benefits</h4>
                           <ul className="space-y-2">
                             {orgType.benefits.map((benefit, idx) => (
-                              <li key={idx} className="flex items-start text-sm text-gray-600">
-                                <CheckCircle className="h-4 w-4 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                              <li key={idx} className="flex items-start text-sm text-neutral-600">
+                                <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0 mt-0.5" />
                                 {benefit}
                               </li>
                             ))}
@@ -282,42 +282,42 @@ export default function AlliedOrganizationsPage() {
 
             {/* Current Allied Organizations */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Current Allied Organizations</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Our Current Allied Organizations</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {currentAllies.map((ally, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center">
                           <Image
                             src={ally.logo || "/placeholder.svg"}
                             alt={ally.name}
                             width={32}
                             height={32}
-                            className="rounded"
+                            className="rounded-none accent-black"
                           />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">{ally.name}</h3>
+                          <h3 className="font-semibold text-black mb-1">{ally.name}</h3>
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="text-xs">
+                            <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                               {ally.type}
                             </Badge>
-                            <Badge variant="outline" className="text-xs">
+                            <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                               Since {ally.since}
                             </Badge>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-sm text-gray-600 mb-4">{ally.collaboration}</p>
+                      <p className="text-sm text-neutral-600 mb-4">{ally.collaboration}</p>
 
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Key Achievements</h4>
+                        <h4 className="font-semibold text-black mb-2 text-sm">Key Achievements</h4>
                         <ul className="space-y-1">
                           {ally.achievements.map((achievement, idx) => (
-                            <li key={idx} className="text-xs text-gray-600 flex items-start">
-                              <CheckCircle className="h-3 w-3 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                            <li key={idx} className="text-xs text-neutral-600 flex items-start">
+                              <CheckCircle className="h-3 w-3 text-black mr-2 flex-shrink-0 mt-0.5" />
                               {achievement}
                             </li>
                           ))}
@@ -331,19 +331,19 @@ export default function AlliedOrganizationsPage() {
 
             {/* Collaboration Areas */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Collaboration Areas</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Collaboration Areas</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {collaborationAreas.map((area, index) => (
-                  <Card key={index} className="border-0 shadow-lg">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none">
                     <CardHeader>
-                      <CardTitle className="text-lg font-bold text-gray-900">{area.area}</CardTitle>
-                      <p className="text-gray-600 text-sm">{area.description}</p>
+                      <CardTitle className="text-lg font-bold text-black">{area.area}</CardTitle>
+                      <p className="text-neutral-600 text-sm">{area.description}</p>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
                         {area.activities.map((activity, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-gray-600">
-                            <ArrowRight className="h-4 w-4 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                          <li key={idx} className="flex items-start text-sm text-neutral-600">
+                            <ArrowRight className="h-4 w-4 text-black mr-3 flex-shrink-0 mt-0.5" />
                             {activity}
                           </li>
                         ))}
@@ -356,12 +356,12 @@ export default function AlliedOrganizationsPage() {
 
             {/* Application Form */}
             <section>
-              <Card className="border-0 shadow-xl">
+              <Card className="border border-neutral-200 rounded-none shadow-none">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900 text-center">
+                  <CardTitle className="text-2xl font-serif font-normal text-black text-center">
                     Apply to Become an Allied Organization
                   </CardTitle>
-                  <p className="text-gray-600 text-center">
+                  <p className="text-neutral-600 text-center">
                     Join our network of leading organizations advancing legal technology in India
                   </p>
                 </CardHeader>
@@ -369,18 +369,18 @@ export default function AlliedOrganizationsPage() {
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Organization Name *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Organization Name *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter organization name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Organization Type *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Organization Type *</label>
                         <select
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           required
                         >
                           <option value="">Select organization type</option>
@@ -395,19 +395,19 @@ export default function AlliedOrganizationsPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Contact Person *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter contact person's name"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Position/Title *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Position/Title *</label>
                         <input
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter position or title"
                           required
                         />
@@ -416,37 +416,37 @@ export default function AlliedOrganizationsPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Email Address *</label>
                         <input
                           type="email"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter email address"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Phone Number</label>
                         <input
                           type="tel"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                           placeholder="Enter phone number"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Organization Website</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Organization Website</label>
                       <input
                         type="url"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         placeholder="https://your-organization.com"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Organization Description *</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Organization Description *</label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={4}
                         placeholder="Describe your organization, its mission, and activities..."
                         required
@@ -454,9 +454,9 @@ export default function AlliedOrganizationsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Collaboration Interests *</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Collaboration Interests *</label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={4}
                         placeholder="Describe how you would like to collaborate with The Black Silk..."
                         required
@@ -464,9 +464,9 @@ export default function AlliedOrganizationsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Previous Partnerships</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Previous Partnerships</label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-neutral-300 rounded-none focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
                         rows={3}
                         placeholder="Describe any previous partnerships or collaborations..."
                       ></textarea>
@@ -477,7 +477,7 @@ export default function AlliedOrganizationsPage() {
                       <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
-                    <p className="text-sm text-gray-500 text-center">
+                    <p className="text-sm text-neutral-500 text-center">
                       We'll review your application and get back to you within 7 business days to discuss next steps.
                     </p>
                   </form>

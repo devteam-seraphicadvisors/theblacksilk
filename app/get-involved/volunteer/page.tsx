@@ -267,23 +267,23 @@ export default function VolunteerPage() {
       </section>
 
       {/* Volunteer Stats */}
-      <section className="py-16 bg-surface-primary">
+      <section className="py-16 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {volunteerStats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand text-center group hover:shadow-brand-lg transition-all duration-300 interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
                 >
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 gradient-navy rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
                       <stat.icon className="h-8 w-8 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-2">
+                    <div className="text-3xl font-serif font-normal text-black mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-text-secondary">{stat.label}</div>
+                    <div className="text-neutral-600">{stat.label}</div>
                   </CardContent>
                 </Card>
               ))}
@@ -293,14 +293,14 @@ export default function VolunteerPage() {
       </section>
 
       {/* Featured Volunteer Roles */}
-      <section className="py-24 gradient-surface">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Featured Opportunities
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 High-impact volunteer roles that are currently in high demand
               </p>
             </div>
@@ -309,40 +309,40 @@ export default function VolunteerPage() {
               {featuredRoles.map((role) => (
                 <Card
                   key={role.id}
-                  className="border-0 shadow-brand-lg hover:shadow-brand-xl transition-all duration-500 group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors group"
                 >
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between mb-4">
-                      <Badge className="bg-brand-gold-600 text-white">
+                      <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider">
                         Featured
                       </Badge>
-                      <Badge variant="outline">{role.category}</Badge>
+                      <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">{role.category}</Badge>
                     </div>
                     <div className="flex items-center gap-4 mb-4">
                       <div
-                        className={`w-12 h-12 gradient-${role.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-12 h-12 bg-black border border-neutral-800 rounded-none flex items-center justify-center group-hover:bg-neutral-900 transition-colors`}
                       >
                         <role.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <CardTitle className="text-xl font-heading text-text-primary group-hover:text-gray-900 transition-colors">
+                        <CardTitle className="text-xl font-serif font-normal text-black group-hover:text-neutral-700 transition-colors">
                           {role.title}
                         </CardTitle>
-                        <div className="flex items-center gap-4 text-sm text-text-tertiary mt-1">
+                        <div className="flex items-center gap-4 text-sm text-neutral-500 mt-1">
                           <span>{role.commitment}</span>
                           <span>•</span>
                           <span>{role.location}</span>
                         </div>
                       </div>
                     </div>
-                    <p className="text-text-secondary leading-relaxed">
+                    <p className="text-neutral-600 leading-relaxed">
                       {role.description}
                     </p>
                   </CardHeader>
 
                   <CardContent>
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-text-secondary mb-3">
+                      <h4 className="text-xs uppercase font-mono tracking-wider text-neutral-700 mb-3">
                         Key Responsibilities
                       </h4>
                       <ul className="space-y-2">
@@ -351,9 +351,9 @@ export default function VolunteerPage() {
                           .map((responsibility, index) => (
                             <li
                               key={index}
-                              className="text-sm text-text-secondary flex items-start"
+                              className="text-sm text-neutral-600 flex items-start"
                             >
-                              <div className="w-1.5 h-1.5 bg-brand-gold-600 rounded-full mt-2 mr-3 flex-shrink-0" />
+                              <div className="w-1.5 h-1.5 bg-black rounded-full mt-2 mr-3 flex-shrink-0" />
                               {responsibility}
                             </li>
                           ))}
@@ -361,7 +361,7 @@ export default function VolunteerPage() {
                     </div>
 
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-text-secondary mb-3">
+                      <h4 className="text-xs uppercase font-mono tracking-wider text-neutral-700 mb-3">
                         Required Skills
                       </h4>
                       <div className="flex flex-wrap gap-2">
@@ -369,13 +369,13 @@ export default function VolunteerPage() {
                           <Badge
                             key={skill}
                             variant="outline"
-                            className="text-xs"
+                            className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider"
                           >
                             {skill}
                           </Badge>
                         ))}
                         {role.skills.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                             +{role.skills.length - 3} more
                           </Badge>
                         )}
@@ -383,7 +383,7 @@ export default function VolunteerPage() {
                     </div>
 
                     <Button
-                      className="w-full bg-black hover:bg-gray-800 text-white"
+                      className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
                       asChild
                     >
                       <Link href={`#apply-${role.id}`}>
@@ -400,10 +400,10 @@ export default function VolunteerPage() {
       </section>
 
       {/* All Volunteer Roles */}
-      <section className="py-24 bg-surface-primary">
+      <section className="py-24 bg-white border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-heading text-text-primary mb-12">
+            <h2 className="text-3xl font-serif font-normal text-black mb-12">
               All Volunteer Opportunities
             </h2>
 
@@ -411,30 +411,30 @@ export default function VolunteerPage() {
               {regularRoles.map((role) => (
                 <Card
                   key={role.id}
-                  className="border-0 shadow-brand hover:shadow-brand-lg transition-all duration-500 group interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors group"
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <div
-                        className={`w-10 h-10 gradient-${role.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-10 h-10 bg-black border border-neutral-800 rounded-none flex items-center justify-center group-hover:bg-neutral-900 transition-colors`}
                       >
                         <role.icon className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <Badge variant="outline" className="text-xs mb-1">
+                        <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider mb-1">
                           {role.category}
                         </Badge>
-                        <h3 className="text-lg font-heading text-text-primary group-hover:text-gray-900 transition-colors">
+                        <h3 className="text-lg font-serif font-normal text-black group-hover:text-neutral-700 transition-colors">
                           {role.title}
                         </h3>
                       </div>
                     </div>
 
-                    <p className="text-sm text-text-secondary mb-4 line-clamp-3">
+                    <p className="text-sm text-neutral-600 mb-4 line-clamp-3">
                       {role.description}
                     </p>
 
-                    <div className="flex items-center justify-between text-xs text-text-tertiary mb-4">
+                    <div className="flex items-center justify-between text-xs text-neutral-500 mb-4">
                       <span>{role.commitment}</span>
                       <span>{role.location}</span>
                     </div>
@@ -444,13 +444,13 @@ export default function VolunteerPage() {
                         <Badge
                           key={skill}
                           variant="outline"
-                          className="text-xs"
+                          className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider"
                         >
                           {skill}
                         </Badge>
                       ))}
                       {role.skills.length > 2 && (
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                           +{role.skills.length - 2}
                         </Badge>
                       )}
@@ -459,7 +459,7 @@ export default function VolunteerPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full"
+                      className="w-full rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider"
                       asChild
                     >
                       <Link href={`#apply-${role.id}`}>Learn More</Link>
@@ -473,14 +473,14 @@ export default function VolunteerPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 gradient-surface">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Why Volunteer with Us?
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Discover the benefits of joining our volunteer community
               </p>
             </div>
@@ -489,16 +489,16 @@ export default function VolunteerPage() {
               {volunteerBenefits.map((benefit, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand text-center group hover:shadow-brand-lg transition-all duration-300 interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
                 >
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 gradient-emerald rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
                       <benefit.icon className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-heading text-text-primary mb-4">
+                    <h3 className="text-lg font-serif font-normal text-black mb-4">
                       {benefit.title}
                     </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed">
+                    <p className="text-neutral-600 text-sm leading-relaxed">
                       {benefit.description}
                     </p>
                   </CardContent>
@@ -510,96 +510,96 @@ export default function VolunteerPage() {
       </section>
 
       {/* Application Form */}
-      <section className="py-24 bg-surface-primary" id="apply">
+      <section className="py-24 bg-white border-b border-neutral-200" id="apply">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Apply to Volunteer
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Ready to make a difference? Fill out the application form below
               </p>
             </div>
 
-            <Card className="border-0 shadow-brand-xl">
+            <Card className="border border-neutral-200 rounded-none shadow-none">
               <CardContent className="p-8 md:p-12">
                 <form className="space-y-8">
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         First Name *
                       </label>
                       <Input
                         placeholder="Enter your first name"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Last Name *
                       </label>
                       <Input
                         placeholder="Enter your last name"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Email Address *
                     </label>
                     <Input
                       type="email"
                       placeholder="Enter your email address"
-                      className="border-border-primary focus:border-gray-900"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Phone Number
                     </label>
                     <Input
                       type="tel"
                       placeholder="Enter your phone number"
-                      className="border-border-primary focus:border-gray-900"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Current Occupation
                       </label>
                       <Input
                         placeholder="Your current job or student status"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-secondary mb-2">
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                         Organization
                       </label>
                       <Input
                         placeholder="Your current organization or university"
-                        className="border-border-primary focus:border-gray-900"
+                        className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black"
                       />
                     </div>
                   </div>
 
                   {/* Volunteer Preferences */}
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Preferred Volunteer Role *
                     </label>
                     <Select required>
-                      <SelectTrigger className="border-border-primary focus:border-gray-900">
+                      <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                         <SelectValue placeholder="Select your preferred volunteer role" />
                       </SelectTrigger>
                       <SelectContent>
@@ -613,11 +613,11 @@ export default function VolunteerPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Time Commitment *
                     </label>
                     <Select required>
-                      <SelectTrigger className="border-border-primary focus:border-gray-900">
+                      <SelectTrigger className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black">
                         <SelectValue placeholder="How much time can you commit per week?" />
                       </SelectTrigger>
                       <SelectContent>
@@ -632,29 +632,29 @@ export default function VolunteerPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Relevant Skills and Experience
                     </label>
                     <Textarea
                       placeholder="Describe your relevant skills, experience, and qualifications..."
-                      className="border-border-primary focus:border-gray-900 min-h-[120px]"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[120px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                       Why do you want to volunteer with us? *
                     </label>
                     <Textarea
                       placeholder="Tell us about your motivation and what you hope to achieve..."
-                      className="border-border-primary focus:border-gray-900 min-h-[120px]"
+                      className="rounded-none border-neutral-300 focus:ring-black focus-visible:ring-black min-h-[120px]"
                       required
                     />
                   </div>
 
                   {/* Availability */}
                   <div>
-                    <label className="block text-sm font-medium text-text-secondary mb-4">
+                    <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-4">
                       Availability (Select all that apply)
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -665,10 +665,10 @@ export default function VolunteerPage() {
                         "Weekends",
                       ].map((time) => (
                         <div key={time} className="flex items-center space-x-2">
-                          <Checkbox id={time.toLowerCase().replace(" ", "-")} />
+                          <Checkbox className="rounded-none border-black data-[state=checked]:bg-black data-[state=checked]:text-white" id={time.toLowerCase().replace(" ", "-")} />
                           <label
                             htmlFor={time.toLowerCase().replace(" ", "-")}
-                            className="text-sm text-text-secondary cursor-pointer"
+                            className="text-sm text-neutral-600 cursor-pointer"
                           >
                             {time}
                           </label>
@@ -681,13 +681,13 @@ export default function VolunteerPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-black hover:bg-gray-800 text-white text-lg py-4"
+                    className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-sm uppercase tracking-wider py-4 h-auto"
                   >
                     Submit Application
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
 
-                  <p className="text-sm text-text-tertiary text-center">
+                  <p className="text-sm text-neutral-500 text-center">
                     We'll review your application and get back to you within 1-2
                     weeks.
                   </p>
@@ -699,14 +699,14 @@ export default function VolunteerPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 gradient-surface">
+      <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading text-text-primary mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
                 Volunteer Stories
               </h2>
-              <p className="text-xl text-text-secondary">
+              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
                 Hear from our volunteers about their experiences and impact
               </p>
             </div>
@@ -715,7 +715,7 @@ export default function VolunteerPage() {
               {testimonials.map((testimonial, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-brand text-center interactive-lift"
+                  className="border border-neutral-200 rounded-none shadow-none text-center"
                 >
                   <CardContent className="p-8">
                     <div className="relative w-16 h-16 mx-auto mb-6 rounded-full overflow-hidden">
@@ -726,18 +726,18 @@ export default function VolunteerPage() {
                         className="object-cover"
                       />
                     </div>
-                    <blockquote className="text-text-secondary mb-6 italic leading-relaxed">
+                    <blockquote className="text-neutral-600 mb-6 italic leading-relaxed">
                       "{testimonial.content}"
                     </blockquote>
                     <div className="mb-4">
-                      <p className="font-medium text-text-primary">
+                      <p className="font-medium text-black">
                         {testimonial.name}
                       </p>
-                      <p className="text-sm text-text-secondary">
+                      <p className="text-sm text-neutral-600">
                         {testimonial.role}
                       </p>
                     </div>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                       Volunteering for {testimonial.duration}
                     </Badge>
                   </CardContent>

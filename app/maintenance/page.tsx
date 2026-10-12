@@ -102,7 +102,7 @@ export default function MaintenancePage() {
 
           {/* Badge */}
           <div>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-white/[0.06] text-neutral-300 border border-white/10 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-none text-xs font-mono tracking-widest uppercase bg-neutral-900 text-neutral-300 border border-neutral-700">
               <Clock className="w-3.5 h-3.5 text-neutral-400" />
               Scheduled Maintenance
             </span>
@@ -119,7 +119,7 @@ export default function MaintenancePage() {
           </div>
 
           {/* Countdown Clock - 7 Days */}
-          <div className="bg-neutral-950/80 border border-white/10 rounded-2xl p-5 sm:p-6 backdrop-blur-xl shadow-2xl max-w-md mx-auto">
+          <div className="bg-neutral-950/80 border border-neutral-800 rounded-none p-5 sm:p-6 max-w-md mx-auto">
             <div className="text-[11px] sm:text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-4 sm:mb-5">
               Estimated System Restoration In
             </div>
@@ -133,7 +133,7 @@ export default function MaintenancePage() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center justify-center p-2.5 sm:p-4 rounded-xl bg-neutral-900/90 border border-white/10 shadow-inner"
+                  className="flex flex-col items-center justify-center p-2.5 sm:p-4 rounded-none bg-neutral-900/90 border border-neutral-800"
                 >
                   <span className="text-xl sm:text-3xl font-bold text-white font-mono tracking-tight">
                     {String(item.value).padStart(2, "0")}

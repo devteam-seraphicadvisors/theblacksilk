@@ -412,7 +412,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                           className="space-y-3"
                         >
                           <div className="flex items-center space-x-2 p-4 border border-neutral-300 rounded-none bg-white">
-                            <RadioGroupItem value="regular" id="regular" />
+                            <RadioGroupItem value="regular" id="regular" className="border-black text-black" />
                             <Label
                               htmlFor="regular"
                               className="flex-1 cursor-pointer"
@@ -438,6 +438,7 @@ export default function EventRegisterPage({ params }: RegisterPageProps) {
                               <RadioGroupItem
                                 value="earlybird"
                                 id="earlybird"
+                                className="border-black text-black"
                               />
                               <Label
                                 htmlFor="earlybird"

@@ -98,7 +98,7 @@ export default function LeadershipPage() {
           {leaders.map((leader, index) => (
             <article
               key={leader.name}
-              className="border border-neutral-200 bg-white p-8 sm:p-12 transition-shadow hover:shadow-xl"
+              className="border border-neutral-200 bg-white p-8 sm:p-12 transition-colors hover:border-black"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 {/* Photo & Role Card */}

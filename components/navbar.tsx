@@ -453,14 +453,14 @@ export function Navbar() {
                   >
                     <Link href="/login">Login</Link>
                   </Button>
-                  <Button size="sm" className="btn-primary" asChild>
+                  <Button size="sm" className="bg-black hover:bg-neutral-800 !text-white rounded-none font-mono uppercase tracking-wider text-xs px-4" asChild>
                     <Link href="/community/membership">Join Us</Link>
                   </Button>
                 </div>
                 {/* Mobile - Only Join Us button */}
                 <Button
                   size="sm"
-                  className="md:hidden btn-primary text-xs px-3"
+                  className="md:hidden bg-black hover:bg-neutral-800 !text-white rounded-none font-mono uppercase tracking-wider text-[11px] px-3"
                   asChild
                 >
                   <Link href="/community/membership">Join</Link>
@@ -489,7 +489,7 @@ export function Navbar() {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                     <Input
                       placeholder="Search..."
-                      className="pl-10 h-10"
+                      className="pl-10 h-10 rounded-none border-neutral-300 focus-visible:ring-black"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -508,7 +508,7 @@ export function Navbar() {
                             )
                           }
                           className={cn(
-                            "w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold rounded-md transition-colors hover:bg-neutral-100",
+                            "w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold rounded-none transition-colors hover:bg-neutral-100",
                             pathname.startsWith(item.href)
                               ? "text-neutral-900 bg-neutral-50"
                               : "text-neutral-700"
@@ -530,7 +530,7 @@ export function Navbar() {
                                 href={child.href}
                                 onClick={() => setIsOpen(false)}
                                 className={cn(
-                                  "block px-3 py-2.5 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-md transition-colors active:bg-neutral-200",
+                                  "block px-3 py-2.5 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-none transition-colors active:bg-neutral-200",
                                   pathname === child.href &&
                                   "text-neutral-900 bg-neutral-100 font-medium"
                                 )}
@@ -547,7 +547,7 @@ export function Navbar() {
                   {/* Mobile User Info - Show only when authenticated */}
                   {isAuthenticated && (
                     <div className="pt-4 border-t space-y-4">
-                      <div className="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                      <div className="flex items-center space-x-3 p-3 bg-neutral-50 rounded-none border border-neutral-200">
                         <Avatar className="h-10 w-10">
                           <AvatarImage
                             src={
@@ -605,10 +605,10 @@ export function Navbar() {
                   {/* Mobile Auth Buttons - Show only when NOT authenticated */}
                   {!isAuthenticated && !isLoading && (
                     <div className="pt-4 border-t space-y-3">
-                      <Button variant="outline" className="w-full h-11" asChild>
+                      <Button variant="outline" className="w-full h-11 rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider" asChild>
                         <Link href="/login">Login</Link>
                       </Button>
-                      <Button className="w-full h-11 btn-primary" asChild>
+                      <Button className="w-full h-11 bg-black hover:bg-neutral-800 !text-white rounded-none font-mono uppercase tracking-wider text-xs" asChild>
                         <Link href="/community/membership">Join Us</Link>
                       </Button>
                     </div>
@@ -627,7 +627,7 @@ export function Navbar() {
                 <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
                   placeholder="Search events, articles, members..."
-                  className="pl-10 sm:pl-12 pr-10 sm:pr-12 h-10 sm:h-12 text-sm sm:text-base border-neutral-200 focus:border-neutral-900 focus:ring-neutral-900"
+                  className="pl-10 sm:pl-12 pr-10 sm:pr-12 h-10 sm:h-12 text-sm sm:text-base rounded-none border-neutral-200 focus:border-neutral-900 focus-visible:ring-black"
                   autoFocus
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -642,13 +642,13 @@ export function Navbar() {
                 </Button>
               </div>
               {searchQuery && (
-                <div className="absolute top-full left-0 right-0 mt-2 mx-4 sm:mx-0 bg-white border border-neutral-200 rounded-lg shadow-lg z-50 max-h-[60vh] overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-2 mx-4 sm:mx-0 bg-white border border-neutral-200 rounded-none shadow-lg z-50 max-h-[60vh] overflow-y-auto">
                   <div className="p-3 sm:p-4">
                     <p className="text-xs sm:text-sm text-neutral-600 mb-2 sm:mb-3">
                       Quick suggestions
                     </p>
                     <div className="space-y-1 sm:space-y-2">
-                      <div className="p-2 sm:p-3 hover:bg-neutral-50 rounded-md cursor-pointer transition-colors active:bg-neutral-100">
+                      <div className="p-2 sm:p-3 hover:bg-neutral-50 rounded-none cursor-pointer transition-colors active:bg-neutral-100">
                         <div className="font-medium text-sm sm:text-base text-neutral-900 truncate">
                           AI Ethics Symposium
                         </div>
@@ -656,7 +656,7 @@ export function Navbar() {
                           Upcoming event
                         </div>
                       </div>
-                      <div className="p-2 sm:p-3 hover:bg-neutral-50 rounded-md cursor-pointer transition-colors active:bg-neutral-100">
+                      <div className="p-2 sm:p-3 hover:bg-neutral-50 rounded-none cursor-pointer transition-colors active:bg-neutral-100">
                         <div className="font-medium text-sm sm:text-base text-neutral-900 truncate">
                           Digital Evidence Guidelines
                         </div>

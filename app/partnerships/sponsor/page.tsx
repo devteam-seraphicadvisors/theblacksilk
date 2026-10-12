@@ -177,16 +177,16 @@ export default function SponsorPage() {
           <div className="lg:col-span-3 space-y-12">
             {/* Benefits Overview */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Sponsor The Black Silk?</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Why Sponsor The Black Silk?</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sponsorshipBenefits.map((benefit, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                     <CardContent className="p-6 text-center">
-                      <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4">
                         <benefit.icon className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+                      <h3 className="text-lg font-semibold text-black mb-3">{benefit.title}</h3>
+                      <p className="text-neutral-600 text-sm leading-relaxed">{benefit.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -196,8 +196,8 @@ export default function SponsorPage() {
             {/* Sponsorship Tiers */}
             <section>
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Sponsorship Packages</h2>
-                <p className="text-xl text-gray-600">
+                <h2 className="text-3xl font-serif font-normal text-black mb-4">Sponsorship Packages</h2>
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed">
                   Choose the sponsorship level that best fits your goals and budget
                 </p>
               </div>
@@ -206,34 +206,34 @@ export default function SponsorPage() {
                 {sponsorshipTiers.map((tier, index) => (
                   <Card
                     key={index}
-                    className={`border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative ${
-                      tier.popular ? "ring-2 ring-blue-500" : ""
+                    className={`border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors relative ${
+                      tier.popular ? "ring-2 ring-black" : ""
                     }`}
                   >
                     {tier.popular && (
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-blue-600 text-white px-4 py-1">Most Popular</Badge>
+                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider px-4 py-1">Most Popular</Badge>
                       </div>
                     )}
 
                     <CardHeader className="text-center pb-4">
                       <div className="flex items-center justify-center gap-2 mb-2">
                         <Star className={`h-5 w-5 text-${tier.color}-500`} />
-                        <CardTitle className="text-xl font-bold text-gray-900">{tier.name}</CardTitle>
+                        <CardTitle className="text-xl font-serif font-normal text-black">{tier.name}</CardTitle>
                       </div>
-                      <div className="text-3xl font-bold text-gray-900">
+                      <div className="text-3xl font-serif font-normal text-black">
                         {tier.price}
-                        <span className="text-lg font-normal text-gray-600">/{tier.duration}</span>
+                        <span className="text-lg font-normal text-neutral-600">/{tier.duration}</span>
                       </div>
                     </CardHeader>
 
                     <CardContent className="space-y-6">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
+                        <h4 className="font-semibold text-black mb-3">Key Features</h4>
                         <ul className="space-y-2">
                           {tier.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-center text-sm text-gray-600">
-                              <CheckCircle className="h-4 w-4 text-green-600 mr-3 flex-shrink-0" />
+                            <li key={idx} className="flex items-center text-sm text-neutral-600">
+                              <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0" />
                               {feature}
                             </li>
                           ))}
@@ -241,11 +241,11 @@ export default function SponsorPage() {
                       </div>
 
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3">Benefits Included</h4>
+                        <h4 className="font-semibold text-black mb-3">Benefits Included</h4>
                         <ul className="space-y-2">
                           {tier.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start text-sm text-gray-600">
-                              <CheckCircle className="h-4 w-4 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                            <li key={idx} className="flex items-start text-sm text-neutral-600">
+                              <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0 mt-0.5" />
                               {benefit}
                             </li>
                           ))}
@@ -253,7 +253,7 @@ export default function SponsorPage() {
                       </div>
 
                       <Button
-                        className={`w-full ${tier.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-900 hover:bg-gray-800"}`}
+                        className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
                         asChild
                       >
                         <Link href="#sponsorship-form">
@@ -269,29 +269,29 @@ export default function SponsorPage() {
 
             {/* Current Sponsors */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Current Sponsors</h2>
+              <h2 className="text-3xl font-serif font-normal text-black mb-8">Our Current Sponsors</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {currentSponsors.map((sponsor, index) => (
-                  <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center">
                           <Image
                             src={sponsor.logo || "/placeholder.svg"}
                             alt={sponsor.name}
                             width={32}
                             height={32}
-                            className="rounded"
+                            className="rounded-none accent-black"
                           />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">{sponsor.name}</h3>
-                          <Badge variant="outline" className="text-xs">
+                          <h3 className="font-semibold text-black">{sponsor.name}</h3>
+                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
                             {sponsor.tier} Sponsor
                           </Badge>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 italic">"{sponsor.testimonial}"</p>
+                      <p className="text-sm text-neutral-600 italic">"{sponsor.testimonial}"</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -300,10 +300,10 @@ export default function SponsorPage() {
 
             {/* Sponsorship Form */}
             <section id="sponsorship-form">
-              <Card className="border-0 shadow-xl">
+              <Card className="border border-neutral-200 rounded-none shadow-none">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900 text-center">Apply for Sponsorship</CardTitle>
-                  <p className="text-gray-600 text-center">
+                  <CardTitle className="text-2xl font-serif font-normal text-black text-center">Apply for Sponsorship</CardTitle>
+                  <p className="text-neutral-600 text-center">
                     Fill out the form below and we'll get in touch to discuss your sponsorship package
                   </p>
                 </CardHeader>
@@ -311,19 +311,19 @@ export default function SponsorPage() {
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Name *</label>
                         <Input
                           placeholder="Enter your company name"
-                          className="border-gray-300 focus:border-blue-500"
+                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
                           Preferred Sponsorship Tier *
                         </label>
                         <Select required>
-                          <SelectTrigger className="border-gray-300 focus:border-blue-500">
+                          <SelectTrigger className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black">
                             <SelectValue placeholder="Select sponsorship tier" />
                           </SelectTrigger>
                           <SelectContent>
@@ -339,19 +339,19 @@ export default function SponsorPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Contact Person *</label>
                         <Input
                           placeholder="Enter contact person's name"
-                          className="border-gray-300 focus:border-blue-500"
+                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Email Address *</label>
                         <Input
                           type="email"
                           placeholder="Enter email address"
-                          className="border-gray-300 focus:border-blue-500"
+                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
                           required
                         />
                       </div>
@@ -359,36 +359,36 @@ export default function SponsorPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Phone Number</label>
                         <Input
                           type="tel"
                           placeholder="Enter phone number"
-                          className="border-gray-300 focus:border-blue-500"
+                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Company Website</label>
+                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Website</label>
                         <Input
                           type="url"
                           placeholder="https://your-company.com"
-                          className="border-gray-300 focus:border-blue-500"
+                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Sponsorship Goals</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Sponsorship Goals</label>
                       <Textarea
                         placeholder="Tell us about your sponsorship goals and what you hope to achieve..."
-                        className="border-gray-300 focus:border-blue-500 min-h-[100px]"
+                        className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black min-h-[100px]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
+                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Additional Requirements</label>
                       <Textarea
                         placeholder="Any specific requirements or custom benefits you'd like to discuss..."
-                        className="border-gray-300 focus:border-blue-500 min-h-[80px]"
+                        className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black min-h-[80px]"
                       />
                     </div>
 
@@ -397,7 +397,7 @@ export default function SponsorPage() {
                       <ArrowRight className="ml-2 h-4 w-4 !text-white" />
                     </Button>
 
-                    <p className="text-sm text-gray-500 text-center">
+                    <p className="text-sm text-neutral-500 text-center">
                       We'll review your application and get back to you within 3 business days.
                     </p>
                   </form>
