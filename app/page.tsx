@@ -14,7 +14,7 @@ import { generateMetadata } from "@/lib/seo";
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export const metadata = generateMetadata({
-  title: "The Black Silk — Ethical Standards & Policy for the Digital Future",
+  title: "The Black Silk - Ethical Standards & Policy for the Digital Future",
   description:
     "A not-for-profit organization working toward the ethical development and judicious use of digital technologies for the greater good. Bringing together academicians, policymakers, lawmakers, and expert professionals.",
   keywords: [

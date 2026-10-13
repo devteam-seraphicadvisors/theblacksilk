@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -266,33 +265,33 @@ export default function MembershipPage() {
       <div className="p-4 lg:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-2">
-            <Skeleton className="h-8 w-48" />
-            <Skeleton className="h-4 w-64" />
+            <Skeleton className="rounded-none h-8 w-48" />
+            <Skeleton className="rounded-none h-4 w-64" />
           </div>
-          <Skeleton className="h-10 w-40" />
+          <Skeleton className="rounded-none h-10 w-40" />
         </div>
-        <Card>
+        <Card className="rounded-none border border-neutral-200 shadow-none">
           <CardContent className="p-6">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Skeleton className="h-6 w-32" />
-                <Skeleton className="h-6 w-20" />
+                <Skeleton className="rounded-none h-6 w-32" />
+                <Skeleton className="rounded-none h-6 w-20" />
               </div>
-              <Skeleton className="h-6 w-64" />
+              <Skeleton className="rounded-none h-6 w-64" />
               <div className="grid grid-cols-2 gap-4">
-                <Skeleton className="h-12 w-full" />
-                <Skeleton className="h-12 w-full" />
+                <Skeleton className="rounded-none h-12 w-full" />
+                <Skeleton className="rounded-none h-12 w-full" />
               </div>
             </div>
           </CardContent>
         </Card>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i}>
+            <Card className="rounded-none border border-neutral-200 shadow-none" key={i}>
               <CardContent className="p-6">
-                <Skeleton className="h-12 w-12 rounded-full mx-auto mb-3" />
-                <Skeleton className="h-6 w-16 mx-auto mb-2" />
-                <Skeleton className="h-4 w-24 mx-auto" />
+                <Skeleton className="h-12 w-12 rounded-none mx-auto mb-3" />
+                <Skeleton className="rounded-none h-6 w-16 mx-auto mb-2" />
+                <Skeleton className="rounded-none h-4 w-24 mx-auto" />
               </CardContent>
             </Card>
           ))}
@@ -330,7 +329,7 @@ export default function MembershipPage() {
             No active membership found.
             <Button
               variant="link"
-              className="p-0 ml-1 text-primary font-medium"
+              className="p-0 ml-1 text-black font-medium"
               asChild
             >
               <a href="/community/membership">Purchase a membership</a>
@@ -348,13 +347,6 @@ export default function MembershipPage() {
     0,
     Math.ceil((endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
   );
-  const totalDays = Math.ceil(
-    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-  );
-  const progressPercentage = Math.max(
-    0,
-    Math.min(100, ((totalDays - daysRemaining) / totalDays) * 100)
-  );
   const isExpiringSoon = daysRemaining <= 30;
   const isExpired = daysRemaining === 0;
 
@@ -365,337 +357,230 @@ export default function MembershipPage() {
         membershipData.type.toLowerCase()
     ) || membershipTiers.find((tier) => tier.name === "Professional");
 
+  const fmtDate = (d: Date | string) =>
+    new Date(d).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
   return (
-    <div className="p-4 lg:p-8 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="p-4 lg:p-8 space-y-8 max-w-6xl">
+      {/* Page heading */}
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
-            Membership Dashboard
+          <span className="block font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2">
+            Account
+          </span>
+          <h1 className="text-3xl lg:text-4xl font-serif font-normal text-black tracking-tight">
+            Membership
           </h1>
-          <p className="text-gray-600 mt-1">
-            Manage your membership and explore upgrade options
+          <p className="text-neutral-600 mt-2">
+            Manage your membership and explore upgrade options.
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            className="w-full sm:w-auto bg-transparent"
+        <div className="flex gap-3">
+          <button
+            type="button"
             onClick={refreshData}
+            className="inline-flex items-center gap-2 border border-neutral-300 text-black hover:border-black font-mono text-xs uppercase tracking-wider px-5 py-3 transition-colors cursor-pointer"
           >
-            <RefreshCw className="mr-2 h-4 w-4" />
+            <RefreshCw className="h-4 w-4" />
             Refresh
-          </Button>
-          <Button
-            className={cn(
-              "w-full sm:w-auto",
-              isExpiringSoon || isExpired
-                ? "bg-orange-600 hover:bg-orange-700"
-                : "bg-black hover:bg-gray-800 text-white"
-            )}
-            asChild
+          </button>
+          <a
+            href="/community/membership"
+            className="inline-flex items-center gap-2 bg-black !text-white hover:bg-neutral-800 font-mono text-xs uppercase tracking-wider px-5 py-3 transition-colors"
           >
-            <a href="/community/membership">
-              <CreditCard className="mr-2 h-4 w-4" />
-              {isExpired
-                ? "Renew Now"
-                : isExpiringSoon
-                ? "Renew Soon"
-                : "Renew Membership"}
-            </a>
-          </Button>
+            <CreditCard className="h-4 w-4" />
+            {isExpired ? "Renew Now" : isExpiringSoon ? "Renew Soon" : "Renew Membership"}
+          </a>
         </div>
       </div>
 
-      {/* Expiry Warning */}
+      {/* Expiry warning */}
       {(isExpiringSoon || isExpired) && (
-        <Alert
-          className={cn(
-            "border-orange-200 bg-orange-50",
-            isExpired && "border-red-200 bg-red-50"
-          )}
-        >
-          <AlertTriangle
-            className={cn(
-              "h-4 w-4",
-              isExpired ? "text-red-600" : "text-orange-600"
-            )}
-          />
-          <AlertDescription
-            className={cn(isExpired ? "text-red-800" : "text-orange-800")}
-          >
+        <div role="alert" className="flex items-start gap-3 border border-black bg-white p-4">
+          <AlertTriangle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-black">
             {isExpired
               ? "Your membership has expired. Renew now to restore access to all benefits."
-              : `Your membership expires in ${daysRemaining} days.`}
-            <Button
-              variant="link"
-              className={cn(
-                "p-0 ml-1 font-medium",
-                isExpired ? "text-red-600" : "text-orange-600"
-              )}
-              asChild
-            >
-              <a href="/community/membership">
-                Renew now to avoid interruption.
-              </a>
-            </Button>
-          </AlertDescription>
-        </Alert>
+              : `Your membership expires in ${daysRemaining} days.`}{" "}
+            <a href="/community/membership" className="underline underline-offset-4 font-medium">
+              Renew now to avoid interruption.
+            </a>
+          </p>
+        </div>
       )}
 
-      {/* Membership Status Card */}
-      <Card
-        className={cn(
-          "border-primary/20 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent relative overflow-hidden",
-          isExpired &&
-            "border-red-200 bg-gradient-to-br from-red-50 to-transparent"
-        )}
-      >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
-        <CardContent className="p-6 relative">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 flex-wrap gap-2">
-                <Badge className="bg-primary text-white px-3 py-1 text-sm">
-                  {membershipData.type.charAt(0).toUpperCase() +
-                    membershipData.type.slice(1)}{" "}
-                  Member
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className={cn(
-                    isExpired
-                      ? "border-red-500 text-red-700"
-                      : membershipData.status === "active"
-                      ? "border-green-500 text-green-700"
-                      : "border-orange-500 text-orange-700"
-                  )}
-                >
-                  {isExpired
-                    ? "Expired"
-                    : membershipData.status.charAt(0).toUpperCase() +
-                      membershipData.status.slice(1)}
-                </Badge>
-                {currentTier?.popular && !isExpired && (
-                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                    <Star className="w-3 h-3 mr-1" />
-                    Popular
-                  </Badge>
-                )}
+      {/* Membership status */}
+      <section className="bg-black text-white border border-black">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto]">
+          <div className="p-6 lg:p-8">
+            <div className="flex flex-wrap items-center gap-2 mb-6">
+              <span className="bg-white text-black font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                {membershipData.type.charAt(0).toUpperCase() + membershipData.type.slice(1)} Member
+              </span>
+              <span className="border border-neutral-600 text-neutral-300 font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                {isExpired
+                  ? "Expired"
+                  : membershipData.status.charAt(0).toUpperCase() + membershipData.status.slice(1)}
+              </span>
+            </div>
+            <h2 className="text-3xl font-serif font-normal text-white mb-1">
+              Welcome back, {session?.user?.name?.split(" ")[0] || "Member"}
+            </h2>
+            <p className="text-neutral-400 text-sm mb-8">
+              Member since {fmtDate(membershipData.createdAt)}
+            </p>
+            <div className="grid grid-cols-2 gap-6 max-w-md">
+              <div>
+                <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-neutral-400 mb-1.5">
+                  <Calendar className="h-3.5 w-3.5" />
+                  Start Date
+                </p>
+                <p className="text-white">{fmtDate(membershipData.startDate)}</p>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  Welcome back, {session?.user?.name?.split(" ")[0] || "Member"}
-                  !
-                </h2>
-                <p className="text-gray-600">
-                  Member since{" "}
-                  {new Date(membershipData.createdAt).toLocaleDateString()}
+                <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-neutral-400 mb-1.5">
+                  <Clock className="h-3.5 w-3.5" />
+                  {isExpired ? "Expired" : "Expires"}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">
-                  Enjoying {currentTier?.features.length || 0}+ premium features
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="space-y-1">
-                  <p className="text-gray-500 flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    Start Date
-                  </p>
-                  <p className="font-medium">
-                    {new Date(membershipData.startDate).toLocaleDateString(
-                      "en-IN",
-                      {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      }
-                    )}
-                  </p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-gray-500 flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {isExpired ? "Expired" : "Expires"}
-                  </p>
-                  <p
-                    className={cn(
-                      "font-medium",
-                      (isExpiringSoon || isExpired) && "text-orange-600"
-                    )}
-                  >
-                    {endDate.toLocaleDateString("en-IN", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-4 lg:text-right">
-              <div className="text-center lg:text-right">
-                <p
-                  className={cn(
-                    "text-3xl font-bold",
-                    isExpired
-                      ? "text-red-600"
-                      : isExpiringSoon
-                      ? "text-orange-600"
-                      : "text-primary"
-                  )}
-                >
-                  {isExpired ? "0" : daysRemaining}
-                </p>
-                <p className="text-sm text-gray-600">days remaining</p>
-              </div>
-              <div className="w-full lg:w-48">
-                <div className="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Progress</span>
-                  <span>{Math.round(progressPercentage)}%</span>
-                </div>
-                <Progress
-                  value={progressPercentage}
-                  className={cn(
-                    "h-2",
-                    isExpired && "[&>div]:bg-red-500",
-                    isExpiringSoon && "[&>div]:bg-orange-500"
-                  )}
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  {Math.round(progressPercentage)}% of membership year completed
-                </p>
+                <p className="text-white">{fmtDate(endDate)}</p>
               </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
 
-      {/* Membership Tabs */}
-      <Tabs
-        value={activeTab}
-        onValueChange={setActiveTab}
-        className="space-y-6"
-      >
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4" />
-            Overview
-          </TabsTrigger>
-          <TabsTrigger value="benefits" className="flex items-center gap-2">
-            <Star className="w-4 h-4" />
-            Benefits
-          </TabsTrigger>
-          <TabsTrigger value="upgrade" className="flex items-center gap-2">
-            <Zap className="w-4 h-4" />
-            Upgrade
-          </TabsTrigger>
-          <TabsTrigger value="billing" className="flex items-center gap-2">
-            <CreditCard className="w-4 h-4" />
-            Billing
-          </TabsTrigger>
+          <div className="border-t lg:border-t-0 lg:border-l border-neutral-800 p-6 lg:p-8 flex flex-col justify-center lg:min-w-[220px]">
+            <p className="text-6xl font-serif font-normal text-white leading-none tabular-nums">
+              {isExpired ? 0 : daysRemaining}
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 mt-3">
+              Days remaining
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Membership tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+        <TabsList className="h-auto w-full justify-start gap-8 rounded-none bg-transparent border-b border-neutral-200 p-0 overflow-x-auto">
+          {[
+            ["overview", "Overview"],
+            ["benefits", "Benefits"],
+            ["upgrade", "Upgrade"],
+            ["billing", "Billing"],
+          ].map(([value, label]) => (
+            <TabsTrigger
+              key={value}
+              value={value}
+              className="rounded-none border-b-2 border-transparent px-0 pb-3 pt-1 font-mono text-xs uppercase tracking-wider text-neutral-500 hover:text-black data-[state=active]:border-black data-[state=active]:text-black data-[state=active]:bg-transparent data-[state=active]:shadow-none -mb-px"
+            >
+              {label}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Calendar className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-neutral-50 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <Calendar className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.eventsAttended || 0}
                 </p>
-                <p className="text-sm text-gray-600">Events Attended</p>
-                <p className="text-xs text-blue-600 mt-1">This year</p>
+                <p className="text-sm text-neutral-600">Events Attended</p>
+                <p className="text-xs text-black mt-1">This year</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-6 w-6 text-green-600" />
+                <div className="w-12 h-12 bg-neutral-50 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <Users className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.committeeMemberships || 0}
                 </p>
-                <p className="text-sm text-gray-600">Committee Memberships</p>
-                <p className="text-xs text-green-600 mt-1">
+                <p className="text-sm text-neutral-600">Committee Memberships</p>
+                <p className="text-xs text-black mt-1">
                   Active participation
                 </p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <BookOpen className="h-6 w-6 text-purple-600" />
+                <div className="w-12 h-12 bg-neutral-50 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <BookOpen className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.publicationsDownloaded || 0}
                 </p>
-                <p className="text-sm text-gray-600">Publications Downloaded</p>
-                <p className="text-xs text-purple-600 mt-1">All time</p>
+                <p className="text-sm text-neutral-600">Publications Downloaded</p>
+                <p className="text-xs text-black mt-1">All time</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Award className="h-6 w-6 text-orange-600" />
+                <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <Award className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.forumPosts || 0}
                 </p>
-                <p className="text-sm text-gray-600">Forum Posts</p>
-                <p className="text-xs text-orange-600 mt-1">
+                <p className="text-sm text-neutral-600">Forum Posts</p>
+                <p className="text-xs text-black mt-1">
                   Community engagement
                 </p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-6 w-6 text-pink-600" />
+                <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <Users className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.totalConnections || 0}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-neutral-600">
                   Professional Connections
                 </p>
-                <p className="text-xs text-pink-600 mt-1">Growing network</p>
+                <p className="text-xs text-black mt-1">Growing network</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-md transition-shadow">
+            <Card className="rounded-none border border-neutral-200 shadow-none hover:border-black transition-shadow">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Shield className="h-6 w-6 text-indigo-600" />
+                <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center mx-auto mb-3">
+                  <Shield className="h-6 w-6 text-black" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-serif font-normal text-black">
                   {userStats?.profileCompleteness || 0}%
                 </p>
-                <p className="text-sm text-gray-600">Profile Completeness</p>
-                <p className="text-xs text-indigo-600 mt-1">Keep improving!</p>
+                <p className="text-sm text-neutral-600">Profile Completeness</p>
+                <p className="text-xs text-black mt-1">Keep improving!</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Membership Timeline */}
-          <Card>
+          <Card className="rounded-none border border-neutral-200 shadow-none">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-2xl font-serif font-normal">
                 <Clock className="w-5 h-5" />
                 Membership Timeline
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                  <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />
+                <div className="flex items-center space-x-4 p-4 bg-neutral-50 rounded-none border border-neutral-200">
+                  <CheckCircle className="h-6 w-6 text-black flex-shrink-0" />
                   <div className="flex-1">
-                    <p className="font-medium text-green-900">
+                    <p className="font-medium text-black">
                       Membership Activated
                     </p>
-                    <p className="text-sm text-green-700">
+                    <p className="text-sm text-black">
                       {new Date(membershipData.startDate).toLocaleDateString(
                         "en-IN",
                         {
@@ -706,28 +591,28 @@ export default function MembershipPage() {
                       )}
                     </p>
                   </div>
-                  <Badge className="bg-green-100 text-green-800">
+                  <Badge className="rounded-none font-mono text-[10px] uppercase tracking-wider bg-neutral-50 text-black">
                     Completed
                   </Badge>
                 </div>
                 <div
                   className={cn(
-                    "flex items-center space-x-4 p-4 rounded-lg border",
+                    "flex items-center space-x-4 p-4 rounded-none border",
                     isExpired
-                      ? "bg-red-50 border-red-200"
+                      ? "bg-neutral-50 border-neutral-200"
                       : isExpiringSoon
-                      ? "bg-orange-50 border-orange-200"
-                      : "bg-blue-50 border-blue-200"
+                      ? "bg-neutral-50 border-neutral-200"
+                      : "bg-neutral-50 border-neutral-200"
                   )}
                 >
                   <Calendar
                     className={cn(
                       "h-6 w-6 flex-shrink-0",
                       isExpired
-                        ? "text-red-600"
+                        ? "text-black"
                         : isExpiringSoon
-                        ? "text-orange-600"
-                        : "text-blue-600"
+                        ? "text-black"
+                        : "text-black"
                     )}
                   />
                   <div className="flex-1">
@@ -735,10 +620,10 @@ export default function MembershipPage() {
                       className={cn(
                         "font-medium",
                         isExpired
-                          ? "text-red-900"
+                          ? "text-black"
                           : isExpiringSoon
-                          ? "text-orange-900"
-                          : "text-blue-900"
+                          ? "text-black"
+                          : "text-black"
                       )}
                     >
                       {isExpired ? "Membership Expired" : "Renewal Due"}
@@ -747,10 +632,10 @@ export default function MembershipPage() {
                       className={cn(
                         "text-sm",
                         isExpired
-                          ? "text-red-700"
+                          ? "text-black"
                           : isExpiringSoon
-                          ? "text-orange-700"
-                          : "text-blue-700"
+                          ? "text-black"
+                          : "text-black"
                       )}
                     >
                       {endDate.toLocaleDateString("en-IN", {
@@ -761,12 +646,12 @@ export default function MembershipPage() {
                     </p>
                   </div>
                   <Badge
-                    className={cn(
+                    className={cn("rounded-none font-mono text-[10px] uppercase tracking-wider", 
                       isExpired
-                        ? "bg-red-100 text-red-800"
+                        ? "bg-neutral-100 text-black"
                         : isExpiringSoon
-                        ? "bg-orange-100 text-orange-800"
-                        : "bg-blue-100 text-blue-800"
+                        ? "bg-neutral-100 text-black"
+                        : "bg-neutral-100 text-black"
                     )}
                   >
                     {isExpired
@@ -786,11 +671,11 @@ export default function MembershipPage() {
             {benefits.map((benefit, index) => (
               <Card
                 key={index}
-                className={cn(
-                  "hover:shadow-md transition-all duration-200",
+                className={cn("rounded-none border border-neutral-200 shadow-none", 
+                  "hover:shadow-none transition-all duration-200",
                   benefit.used && !isExpired
-                    ? "border-green-200 bg-green-50/30"
-                    : "hover:border-primary/30",
+                    ? "border-neutral-200 bg-neutral-50"
+                    : "hover:border-black",
                   isExpired && "opacity-60"
                 )}
               >
@@ -798,54 +683,54 @@ export default function MembershipPage() {
                   <div className="flex items-start space-x-4">
                     <div
                       className={cn(
-                        "p-3 rounded-lg flex-shrink-0",
+                        "p-3 rounded-none flex-shrink-0",
                         benefit.used && !isExpired
-                          ? "bg-green-100"
-                          : "bg-gray-100"
+                          ? "bg-black"
+                          : "bg-neutral-100"
                       )}
                     >
                       <benefit.icon
                         className={cn(
                           "h-6 w-6",
                           benefit.used && !isExpired
-                            ? "text-green-600"
-                            : "text-gray-600"
+                            ? "text-white"
+                            : "text-neutral-500"
                         )}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between mb-2">
                         <div>
-                          <h3 className="font-semibold text-gray-900 mb-1">
+                          <h3 className="text-lg font-serif font-normal text-black mb-1">
                             {benefit.title}
                           </h3>
-                          <Badge variant="outline" className="text-xs mb-2">
+                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider mb-2">
                             {benefit.category}
                           </Badge>
                         </div>
                         {benefit.used && !isExpired && (
-                          <Badge className="bg-green-100 text-green-800 text-xs flex-shrink-0">
+                          <Badge className="rounded-none font-mono text-[10px] uppercase tracking-wider bg-neutral-50 text-black text-xs flex-shrink-0">
                             Active
                           </Badge>
                         )}
                         {isExpired && (
                           <Badge
                             variant="outline"
-                            className="text-xs flex-shrink-0 border-red-200 text-red-600"
+                            className="rounded-none font-mono text-[10px] uppercase tracking-wider text-xs flex-shrink-0 border-neutral-200 text-black"
                           >
                             Expired
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 mb-3">
+                      <p className="text-sm text-neutral-600 mb-3">
                         {benefit.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-primary">
+                        <span className="text-sm font-medium text-black">
                           {benefit.value}
                         </span>
                         {!benefit.used && !isExpired && (
-                          <Button variant="outline" size="sm">
+                          <Button className="rounded-none border-black text-black hover:bg-black hover:!text-white font-mono text-xs uppercase tracking-wider" variant="outline" size="sm">
                             Activate
                           </Button>
                         )}
@@ -868,53 +753,41 @@ export default function MembershipPage() {
               return (
                 <Card
                   key={index}
-                  className={cn(
-                    "relative overflow-hidden transition-all duration-200 hover:shadow-lg",
-                    tier.popular && "border-primary shadow-lg scale-105",
-                    isCurrent && "border-green-500 bg-green-50/30"
+                  className={cn("rounded-none border border-neutral-200 shadow-none", 
+                    "relative overflow-hidden transition-all duration-200 hover:shadow-none",
+                    tier.popular && "border-black shadow-none",
+                    isCurrent && "border-black bg-neutral-50"
                   )}
                 >
-                  {tier.popular && (
-                    <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-purple-600 text-white px-3 py-1 text-xs font-medium">
-                      Most Popular
-                    </div>
-                  )}
-                  {isCurrent && (
-                    <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 text-xs font-medium">
-                      Current Plan
+                  {(isCurrent || tier.popular) && (
+                    <div className="absolute top-0 right-0 bg-black text-white px-3 py-1 font-mono text-[10px] uppercase tracking-wider">
+                      {isCurrent ? "Current Plan" : "Most Popular"}
                     </div>
                   )}
                   <CardHeader className="text-center pb-4">
-                    <div
-                      className={cn(
-                        "w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3",
-                        `bg-${tier.color}-100`
-                      )}
-                    >
-                      <IconComponent
-                        className={cn("w-6 h-6", `text-${tier.color}-600`)}
-                      />
+                    <div className="w-12 h-12 bg-black flex items-center justify-center mx-auto mb-3">
+                      <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <CardTitle className="text-xl">{tier.name}</CardTitle>
+                    <CardTitle className="text-2xl font-serif font-normal">{tier.name}</CardTitle>
                     <div className="space-y-2">
                       <div className="flex items-center justify-center gap-2">
-                        <span className="text-sm text-gray-500 line-through">
+                        <span className="text-sm text-neutral-500 line-through">
                           ₹{tier.originalPrice.toLocaleString()}
                         </span>
                         <Badge
                           variant="outline"
-                          className="text-green-600 border-green-600"
+                          className="rounded-none font-mono text-[10px] uppercase tracking-wider text-black border-black"
                         >
                           {tier.savings}
                         </Badge>
                       </div>
-                      <div className="text-3xl font-bold text-primary">
+                      <div className="text-3xl font-serif font-normal text-black">
                         ₹{tier.price.toLocaleString()}
-                        <span className="text-sm font-normal text-gray-600">
+                        <span className="text-sm font-normal text-neutral-600">
                           /{tier.period}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-neutral-600">
                         {tier.description}
                       </p>
                     </div>
@@ -926,21 +799,19 @@ export default function MembershipPage() {
                           key={featureIndex}
                           className="flex items-start space-x-2"
                         >
-                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">
+                          <CheckCircle className="h-4 w-4 text-black mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-neutral-700">
                             {feature}
                           </span>
                         </li>
                       ))}
                     </ul>
                     <Button
-                      className={cn(
-                        "w-full",
+                      className={cn("rounded-none bg-black !text-white hover:bg-neutral-800 font-mono text-xs uppercase tracking-wider", 
+                        "w-full whitespace-normal h-auto py-3 leading-snug text-center",
                         isCurrent
-                          ? "bg-green-600 hover:bg-green-700"
-                          : tier.popular
-                          ? "bg-black hover:bg-gray-800 text-white"
-                          : "bg-gray-600 hover:bg-gray-700"
+                          ? "bg-neutral-200 !text-neutral-600 hover:bg-neutral-200"
+                          : "bg-black hover:bg-neutral-800"
                       )}
                       disabled={isCurrent}
                       asChild={!isCurrent}
@@ -971,9 +842,9 @@ export default function MembershipPage() {
         </TabsContent>
 
         <TabsContent value="billing" className="space-y-6">
-          <Card>
+          <Card className="rounded-none border border-neutral-200 shadow-none">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-2xl font-serif font-normal">
                 <CreditCard className="w-5 h-5" />
                 Billing History
               </CardTitle>
@@ -981,21 +852,21 @@ export default function MembershipPage() {
             <CardContent>
               {invoices.length === 0 ? (
                 <div className="text-center py-8">
-                  <CreditCard className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500">No billing history available</p>
+                  <CreditCard className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                  <p className="text-neutral-500">No billing history available</p>
                 </div>
               ) : (
                 <div className="space-y-4">
                   {invoices.map((invoice) => (
                     <div
                       key={invoice.id}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-none hover:bg-neutral-50 transition-colors"
                     >
                       <div className="space-y-1">
-                        <p className="font-medium text-gray-900">
+                        <p className="font-medium text-black">
                           {invoice.description}
                         </p>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
+                        <div className="flex items-center space-x-4 text-sm text-neutral-600">
                           <span className="flex items-center gap-1">
                             <CreditCard className="w-3 h-3" />
                             {invoice.id}
@@ -1015,18 +886,18 @@ export default function MembershipPage() {
                       </div>
                       <div className="flex items-center space-x-4 mt-3 sm:mt-0">
                         <div className="text-right">
-                          <p className="font-semibold text-gray-900">
+                          <p className="font-semibold text-black">
                             ₹{invoice.amount.toLocaleString()}{" "}
                             {invoice.currency.toUpperCase()}
                           </p>
                           <Badge
-                            className={cn(
+                            className={cn("rounded-none font-mono text-[10px] uppercase tracking-wider", 
                               "text-xs",
                               invoice.status === "paid"
-                                ? "bg-green-100 text-green-800"
+                                ? "bg-neutral-100 text-black"
                                 : invoice.status === "pending"
-                                ? "bg-yellow-100 text-yellow-800"
-                                : "bg-red-100 text-red-800"
+                                ? "bg-neutral-100 text-black"
+                                : "bg-neutral-100 text-black"
                             )}
                           >
                             <CheckCircle className="w-3 h-3 mr-1" />
@@ -1034,7 +905,7 @@ export default function MembershipPage() {
                               invoice.status.slice(1)}
                           </Badge>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button className="rounded-none border-black text-black hover:bg-black hover:!text-white font-mono text-xs uppercase tracking-wider" variant="outline" size="sm">
                           <Download className="mr-2 h-4 w-4" />
                           Download
                         </Button>

@@ -62,7 +62,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden no-scrollbar bg-black text-white">
+    <section className="relative w-full h-screen min-h-screen max-h-screen flex items-center justify-center overflow-hidden no-scrollbar bg-black text-white">
       {/* Fullscreen Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="relative w-full h-full overflow-hidden">
@@ -104,8 +104,9 @@ export function Hero() {
         <p data-reveal style={{ "--reveal-delay": "260ms" } as CSSProperties} className="text-lg sm:text-xl md:text-2xl text-white font-sans font-normal mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
           The Black Silk is a not-for-profit organization working toward the ethical
           development and judicious use of digital technologies for the greater
-          good, bringing together academicians, policymakers, lawmakers, and expert
-          professionals to shape practical standards for the digital world.
+          good.
+          {/* , bringing together academicians, policymakers, lawmakers, and expert
+          professionals to shape practical standards for the digital world. */}
         </p>
 
         {/* Call to Action Buttons */}

@@ -203,6 +203,9 @@ export const authOptions: NextAuthOptions = {
           token.hasMembership = hasActiveMembership(freshUser);
           token.onboardingCompleted = hasCompletedOnboarding(freshUser);
           token.role = freshUser.role;
+          // Keep name and profile picture in sync after Settings changes
+          token.name = freshUser.name;
+          token.picture = freshUser.image;
         }
       }
 

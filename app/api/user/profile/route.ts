@@ -1,86 +1,91 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import type { Session } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+const profileSelect = {
+  id: true,
+  name: true,
+  email: true,
+  image: true,
+  phone: true,
+  organization: true,
+  position: true,
+  bio: true,
+  createdAt: true,
+} as const;
 
-export async function GET(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions) as { user?: { id?: string; name?: string; email?: string; image?: string } } | null;
+// Editable fields and their maximum lengths. Email is the login and is not
+// editable here; the image has its own endpoint (/api/user/avatar).
+const LIMITS = {
+  name: 100,
+  phone: 30,
+  organization: 150,
+  position: 150,
+  bio: 1000,
+} as const;
 
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+type EditableField = keyof typeof LIMITS;
 
-    // Mock profile data - replace with actual database query
-    const mockProfile = {
-      id: session.user.id,
-      name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
-      bio: "Legal technology enthusiast with 5+ years of experience",
-      organization: "Tech Law Firm",
-      position: "Senior Associate",
-      experience: "6-10",
-      location: "Mumbai, India",
-      interests: ["AI & Machine Learning", "Data Privacy", "Legal Technology"],
-      goals: "Stay updated on legal tech trends and network with professionals",
-      onboardingCompleted: true,
-      memberSince: new Date("2023-01-15"),
-      eventsAttended: 12,
-      committeeMemberships: 3,
-      publicationsRead: 28,
-    };
-
-    return NextResponse.json(mockProfile);
-  } catch (error) {
-    console.error("Profile fetch error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch profile" },
-      { status: 500 }
-    );
+export async function GET() {
+  const session = (await getServerSession(authOptions)) as Session | null;
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: profileSelect,
+  });
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(user);
 }
 
 export async function PUT(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const profileData = await request.json();
-
-    // Here you would update the profile in your database
-    console.log("Updating profile for user", session.user.id, ":", profileData);
-
-    // In a real app:
-    /*
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: {
-        name: profileData.name,
-        bio: profileData.bio,
-        organization: profileData.organization,
-        position: profileData.position,
-        location: profileData.location,
-        website: profileData.website,
-        linkedin: profileData.linkedin,
-        twitter: profileData.twitter,
-      }
-    })
-    */
-
-    return NextResponse.json({ message: "Profile updated successfully" });
-  } catch (error) {
-    console.error("Profile update error:", error);
-    return NextResponse.json(
-      { error: "Failed to update profile" },
-      { status: 500 }
-    );
+  const session = (await getServerSession(authOptions)) as Session | null;
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
+
+  const data: Partial<Record<EditableField, string | null>> = {};
+  for (const field of Object.keys(LIMITS) as EditableField[]) {
+    if (!(field in body)) continue;
+    const raw = body[field];
+    if (raw !== null && typeof raw !== "string") {
+      return NextResponse.json({ error: `Invalid ${field}` }, { status: 400 });
+    }
+    const value = typeof raw === "string" ? raw.trim() : "";
+    if (value.length > LIMITS[field]) {
+      return NextResponse.json(
+        { error: `${field} must be at most ${LIMITS[field]} characters` },
+        { status: 400 }
+      );
+    }
+    data[field] = value === "" ? null : value;
+  }
+
+  if ("name" in data && !data.name) {
+    return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  }
+
+  const user = await prisma.user.update({
+    where: { id: session.user.id },
+    data,
+    select: profileSelect,
+  });
+
+  return NextResponse.json(user);
 }
