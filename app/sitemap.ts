@@ -18,8 +18,7 @@ const routes: Entry[] = [
   // Community Section
   ["/community/membership", "monthly", 0.9],
   ["/community/committees", "weekly", 0.7],
-  ["/community/directory", "weekly", 0.6],
-  ["/forum", "daily", 0.6],
+  ["/forum", "monthly", 0.6],
 
   // Events
   ["/events", "weekly", 0.9],
@@ -30,13 +29,8 @@ const routes: Entry[] = [
   ["/knowledge-hub/fact-sheets", "weekly", 0.7],
   ["/knowledge-hub/newsletter", "weekly", 0.7],
 
-  // Careers
-  ["/careers/jobs", "weekly", 0.7],
-  ["/careers/mentorship", "monthly", 0.6],
-
   // Get Involved & Partnerships
   ["/get-involved/contact", "monthly", 0.6],
-  ["/get-involved/volunteer", "monthly", 0.6],
   ["/get-involved/partnerships", "monthly", 0.6],
   ["/partnerships/sponsor", "monthly", 0.6],
   ["/partnerships/global-sponsor", "monthly", 0.5],

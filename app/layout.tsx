@@ -5,6 +5,7 @@ import { DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { Providers } from "@/components/providers";
 import { Analytics } from "@/components/analytics";
 import { MainLoader } from "@/components/main-loader";
@@ -44,7 +45,6 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${dmSerifDisplay.variable}`}
       suppressHydrationWarning
-      data-scroll-behavior="smooth"
     >
       <head>
         {/* Google Analytics */}
@@ -123,6 +123,7 @@ export default function RootLayout({
         <Suspense fallback={<MainLoader />}>
           <Providers>
             <MainLoader isInitialSiteLoader />
+            <SmoothScroll />
             <Navbar />
             {children}
             <Footer />

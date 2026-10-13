@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AccountCta } from "@/components/account-cta";
 
 export const metadata = generateMetadata({
   title: "Membership Tiers & Pricing — The Black Silk",
@@ -15,6 +16,30 @@ export const metadata = generateMetadata({
     "The Black Silk brings together lawyers, in-house counsel, government professionals, academicians, and technology experts to shape the ethical standards governing digital technology in India.",
   canonical: "https://theblacksilk.org/community/membership",
 });
+
+// What a free (no-membership) account gets, shown in the "Free Account" band
+const freeAccountIncludes = [
+  {
+    title: "Your profile",
+    description:
+      "Set up your professional profile and areas of interest during a short onboarding.",
+  },
+  {
+    title: "Community forum",
+    description:
+      "Start and join discussions on law, technology, ethics, and digital policy.",
+  },
+  {
+    title: "The member panel",
+    description:
+      "Explore the dashboard, including events, committees, and publications.",
+  },
+  {
+    title: "Upgrade anytime",
+    description:
+      "Choose a membership tier later to unlock the full set of member benefits.",
+  },
+];
 
 const individualTiers = [
   {
@@ -518,6 +543,50 @@ export default function MembershipPage() {
               </div>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* Free Account: try the platform before choosing a membership */}
+      <section className="py-20 lg:py-24 bg-black text-white border-b border-neutral-800">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-3">
+                Not Ready to Choose a Tier?
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight mb-6">
+                Start With a Free Account
+              </h2>
+              <p className="text-neutral-300 text-base sm:text-lg font-sans font-light leading-relaxed mb-8 max-w-xl">
+                Create a free account to explore The Black Silk platform and
+                the member panel. No payment is required, and you can upgrade to
+                a membership whenever you&apos;re ready.
+              </p>
+              <AccountCta
+                tone="dark"
+                signedInHref="/dashboard"
+                signedInLabel="Go to Your Dashboard"
+              />
+            </div>
+
+            <ul className="border border-neutral-800 divide-y divide-neutral-800">
+              {freeAccountIncludes.map((item) => (
+                <li key={item.title} className="flex items-start gap-4 p-6">
+                  <span className="w-6 h-6 bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check className="h-3.5 w-3.5 text-black" />
+                  </span>
+                  <div>
+                    <p className="font-serif text-lg text-white mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-neutral-400 font-sans leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,7 @@
-import { Scale, ScrollText, Landmark } from "lucide-react";
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import { Scale, ScrollText, Landmark, ArrowRight } from "lucide-react";
+import { ScalesIllustration } from "@/components/home/scales-illustration";
 
 export function IntroSection() {
   const pillars = [
@@ -8,6 +11,8 @@ export function IntroSection() {
         "We convene stakeholders for frank, structured conversations on emerging digital technologies and the ethical and legal questions they raise.",
       icon: Scale,
       index: "01",
+      href: "/events",
+      cta: "Watch the discussions",
     },
     {
       title: "Publications and Research",
@@ -15,6 +20,8 @@ export function IntroSection() {
         "We publish articles and research papers that translate our discussions into practical guidance for the field.",
       icon: ScrollText,
       index: "02",
+      href: "/knowledge-hub",
+      cta: "Read our work",
     },
     {
       title: "National Engagement",
@@ -22,14 +29,16 @@ export function IntroSection() {
         "We address the ethical and legal challenges of India's digital technology landscape, working with stakeholders across sectors and regions.",
       icon: Landmark,
       index: "03",
+      href: "/about/impact",
+      cta: "See our impact",
     },
   ];
 
   return (
     <section className="bg-white text-black py-20 lg:py-28 border-b border-neutral-200">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="site-container">
         {/* Intro Block */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
+        <div data-reveal className="max-w-4xl mx-auto text-center mb-20">
           <p className="text-xl md:text-2xl lg:text-3xl font-serif !text-black leading-relaxed font-normal">
             “We hold public consultations and structured discussions on the hardest
             questions in digital technology, from data protection to artificial
@@ -41,7 +50,10 @@ export function IntroSection() {
         </div>
 
         {/* "Why This Matters" Feature Card */}
-        <div className="bg-black text-white p-8 md:p-14 mb-24 border border-black shadow-lg">
+        <div
+          data-reveal
+          className="draw-on-reveal bg-black text-white p-8 md:p-14 mb-24 border border-black grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-10"
+        >
           <div className="max-w-3xl">
             <span className="text-xs uppercase tracking-widest font-mono !text-neutral-400 block mb-4">
               The Mission
@@ -55,11 +67,12 @@ export function IntroSection() {
               Black Silk exists to change that.
             </p>
           </div>
+          <ScalesIllustration className="w-40 md:w-56 lg:w-64 mx-auto text-white" />
         </div>
 
         {/* "What We Do" Section */}
         <div>
-          <div className="text-center md:text-left mb-12">
+          <div data-reveal className="text-center md:text-left mb-12">
             <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-2">
               Our Core Functions
             </span>
@@ -69,11 +82,14 @@ export function IntroSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pillars.map((pillar) => {
+            {pillars.map((pillar, i) => {
               const Icon = pillar.icon;
               return (
-                <div
+                <Link
                   key={pillar.title}
+                  href={pillar.href}
+                  data-reveal
+                  style={{ "--reveal-delay": `${i * 120}ms` } as CSSProperties}
                   className="border border-black p-8 bg-white flex flex-col justify-between hover:bg-neutral-50 transition-colors group"
                 >
                   <div>
@@ -92,7 +108,11 @@ export function IntroSection() {
                       {pillar.description}
                     </p>
                   </div>
-                </div>
+                  <span className="mt-8 inline-flex items-center font-mono text-xs uppercase tracking-wider text-black">
+                    {pillar.cta}
+                    <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
               );
             })}
           </div>

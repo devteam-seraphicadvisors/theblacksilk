@@ -228,6 +228,11 @@ const committees = [
   },
 ];
 
+// Hidden on committee cards until real figures and schedules are available.
+// Set to true to show them again.
+const SHOW_COMMITTEE_STATS = false; // members, publications, established year
+const SHOW_NEXT_MEETING = false;
+
 const getStatusColor = (status: string) => {
   switch (status) {
     case "Accepting Members":
@@ -299,6 +304,7 @@ export default function CommitteesPage() {
 
                     <CardContent className="space-y-6 pt-0">
                       {/* Committee Stats */}
+                      {SHOW_COMMITTEE_STATS && (
                       <div className="grid grid-cols-3 gap-3">
                         <div className="text-center p-3 bg-neutral-50 border border-neutral-200">
                           <div className="flex items-center justify-center mb-1.5">
@@ -334,6 +340,7 @@ export default function CommitteesPage() {
                           </p>
                         </div>
                       </div>
+                      )}
 
                       {/* Committee Details */}
                       <div className="space-y-4 text-sm">
@@ -363,14 +370,16 @@ export default function CommitteesPage() {
                           </div>
                         </div>
 
-                        <div>
-                          <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">
-                            Next Meeting
-                          </p>
-                          <p className="text-sm text-black font-medium">
-                            {committee.nextMeeting}
-                          </p>
-                        </div>
+                        {SHOW_NEXT_MEETING && (
+                          <div>
+                            <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">
+                              Next Meeting
+                            </p>
+                            <p className="text-sm text-black font-medium">
+                              {committee.nextMeeting}
+                            </p>
+                          </div>
+                        )}
                       </div>
 
                       {/* Action Buttons */}

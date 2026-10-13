@@ -20,6 +20,7 @@ import {
   Settings,
   CreditCard,
   MessageSquare,
+  MessagesSquare,
   Menu,
   LogOut,
   Home,
@@ -51,6 +52,11 @@ const sidebarItems = [
     title: "Publications",
     href: "/dashboard/publications",
     icon: BookOpen,
+  },
+  {
+    title: "Forum",
+    href: "/dashboard/forum",
+    icon: MessagesSquare,
   },
   {
     title: "Messages",

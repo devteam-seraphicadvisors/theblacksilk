@@ -1,28 +1,83 @@
-import { generateMetadata } from "@/lib/seo"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { PartnershipSidebar } from "@/components/partnership-sidebar"
-import { Award, Users, Eye, TrendingUp, CheckCircle, Star, ArrowRight, Target, Megaphone, Network } from "lucide-react"
+import { Suspense } from "react"
 import Link from "next/link"
-import Image from "next/image"
+import { generateMetadata } from "@/lib/seo"
+import { generateFAQSchema } from "@/lib/json-ld"
+import { Button } from "@/components/ui/button"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { SponsorshipInquiryForm } from "@/components/sponsorship-inquiry-form"
+import {
+  Award,
+  Users,
+  Mic,
+  Landmark,
+  Network,
+  FileText,
+  Check,
+  ArrowRight,
+  ArrowUpRight,
+  Mail,
+  PhoneCall,
+  FileSignature,
+  Rocket,
+} from "lucide-react"
 
 export const metadata = generateMetadata({
   title: "Become A Sponsor - The Black Silk",
   description:
-    "Support The Black Silk's mission and gain valuable brand visibility. Explore our sponsorship packages and benefits.",
+    "Sponsor The Black Silk and support the ethical development of digital technology. Explore annual sponsorship packages for organizations that want to engage with India's legal, policy, and technology community.",
   canonical: "https://theblacksilk.org/partnerships/sponsor",
 })
 
-const sponsorshipTiers = [
+const reasons = [
   {
-    name: "Bronze Sponsor",
+    icon: Users,
+    title: "Reach Decision-Makers",
+    description:
+      "Engage academicians, policymakers, lawmakers, and senior practitioners who shape how India governs digital technology.",
+  },
+  {
+    icon: Landmark,
+    title: "Thought Leadership",
+    description:
+      "Be associated with structured consultations and roundtables on the hardest questions in digital policy.",
+  },
+  {
+    icon: Mic,
+    title: "Events & Podcasts",
+    description:
+      "Gain visibility across our events, podcast episodes, and roundtables, with speaking opportunities at higher tiers.",
+  },
+  {
+    icon: Award,
+    title: "Support Ethical Technology",
+    description:
+      "Back a not-for-profit working toward the ethical development and judicious use of digital technologies for the greater good.",
+  },
+  {
+    icon: Network,
+    title: "Meaningful Networking",
+    description:
+      "Build relationships with leaders across law, government, academia, and industry through our community.",
+  },
+  {
+    icon: FileText,
+    title: "Content Collaboration",
+    description:
+      "Co-create research, publications, and events with our team at the Gold and Platinum levels.",
+  },
+]
+
+const tiers = [
+  {
+    id: "bronze",
+    name: "Bronze",
     price: "₹50,000",
-    duration: "per year",
-    color: "amber",
+    tagline: "Basic brand visibility and community recognition",
     popular: false,
     benefits: [
       "Logo on website footer",
@@ -31,13 +86,12 @@ const sponsorshipTiers = [
       "Event program listing",
       "Certificate of partnership",
     ],
-    features: ["Basic brand visibility", "Community recognition", "Networking opportunities"],
   },
   {
-    name: "Silver Sponsor",
+    id: "silver",
+    name: "Silver",
     price: "₹1,25,000",
-    duration: "per year",
-    color: "gray",
+    tagline: "Enhanced visibility and a thought leadership platform",
     popular: true,
     benefits: [
       "Logo on website header",
@@ -48,13 +102,12 @@ const sponsorshipTiers = [
       "Complimentary event tickets (2)",
       "Quarterly impact report",
     ],
-    features: ["Enhanced brand visibility", "Thought leadership platform", "Direct community engagement"],
   },
   {
-    name: "Gold Sponsor",
+    id: "gold",
+    name: "Gold",
     price: "₹2,50,000",
-    duration: "per year",
-    color: "yellow",
+    tagline: "Premium visibility and strategic partnership benefits",
     popular: false,
     benefits: [
       "Premium logo placement",
@@ -67,13 +120,12 @@ const sponsorshipTiers = [
       "Co-branded content opportunities",
       "Advisory board invitation",
     ],
-    features: ["Premium brand visibility", "Strategic partnership benefits", "Exclusive networking access"],
   },
   {
-    name: "Platinum Sponsor",
+    id: "platinum",
+    name: "Platinum",
     price: "₹5,00,000",
-    duration: "per year",
-    color: "purple",
+    tagline: "Maximum visibility and an exclusive partnership",
     popular: false,
     benefits: [
       "Exclusive logo placement",
@@ -87,326 +139,372 @@ const sponsorshipTiers = [
       "Advisory board membership",
       "Custom partnership benefits",
     ],
-    features: ["Maximum brand visibility", "Strategic partnership", "Exclusive benefits package"],
   },
 ]
 
-const sponsorshipBenefits = [
+const steps = [
   {
-    icon: Eye,
-    title: "Brand Visibility",
-    description: "Gain exposure to our community of 5,000+ legal professionals, technologists, and policymakers",
+    icon: Mail,
+    title: "Send an Inquiry",
+    description: "Tell us about your organization and the tier or goals you have in mind.",
   },
   {
-    icon: Users,
-    title: "Thought Leadership",
-    description: "Position your organization as a thought leader in the legal technology space",
+    icon: PhoneCall,
+    title: "Discovery Call",
+    description: "Our partnerships team gets in touch to understand your objectives.",
   },
   {
-    icon: Network,
-    title: "Networking Opportunities",
-    description: "Connect with industry leaders, decision-makers, and potential clients",
+    icon: FileSignature,
+    title: "Tailored Proposal",
+    description: "We share a proposal and agreement covering benefits, timelines, and terms.",
   },
   {
-    icon: TrendingUp,
-    title: "Business Growth",
-    description: "Generate leads and business opportunities through our engaged community",
-  },
-  {
-    icon: Target,
-    title: "Targeted Audience",
-    description: "Reach a highly targeted audience of legal and technology professionals",
-  },
-  {
-    icon: Megaphone,
-    title: "Content Amplification",
-    description: "Amplify your content and messaging through our established channels",
+    icon: Rocket,
+    title: "Onboarding & Activation",
+    description: "We collect your brand assets and start delivering your sponsorship benefits.",
   },
 ]
 
-const currentSponsors = [
+const faqs = [
   {
-    name: "LegalTech Solutions",
-    tier: "Platinum",
-    logo: "/images/sponsor-legaltech.jpg",
-    testimonial:
-      "Partnering with The Black Silk has significantly increased our brand visibility in the legal tech community.",
+    question: "How long does a sponsorship last?",
+    answer:
+      "All packages are annual. Before your term ends, our team will reach out to review results and discuss renewal.",
   },
   {
-    name: "AI Legal Systems",
-    tier: "Gold",
-    logo: "/images/sponsor-ai-legal.jpg",
-    testimonial: "The networking opportunities and thought leadership platform have been invaluable for our growth.",
+    question: "Can we customise a package?",
+    answer:
+      "Yes. If none of the tiers fits exactly, choose \"Not sure yet / custom package\" in the inquiry form and describe what you need. We will tailor a proposal around your goals.",
   },
   {
-    name: "Digital Law Firm",
-    tier: "Silver",
-    logo: "/images/sponsor-digital-law.jpg",
-    testimonial: "Excellent ROI on our sponsorship investment. Highly recommend to other legal tech companies.",
+    question: "Are taxes included in the prices shown?",
+    answer:
+      "Prices shown are the annual sponsorship amounts. Applicable taxes, such as GST, will be confirmed in your sponsorship proposal.",
+  },
+  {
+    question: "What do you need from us to get started?",
+    answer:
+      "After the agreement is signed, we will ask for your logo files, brand guidelines, and a point of contact so we can begin delivering your benefits.",
+  },
+  {
+    question: "Can we sponsor a specific event instead?",
+    answer:
+      "Yes. For sponsorship of our annual summit and other flagship events, see Conference Sponsorship, or mention the event in your inquiry.",
+  },
+]
+
+const otherWays = [
+  {
+    title: "Global Sponsor",
+    description: "Our premier, exclusive corporate partnership.",
+    href: "/partnerships/global-sponsor",
+  },
+  {
+    title: "Conference Sponsorship",
+    description: "Sponsor our annual summit and flagship events.",
+    href: "/partnerships/conference-sponsorship",
+  },
+  {
+    title: "Allied Organizations",
+    description: "Join our network of allied institutions.",
+    href: "/partnerships/allied-organizations",
+  },
+  {
+    title: "Strategic Partnerships",
+    description: "Collaborate on research, policy, and programs.",
+    href: "/get-involved/partnerships",
   },
 ]
 
 export default function SponsorPage() {
+  const jsonLd = generateFAQSchema(faqs)
+
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-24 bg-black text-white border-b border-neutral-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
-              <Award className="h-3.5 w-3.5 mr-2 text-white" />
-              <span>Sponsorship Opportunities</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">Become A Sponsor</h1>
-            <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto">
-              Support our mission to advance legal technology in India while gaining valuable brand visibility and
-              connecting with industry leaders.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <PartnershipSidebar />
-          </div>
-
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Benefits Overview */}
-            <section>
-              <h2 className="text-3xl font-serif font-normal text-black mb-8">Why Sponsor The Black Silk?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sponsorshipBenefits.map((benefit, index) => (
-                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-12 h-12 bg-black rounded-none flex items-center justify-center mx-auto mb-4">
-                        <benefit.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-black mb-3">{benefit.title}</h3>
-                      <p className="text-neutral-600 text-sm leading-relaxed">{benefit.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <section className="py-24 bg-black text-white border-b border-neutral-800">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center px-3 py-1 bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs uppercase tracking-widest font-mono mb-8">
+                <Award className="h-3.5 w-3.5 mr-2 text-white" />
+                <span>Sponsorship</span>
               </div>
-            </section>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-normal mb-6 text-white tracking-tight">
+                Become A Sponsor
+              </h1>
+              <p className="text-lg md:text-xl text-neutral-300 font-sans font-light leading-relaxed max-w-3xl mx-auto mb-10">
+                Support the ethical development of digital technology and engage
+                with the people shaping India&apos;s legal and policy response to it.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button
+                  asChild
+                  className="bg-white !text-black hover:bg-neutral-200 rounded-none font-mono text-xs uppercase tracking-wider px-8 py-3 h-auto"
+                >
+                  <Link href="#packages">
+                    View Packages
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="bg-transparent border-white text-white hover:bg-white hover:!text-black rounded-none font-mono text-xs uppercase tracking-wider px-8 py-3 h-auto"
+                >
+                  <Link href="#sponsorship-form">Send an Inquiry</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            {/* Sponsorship Tiers */}
-            <section>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-serif font-normal text-black mb-4">Sponsorship Packages</h2>
+        {/* Why Sponsor */}
+        <section className="py-24 bg-neutral-50 border-b border-neutral-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="max-w-2xl mb-16">
+                <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                  Why Sponsor
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black tracking-tight mb-4">
+                  Why Sponsor The Black Silk
+                </h2>
                 <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed">
-                  Choose the sponsorship level that best fits your goals and budget
+                  Sponsorship connects your organization with a community working
+                  on how digital technology should be developed, used, and governed.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {sponsorshipTiers.map((tier, index) => (
-                  <Card
-                    key={index}
-                    className={`border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors relative ${
-                      tier.popular ? "ring-2 ring-black" : ""
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reasons.map((reason) => (
+                  <div
+                    key={reason.title}
+                    className="border border-neutral-200 bg-white p-8 hover:border-black transition-colors"
+                  >
+                    <div className="w-12 h-12 bg-black flex items-center justify-center mb-6">
+                      <reason.icon className="h-5 w-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-serif font-normal text-black mb-3">
+                      {reason.title}
+                    </h3>
+                    <p className="text-sm text-neutral-600 font-sans leading-relaxed">
+                      {reason.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sponsorship Packages */}
+        <section id="packages" className="py-24 bg-white border-b border-neutral-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-16">
+                <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                  Annual Packages
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black tracking-tight mb-4">
+                  Sponsorship Packages
+                </h2>
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
+                  Choose the level that fits your goals. Every package can be
+                  tailored to your organization.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                {tiers.map((tier) => (
+                  <div
+                    key={tier.id}
+                    className={`relative flex flex-col p-8 border ${
+                      tier.popular
+                        ? "border-black border-2 bg-white"
+                        : "border-neutral-200 bg-white hover:border-black transition-colors"
                     }`}
                   >
                     {tier.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider px-4 py-1">Most Popular</Badge>
-                      </div>
+                      <span className="absolute -top-3 left-8 bg-black text-white font-mono text-[10px] uppercase tracking-wider px-3 py-1">
+                        Most Popular
+                      </span>
                     )}
-
-                    <CardHeader className="text-center pb-4">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Star className={`h-5 w-5 text-${tier.color}-500`} />
-                        <CardTitle className="text-xl font-serif font-normal text-black">{tier.name}</CardTitle>
-                      </div>
-                      <div className="text-3xl font-serif font-normal text-black">
+                    <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2">
+                      {tier.name} Sponsor
+                    </span>
+                    <div className="flex items-baseline gap-1 mb-3">
+                      <span className="text-4xl font-serif font-normal text-black">
                         {tier.price}
-                        <span className="text-lg font-normal text-neutral-600">/{tier.duration}</span>
-                      </div>
-                    </CardHeader>
-
-                    <CardContent className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-black mb-3">Key Features</h4>
-                        <ul className="space-y-2">
-                          {tier.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-center text-sm text-neutral-600">
-                              <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-black mb-3">Benefits Included</h4>
-                        <ul className="space-y-2">
-                          {tier.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start text-sm text-neutral-600">
-                              <CheckCircle className="h-4 w-4 text-black mr-3 flex-shrink-0 mt-0.5" />
-                              {benefit}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <Button
-                        className="w-full bg-black hover:bg-neutral-800 !text-white rounded-none font-mono text-xs uppercase tracking-wider"
-                        asChild
-                      >
-                        <Link href="#sponsorship-form">
-                          Choose {tier.name}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
-            {/* Current Sponsors */}
-            <section>
-              <h2 className="text-3xl font-serif font-normal text-black mb-8">Our Current Sponsors</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {currentSponsors.map((sponsor, index) => (
-                  <Card key={index} className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-neutral-100 rounded-none flex items-center justify-center">
-                          <Image
-                            src={sponsor.logo || "/placeholder.svg"}
-                            alt={sponsor.name}
-                            width={32}
-                            height={32}
-                            className="rounded-none accent-black"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-black">{sponsor.name}</h3>
-                          <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
-                            {sponsor.tier} Sponsor
-                          </Badge>
-                        </div>
-                      </div>
-                      <p className="text-sm text-neutral-600 italic">"{sponsor.testimonial}"</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
-            {/* Sponsorship Form */}
-            <section id="sponsorship-form">
-              <Card className="border border-neutral-200 rounded-none shadow-none">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-serif font-normal text-black text-center">Apply for Sponsorship</CardTitle>
-                  <p className="text-neutral-600 text-center">
-                    Fill out the form below and we'll get in touch to discuss your sponsorship package
-                  </p>
-                </CardHeader>
-                <CardContent className="p-8">
-                  <form className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Name *</label>
-                        <Input
-                          placeholder="Enter your company name"
-                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">
-                          Preferred Sponsorship Tier *
-                        </label>
-                        <Select required>
-                          <SelectTrigger className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black">
-                            <SelectValue placeholder="Select sponsorship tier" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="bronze">Bronze Sponsor - ₹50,000</SelectItem>
-                            <SelectItem value="silver">Silver Sponsor - ₹1,25,000</SelectItem>
-                            <SelectItem value="gold">Gold Sponsor - ₹2,50,000</SelectItem>
-                            <SelectItem value="platinum">Platinum Sponsor - ₹5,00,000</SelectItem>
-                            <SelectItem value="custom">Custom Package</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      </span>
+                      <span className="text-sm text-neutral-500">/ year</span>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Contact Person *</label>
-                        <Input
-                          placeholder="Enter contact person's name"
-                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Email Address *</label>
-                        <Input
-                          type="email"
-                          placeholder="Enter email address"
-                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Phone Number</label>
-                        <Input
-                          type="tel"
-                          placeholder="Enter phone number"
-                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Company Website</label>
-                        <Input
-                          type="url"
-                          placeholder="https://your-company.com"
-                          className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Sponsorship Goals</label>
-                      <Textarea
-                        placeholder="Tell us about your sponsorship goals and what you hope to achieve..."
-                        className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black min-h-[100px]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs uppercase font-mono tracking-wider text-neutral-700 mb-2">Additional Requirements</label>
-                      <Textarea
-                        placeholder="Any specific requirements or custom benefits you'd like to discuss..."
-                        className="rounded-none border-neutral-300 focus:border-black focus:ring-black focus-visible:ring-black min-h-[80px]"
-                      />
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full bg-black hover:bg-neutral-800 !text-white text-base py-3 rounded-none font-mono text-xs uppercase tracking-wider cursor-pointer">
-                      Submit Sponsorship Application
-                      <ArrowRight className="ml-2 h-4 w-4 !text-white" />
-                    </Button>
-
-                    <p className="text-sm text-neutral-500 text-center">
-                      We'll review your application and get back to you within 3 business days.
+                    <p className="text-sm text-neutral-600 font-sans leading-relaxed mb-6 pb-6 border-b border-neutral-200">
+                      {tier.tagline}
                     </p>
-                  </form>
-                </CardContent>
-              </Card>
-            </section>
+                    <ul className="space-y-3 mb-8 flex-1">
+                      {tier.benefits.map((benefit) => (
+                        <li key={benefit} className="flex items-start text-sm text-neutral-700">
+                          <Check className="h-4 w-4 text-black mr-3 mt-0.5 flex-shrink-0" />
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      asChild
+                      className={`w-full rounded-none font-mono text-xs uppercase tracking-wider ${
+                        tier.popular
+                          ? "bg-black hover:bg-neutral-800 !text-white"
+                          : "bg-white border border-black text-black hover:bg-black hover:!text-white"
+                      }`}
+                    >
+                      <Link href={`?tier=${tier.id}#sponsorship-form`}>
+                        Choose {tier.name}
+                      </Link>
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </main>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-24 bg-neutral-50 border-b border-neutral-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                  Process
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black tracking-tight">
+                  How It Works
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {steps.map((step, index) => (
+                  <div key={step.title} className="border border-neutral-200 bg-white p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-12 h-12 bg-black flex items-center justify-center">
+                        <step.icon className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                        Step {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-serif font-normal text-black mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-neutral-600 font-sans leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Inquiry Form */}
+        <section
+          id="sponsorship-form"
+          className="py-24 bg-white border-b border-neutral-200"
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-12">
+                <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                  Get in Touch
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black tracking-tight mb-4">
+                  Sponsorship Inquiry
+                </h2>
+                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed">
+                  Share a few details and our partnerships team will get back to you.
+                </p>
+              </div>
+
+              <div className="border border-neutral-200 p-6 md:p-10">
+                <Suspense fallback={null}>
+                  <SponsorshipInquiryForm
+                    tiers={tiers.map(({ id, name, price }) => ({
+                      id,
+                      name: `${name} Sponsor`,
+                      price,
+                    }))}
+                  />
+                </Suspense>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-200">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="max-w-2xl mb-16">
+              <span className="text-xs uppercase tracking-widest font-mono text-neutral-500 block mb-3">
+                Questions
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-black tracking-tight">
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={faq.question}
+                  value={`faq-${index}`}
+                  className="border border-neutral-200 bg-white px-6 py-2 rounded-none hover:border-black transition-colors data-[state=open]:border-black"
+                >
+                  <AccordionTrigger className="text-left font-serif text-lg sm:text-xl font-medium text-black hover:no-underline py-4">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed pt-2 pb-6 border-t border-neutral-100">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* Other Ways to Partner */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-serif font-normal text-black mb-8">
+                Other Ways to Partner
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {otherWays.map((way) => (
+                  <Link
+                    key={way.href}
+                    href={way.href}
+                    className="group border border-neutral-200 p-6 hover:border-black transition-colors"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-serif font-normal text-black">
+                        {way.title}
+                      </h3>
+                      <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-black transition-colors" />
+                    </div>
+                    <p className="text-sm text-neutral-600 font-sans">
+                      {way.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   )
 }

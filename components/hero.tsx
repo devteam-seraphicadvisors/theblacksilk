@@ -1,8 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
+import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
+
+// Subject areas shown in the scrolling strip at the bottom of the hero
+const focusAreas = [
+  "Artificial Intelligence",
+  "Data Protection",
+  "Cybersecurity",
+  "Digital Evidence",
+  "Fintech",
+  "Blockchain",
+  "Platform Governance",
+  "Digital Rights",
+];
 
 export function Hero() {
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -73,14 +85,23 @@ export function Hero() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 py-16 text-center max-w-5xl">
+      <div className="relative z-10 site-container pt-16 pb-32 text-center">
+        {/* Eyebrow */}
+        <div data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties} className="inline-flex items-center gap-3 px-3 py-1 mb-8 border border-white/30 bg-black/40 backdrop-blur-sm text-neutral-200 text-[11px] sm:text-xs uppercase tracking-[0.25em] font-mono">
+          <span>Ethics</span>
+          <span className="w-1 h-1 bg-white" />
+          <span>Law</span>
+          <span className="w-1 h-1 bg-white" />
+          <span>Technology</span>
+        </div>
+
         {/* Main Heading */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-normal tracking-tight text-white mb-8 leading-[1.05] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+        <h1 data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties} className="text-5xl sm:text-7xl md:text-8xl font-serif font-normal tracking-tight text-white mb-8 leading-[1.05] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
           The Black Silk
         </h1>
 
         {/* Subheading */}
-        <p className="text-lg sm:text-xl md:text-2xl text-white font-sans font-normal mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        <p data-reveal style={{ "--reveal-delay": "260ms" } as CSSProperties} className="text-lg sm:text-xl md:text-2xl text-white font-sans font-normal mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
           The Black Silk is a not-for-profit organization working toward the ethical
           development and judicious use of digital technologies for the greater
           good, bringing together academicians, policymakers, lawmakers, and expert
@@ -88,7 +109,7 @@ export function Hero() {
         </p>
 
         {/* Call to Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div data-reveal style={{ "--reveal-delay": "400ms" } as CSSProperties} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           {/* Primary Button */}
           <Link
             href="/community/membership"
@@ -111,8 +132,30 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Bottom Border Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-neutral-800" />
+      {/* Scroll cue */}
+      <a
+        href="#home-stats"
+        aria-label="Scroll to learn more"
+        className="absolute z-10 bottom-20 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+      >
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <ChevronDown className="h-4 w-4 animate-bounce" />
+      </a>
+
+      {/* Focus areas ticker */}
+      <div className="absolute z-10 bottom-0 left-0 right-0 border-t border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden">
+        <div className="flex w-max animate-marquee py-3.5" aria-hidden="true">
+          {[...focusAreas, ...focusAreas].map((area, i) => (
+            <span
+              key={`${area}-${i}`}
+              className="flex items-center gap-8 pr-8 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-300 whitespace-nowrap"
+            >
+              {area}
+              <span className="w-1 h-1 bg-neutral-500" />
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

@@ -63,8 +63,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Keep #section links clear of the sticky navbar (used by Lenis and native scrolling) */
   html {
-    scroll-behavior: smooth;
+    scroll-padding-top: 64px;
   }
 
   /*
@@ -187,9 +188,11 @@
 }
 
 @layer components {
-  /* Container utilities */
+  /* Container utilities. One width and horizontal padding for the navbar,
+     home page sections, and footer, so content edges line up everywhere. */
+  .site-container,
   .container-responsive {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
   }
 
   /* Button utilities */
@@ -254,4 +257,173 @@ body::-webkit-scrollbar,
 .focus-visible:focus-visible {
   outline: 2px solid #000000;
   outline-offset: 2px;
+}
+
+/* Infinite horizontal ticker (home hero focus areas). The track holds the
+   items twice, so shifting by -50% loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Scroll reveal: elements with [data-reveal] fade up when they enter the
+   viewport. Hidden only once <ScrollReveal /> has mounted (html.reveal-ready),
+   so content stays visible without JavaScript. Stagger with --reveal-delay. */
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Line-art drawing: paths with pathLength="1" draw themselves once their
+   ancestor .draw-on-reveal is revealed. */
+.draw-on-reveal .draw-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.draw-on-reveal.is-revealed .draw-path {
+  animation: draw-line 2.2s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+  animation-delay: var(--draw-delay, 0ms);
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Gentle balance sway for the scales of justice */
+@keyframes scale-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-sway {
+  transform-box: view-box;
+  animation: scale-sway 6s ease-in-out infinite;
+}
+
+/* Outlined display numerals */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--outline-color, #000);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .draw-on-reveal .draw-path,
+  .draw-on-reveal.is-revealed .draw-path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .animate-sway {
+    animation: none;
+  }
+}
+
+/* Gavel: lifts and strikes the sound block on a loop (pivot set inline) */
+@keyframes gavel-strike {
+  0%,
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+  68% {
+    transform: rotate(24deg);
+  }
+  76% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(3deg);
+  }
+  84% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes gavel-impact {
+  0%,
+  75% {
+    opacity: 0;
+  }
+  78% {
+    opacity: 1;
+  }
+  92%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-gavel {
+  transform-box: view-box;
+  animation: gavel-strike 3.6s ease-in-out infinite;
+  animation-delay: 2.2s;
+}
+
+.animate-gavel-impact {
+  opacity: 0;
+  animation: gavel-impact 3.6s linear infinite;
+  animation-delay: 2.2s;
+}
+
+/* Soft pulse for small accent shapes (e.g. the courthouse seal) */
+@keyframes soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+}
+
+.animate-soft-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: soft-pulse 3s ease-in-out infinite;
+  animation-delay: 2.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gavel,
+  .animate-gavel-impact,
+  .animate-soft-pulse {
+    animation: none;
+  }
 }

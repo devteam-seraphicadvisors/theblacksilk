@@ -39,6 +39,7 @@ model User {
   email                 String                 @unique
   emailVerified         DateTime?
   image                 String?
+  phone                 String?
   password              String?
   role                  String                 @default("user")
   mfaEnabled            Boolean                @default(false)

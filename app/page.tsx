@@ -3,10 +3,14 @@ import { IntroSection } from "@/components/intro-section";
 import { Stats } from "@/components/stats";
 import { CommitteesSection } from "@/components/committees-section";
 import { FeaturedContent } from "@/components/featured-content";
+import { ExplorePlatform } from "@/components/home/explore-platform";
+import { EpisodesShowcase } from "@/components/home/episodes-showcase";
+import { FrameworkSection } from "@/components/home/framework-section";
+import { LeadershipSection } from "@/components/home/leadership-section";
+import { GetInvolved } from "@/components/home/get-involved";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { generateMetadata } from "@/lib/seo";
 
-// Force dynamic rendering - this page uses database-dependent components
-export const dynamic = "force-dynamic";
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export const metadata = generateMetadata({
@@ -49,9 +53,8 @@ export default function HomePage() {
         },
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "+91-11-1234-5678",
           contactType: "customer service",
-          email: "info@blacksilk.org",
+          email: "info@theblacksilk.org",
           areaServed: "IN",
           availableLanguage: "en",
         },
@@ -70,16 +73,7 @@ export default function HomePage() {
           "Ethical Development and Judicious Use of Digital Technologies",
         publisher: {
           "@id": "https://theblacksilk.org/#organization",
-        },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate:
-              "https://theblacksilk.org/search?q={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
-        },
+        }
       },
       {
         "@type": "BreadcrumbList",
@@ -106,10 +100,16 @@ export default function HomePage() {
       />
       <main className="w-full min-h-screen">
         <Hero />
-        <IntroSection />
         <Stats />
+        <IntroSection />
+        <ExplorePlatform />
+        <EpisodesShowcase />
+        <FrameworkSection />
         <CommitteesSection />
         <FeaturedContent />
+        <LeadershipSection />
+        <GetInvolved />
+        <ScrollReveal />
       </main>
     </>
   );

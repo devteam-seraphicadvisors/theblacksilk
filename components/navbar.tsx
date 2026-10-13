@@ -48,7 +48,6 @@ const navigation = [
     href: "/community",
     children: [
       { name: "Membership", href: "/community/membership" },
-      { name: "Directory", href: "/community/directory" },
       { name: "Committees", href: "/community/committees" },
     ],
   },
@@ -68,14 +67,6 @@ const navigation = [
       { name: "Blog", href: "/knowledge-hub/blog" },
       { name: "Fact Sheets", href: "/knowledge-hub/fact-sheets" },
       { name: "Newsletter", href: "/knowledge-hub/newsletter" },
-    ],
-  },
-  {
-    name: "Careers",
-    href: "/careers",
-    children: [
-      { name: "Jobs", href: "/careers/jobs" },
-      { name: "Mentorship", href: "/careers/mentorship" },
     ],
   },
 ];

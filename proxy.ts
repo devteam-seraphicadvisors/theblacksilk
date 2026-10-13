@@ -8,6 +8,15 @@ import type { NextRequestWithAuth } from "next-auth/middleware";
 // Add new member-only or admin-only page sections here.
 const protectedPageRoutes = ["/dashboard", "/admin", "/onboarding"];
 
+// Page sections hidden from the public site until they are ready. They return
+// the 404 page; their code is kept. Remove an entry (and restore its nav,
+// footer and sitemap links) to re-enable it.
+const hiddenPageRoutes = [
+  "/careers",
+  "/get-involved/volunteer",
+  "/community/directory",
+];
+
 // True when pathname is `route` itself or nested under it (not "/dashboardx")
 const isUnder = (pathname: string, route: string) =>
   pathname === route || pathname.startsWith(route + "/");
@@ -43,11 +52,11 @@ const authMiddleware = withAuth(
       pathname.startsWith("/membership");
     const isOnboarding = isUnder(pathname, "/onboarding");
 
+    // Membership is optional: free accounts can onboard and use the dashboard;
+    // member-only features are gated inside the dashboard itself.
+
     // If user is authenticated and tries to access auth pages, redirect appropriately
     if (isAuthPage && isAuth) {
-      if (!token?.hasMembership) {
-        return NextResponse.redirect(new URL("/community/membership", req.url));
-      }
       if (!token?.onboardingCompleted) {
         return NextResponse.redirect(new URL("/onboarding", req.url));
       }
@@ -59,18 +68,8 @@ const authMiddleware = withAuth(
       return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    // If authenticated user tries to access dashboard without membership
-    if (isDashboard && isAuth && !token?.hasMembership) {
-      return NextResponse.redirect(new URL("/community/membership", req.url));
-    }
-
-    // If authenticated user with membership tries to access dashboard without completing onboarding
-    if (
-      isDashboard &&
-      isAuth &&
-      token?.hasMembership &&
-      !token?.onboardingCompleted
-    ) {
+    // If authenticated user tries to access dashboard without completing onboarding
+    if (isDashboard && isAuth && !token?.onboardingCompleted) {
       return NextResponse.redirect(new URL("/onboarding", req.url));
     }
 
@@ -80,11 +79,6 @@ const authMiddleware = withAuth(
         return NextResponse.redirect(new URL("/onboarding", req.url));
       }
       return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
-
-    // If user without membership tries to access onboarding
-    if (isOnboarding && isAuth && !token?.hasMembership) {
-      return NextResponse.redirect(new URL("/community/membership", req.url));
     }
 
     // Admin route protection
@@ -172,6 +166,12 @@ export default async function proxy(req: any) {
       httpOnly: false,
     });
     return res;
+  }
+
+  // Hidden sections: rewrite to an unmatched path so Next serves the 404 page
+  // with a real 404 status
+  if (hiddenPageRoutes.some((route) => isUnder(pathname, route))) {
+    return NextResponse.rewrite(new URL("/__hidden", req.url));
   }
 
   // Handle API routes specifically to avoid redirecting API fetches to HTML login pages

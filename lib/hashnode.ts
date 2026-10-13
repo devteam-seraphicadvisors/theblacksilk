@@ -30,7 +30,7 @@ const FALLBACK_POSTS: HashnodePost[] = [
     slug: "regulatory-frontier-artificial-intelligence-2026",
     publishedAt: "2026-03-15T10:00:00.000Z",
     coverImage: {
-      url: "/images/events-hero.jpg",
+      url: "/images/featured-article.jpg",
     },
     author: {
       name: "The Black Silk Editorial Board",
@@ -58,7 +58,7 @@ const FALLBACK_POSTS: HashnodePost[] = [
     slug: "digital-personal-data-protection-compliance-guide",
     publishedAt: "2026-02-28T14:30:00.000Z",
     coverImage: {
-      url: "/images/events-hero.jpg",
+      url: "/images/pub-data.jpg",
     },
     author: {
       name: "Adv. Rajesh Varma",
@@ -82,7 +82,7 @@ const FALLBACK_POSTS: HashnodePost[] = [
     slug: "smart-contracts-autonomous-dispute-resolution",
     publishedAt: "2026-01-20T09:15:00.000Z",
     coverImage: {
-      url: "/images/events-hero.jpg",
+      url: "/images/pub-blockchain.jpg",
     },
     author: {
       name: "Dr. Ananya Sen",

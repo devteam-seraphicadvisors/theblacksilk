@@ -11,24 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  MessageSquare,
-  Users,
-  Building,
-} from "lucide-react";
-import Image from "next/image";
+import { Send, MessageSquare } from "lucide-react";
 
 export const metadata = generateMetadata({
   title: "Contact Us - The Black Silk",
@@ -36,41 +25,6 @@ export const metadata = generateMetadata({
     "Get in touch with The Black Silk team. We're here to help with your legal technology questions and collaboration opportunities.",
   canonical: "https://theblacksilk.org/get-involved/contact",
 });
-
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    details: ["info@theblacksilk.org", "partnerships@theblacksilk.org"],
-    description: "For general inquiries and partnership opportunities",
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    details: ["+91 11 4567 8900", "+91 11 4567 8901"],
-    description: "Monday to Friday, 9:00 AM to 6:00 PM IST",
-  },
-  {
-    icon: MapPin,
-    title: "Address",
-    details: [
-      "The Black Silk Foundation",
-      "123 Legal Tech Hub, Connaught Place",
-      "New Delhi 110001, India",
-    ],
-    description: "Our headquarters in the heart of New Delhi",
-  },
-  {
-    icon: Clock,
-    title: "Office Hours",
-    details: [
-      "Monday - Friday: 9:00 AM - 6:00 PM",
-      "Saturday: 10:00 AM - 2:00 PM",
-      "Sunday: Closed",
-    ],
-    description: "We're here to help during business hours",
-  },
-];
 
 const departments = [
   {
@@ -102,33 +56,6 @@ const departments = [
     name: "Careers",
     email: "careers@theblacksilk.org",
     description: "Job opportunities and career-related questions",
-  },
-];
-
-const officeLocations = [
-  {
-    city: "New Delhi",
-    address: "123 Legal Tech Hub, Connaught Place, New Delhi 110001",
-    phone: "+91 11 4567 8900",
-    email: "delhi@theblacksilk.org",
-    type: "Headquarters",
-    image: "/images/office-delhi.jpg",
-  },
-  {
-    city: "Mumbai",
-    address: "456 Innovation Center, Bandra Kurla Complex, Mumbai 400051",
-    phone: "+91 22 4567 8900",
-    email: "mumbai@theblacksilk.org",
-    type: "Regional Office",
-    image: "/images/office-mumbai.jpg",
-  },
-  {
-    city: "Bangalore",
-    address: "789 Tech Park, Electronic City, Bangalore 560100",
-    phone: "+91 80 4567 8900",
-    email: "bangalore@theblacksilk.org",
-    type: "Research Center",
-    image: "/images/office-bangalore.jpg",
   },
 ];
 
@@ -184,50 +111,15 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Contact Information */}
-        <section className="py-16 bg-white border-b border-neutral-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {contactInfo.map((info, index) => (
-                  <Card
-                    key={index}
-                    className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
-                  >
-                    <CardContent className="p-8">
-                      <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
-                        <info.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-lg font-serif font-normal text-black mb-4">
-                        {info.title}
-                      </h3>
-                      <div className="space-y-2 mb-4">
-                        {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-neutral-600 text-sm">
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                      <p className="text-neutral-500 text-xs">
-                        {info.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Contact Form */}
-        <section className="py-24 bg-neutral-50 border-b border-neutral-200">
+        <section className="py-24 bg-white border-b border-neutral-200">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="max-w-3xl mx-auto">
+              <div>
                 {/* Form */}
                 <div>
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-serif font-normal text-black mb-4">
+                  <div className="mb-8 text-center">
+                    <h2 className="text-3xl md:text-4xl font-serif font-normal text-black mb-4">
                       Send us a Message
                     </h2>
                     <p className="text-neutral-600">
@@ -352,118 +244,6 @@ export default function ContactPage() {
                     </CardContent>
                   </Card>
                 </div>
-
-                {/* Departments */}
-                <div className="space-y-8">
-                  {/* Departments */}
-                  <div>
-                    <h3 className="text-2xl font-serif font-normal text-black mb-6">
-                      Departments
-                    </h3>
-                    <div className="space-y-4">
-                      {departments.map((dept, index) => (
-                        <Card
-                          key={index}
-                          className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors"
-                        >
-                          <CardContent className="p-6">
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <h4 className="font-medium text-black mb-2">
-                                  {dept.name}
-                                </h4>
-                                <p className="text-sm text-neutral-600 mb-3">
-                                  {dept.description}
-                                </p>
-                                <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
-                                  {dept.email}
-                                </Badge>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Office Locations */}
-        <section className="py-24 bg-white border-b border-neutral-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
-                  Our Offices
-                </h2>
-                <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
-                  Visit us at our offices across India or connect with us
-                  virtually
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {officeLocations.map((office, index) => (
-                  <Card
-                    key={index}
-                    className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors overflow-hidden group"
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        src={office.image || "/placeholder.svg"}
-                        alt={`${office.city} Office`}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute top-4 left-4">
-                        <Badge className="rounded-none border-black bg-black text-white hover:bg-black font-mono text-[10px] uppercase tracking-wider">
-                          {office.type}
-                        </Badge>
-                      </div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-serif font-normal mb-1">
-                          {office.city}
-                        </h3>
-                      </div>
-                    </div>
-
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <MapPin className="h-4 w-4 text-neutral-700 mt-1 flex-shrink-0" />
-                          <p className="text-sm text-neutral-600">
-                            {office.address}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Phone className="h-4 w-4 text-neutral-700 flex-shrink-0" />
-                          <p className="text-sm text-neutral-600">
-                            {office.phone}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Mail className="h-4 w-4 text-neutral-700 flex-shrink-0" />
-                          <p className="text-sm text-neutral-600">
-                            {office.email}
-                          </p>
-                        </div>
-                      </div>
-
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full rounded-none border-black text-black hover:bg-black hover:text-white font-mono text-xs uppercase tracking-wider mt-6"
-                      >
-                        <MapPin className="h-4 w-4 mr-2" />
-                        View on Map
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
               </div>
             </div>
           </div>

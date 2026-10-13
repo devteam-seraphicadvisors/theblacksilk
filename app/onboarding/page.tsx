@@ -300,7 +300,7 @@ export default function OnboardingPage() {
               <Label htmlFor="goals">Your Goals with The Black Silk</Label>
               <Textarea
                 id="goals"
-                placeholder="What do you hope to achieve through your membership?"
+                placeholder="What do you hope to achieve through The Black Silk?"
                 value={formData.goals}
                 onChange={(e) => handleInputChange("goals", e.target.value)}
                 rows={3}

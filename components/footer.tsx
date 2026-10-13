@@ -2,15 +2,37 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import {
-  MapPin,
-  Mail,
-  Phone,
-  ArrowRight,
-  ArrowUpRight,
-} from "lucide-react";
+import { Mail, ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { CallToAction } from "@/components/call-to-action";
+
+// Footer link columns. Hidden sections (careers, volunteer, directory) are
+// intentionally not listed; see hiddenPageRoutes in proxy.ts.
+const footerColumns = [
+  {
+    // What people join, attend, and read
+    title: "Community & Insights",
+    links: [
+      { name: "Membership", href: "/community/membership" },
+      { name: "Committees", href: "/community/committees" },
+      { name: "Events", href: "/events" },
+      { name: "Forum", href: "/forum" },
+      { name: "Insights & Blog", href: "/knowledge-hub/blog" },
+      { name: "Fact Sheets", href: "/knowledge-hub/fact-sheets" },
+    ],
+  },
+  {
+    // The organization and ways to work with it
+    title: "Organization",
+    links: [
+      { name: "About Us", href: "/about" },
+      { name: "Partner With Us", href: "/get-involved/partnerships" },
+      { name: "Sponsorship", href: "/partnerships/sponsor" },
+      { name: "Newsletter", href: "/knowledge-hub/newsletter" },
+      { name: "Contact Us", href: "/get-involved/contact" },
+    ],
+  },
+];
 
 export function Footer() {
   const pathname = usePathname();
@@ -29,11 +51,11 @@ export function Footer() {
     <>
       <CallToAction />
       <footer className="bg-black text-white border-t border-neutral-800">
-      <div className="container mx-auto px-4 max-w-7xl pt-16 pb-12">
+      <div className="site-container pt-16 pb-12">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
-          {/* Brand & Organization Column (3 cols on lg) */}
-          <div className="lg:col-span-3 space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
+          {/* Brand & Organization Column (5 cols on lg) */}
+          <div className="md:col-span-3 lg:col-span-5 lg:pr-12 space-y-6">
             <Link href="/" className="inline-block group">
               {/* Exact Logo from Navbar, inverted for crisp display on pure black */}
               <div className="relative w-[150px] h-[42px] sm:w-[170px] sm:h-[48px] invert">
@@ -92,86 +114,40 @@ export function Footer() {
                 </div>
               </Link>
             </div>
+
+            {/* Contact Email */}
+            <a
+              href="mailto:info@theblacksilk.org"
+              className="inline-flex items-center gap-2 !text-neutral-300 hover:!text-white transition-colors text-sm"
+            >
+              <Mail className="h-4 w-4 text-white" />
+              info@theblacksilk.org
+            </a>
           </div>
 
-          {/* Navigation Column 1: Platform (2 cols on lg) */}
-          <div className="lg:col-span-2 space-y-4">
-            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
-              Platform
-            </span>
-            <ul className="space-y-3">
-              {[
-                { name: "About Us", href: "/about" },
-                { name: "Membership", href: "/community/membership" },
-                { name: "Committees", href: "/community/committees" },
-                { name: "Events", href: "/events" },
-                { name: "Forum", href: "/forum" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
-                  >
-                    <span>{link.name}</span>
-                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Navigation: two link columns (2 cols each on lg) */}
+          {footerColumns.map((column) => (
+            <div key={column.title} className="lg:col-span-2 space-y-4">
+              <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
+                {column.title}
+              </span>
+              <ul className="space-y-3">
+                {column.links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
+                    >
+                      <span>{link.name}</span>
+                      <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* Navigation Column 2: Knowledge & Network (2 cols on lg) */}
-          <div className="lg:col-span-2 space-y-4">
-            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
-              Knowledge
-            </span>
-            <ul className="space-y-3">
-              {[
-                { name: "Insights & Blog", href: "/knowledge-hub/blog" },
-                { name: "Fact Sheets", href: "/knowledge-hub/fact-sheets" },
-                { name: "Newsletter", href: "/knowledge-hub/newsletter" },
-                { name: "Legal Tech Careers", href: "/careers/jobs" },
-                { name: "Mentorship", href: "/careers/mentorship" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
-                  >
-                    <span>{link.name}</span>
-                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Navigation Column 3: Get Involved (2 cols on lg) */}
-          <div className="lg:col-span-2 space-y-4">
-            <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
-              Get Involved
-            </span>
-            <ul className="space-y-3">
-              {[
-                { name: "Volunteer", href: "/get-involved/volunteer" },
-                { name: "Partner With Us", href: "/get-involved/partnerships" },
-                { name: "Sponsorship", href: "/partnerships/sponsor" },
-                { name: "Contact Us", href: "/get-involved/contact" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="!text-neutral-300 hover:!text-white transition-colors duration-200 text-sm group inline-flex items-center"
-                  >
-                    <span>{link.name}</span>
-                    <ArrowRight className="h-3 w-3 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-white" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Navigation Column 4: Newsletter (3 cols on lg) */}
+          {/* Newsletter (3 cols on lg) */}
           <div className="lg:col-span-3 space-y-4">
             <span className="text-xs uppercase tracking-widest font-mono text-neutral-400 block mb-2">
               Stay Informed
@@ -193,36 +169,6 @@ export function Footer() {
                 <ArrowUpRight className="ml-1.5 h-3.5 w-3.5 text-black" />
               </button>
             </form>
-          </div>
-        </div>
-
-        {/* Contact Info Row */}
-        <div className="py-8 border-b border-neutral-800">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm !text-neutral-300 font-sans">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
-                <MapPin className="h-4 w-4 text-white" />
-              </div>
-              <span>New Delhi, India</span>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
-                <Mail className="h-4 w-4 text-white" />
-              </div>
-              <a href="mailto:info@blacksilk.org" className="hover:text-white transition-colors">
-                info@blacksilk.org
-              </a>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-none border border-neutral-800 bg-neutral-950 flex items-center justify-center flex-shrink-0">
-                <Phone className="h-4 w-4 text-white" />
-              </div>
-              <a href="tel:+911112345678" className="hover:text-white transition-colors">
-                +91 11 1234 5678
-              </a>
-            </div>
           </div>
         </div>
 

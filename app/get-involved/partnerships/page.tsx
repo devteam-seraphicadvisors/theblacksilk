@@ -120,41 +120,6 @@ const partnershipTypes = [
   },
 ];
 
-const currentPartners = [
-  {
-    name: "Supreme Court of India",
-    type: "Government",
-    description:
-      "Collaborating on digital transformation initiatives for the Indian judiciary",
-    logo: "/images/partner-supreme-court.jpg",
-    partnership: "Digital Courts Initiative",
-  },
-  {
-    name: "Indian Institute of Technology",
-    type: "Academic",
-    description:
-      "Joint research on AI applications in legal practice and policy development",
-    logo: "/images/partner-iit.jpg",
-    partnership: "AI Legal Research Program",
-  },
-  {
-    name: "LegalTech Innovations Pvt Ltd",
-    type: "Corporate",
-    description:
-      "Developing next-generation legal technology solutions for Indian market",
-    logo: "/images/partner-legaltech.jpg",
-    partnership: "Innovation Lab",
-  },
-  {
-    name: "Bar Council of India",
-    type: "Professional",
-    description:
-      "Training and capacity building programs for legal professionals",
-    logo: "/images/partner-bar-council.jpg",
-    partnership: "Professional Development",
-  },
-];
-
 const partnershipBenefits = [
   {
     icon: Users,
@@ -182,12 +147,9 @@ const partnershipBenefits = [
   },
 ];
 
-const partnershipStats = [
-  { label: "Active Partners", value: "25+", icon: Handshake },
-  { label: "Joint Projects", value: "40+", icon: Target },
-  { label: "Research Papers", value: "15+", icon: Award },
-  { label: "Events Organized", value: "30+", icon: Users },
-];
+// Success stories are hidden until real case studies are available.
+// Set to true (and replace the data below) to show the section again.
+const SHOW_SUCCESS_STORIES = false;
 
 const successStories = [
   {
@@ -237,32 +199,6 @@ export default function PartnershipsPage() {
               Join forces with us to advance legal technology innovation and
               transform the future of legal practice in India
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Stats */}
-      <section className="py-16 bg-white border-b border-neutral-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {partnershipStats.map((stat, index) => (
-                <Card
-                  key={index}
-                  className="border border-neutral-200 rounded-none shadow-none text-center group hover:border-black transition-colors"
-                >
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-black border border-neutral-800 rounded-none flex items-center justify-center mx-auto mb-6 group-hover:bg-neutral-900 transition-colors">
-                      <stat.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="text-3xl font-serif font-normal text-black mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-neutral-600">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -420,59 +356,8 @@ export default function PartnershipsPage() {
         </div>
       </section>
 
-      {/* Current Partners */}
-      <section className="py-24 bg-white border-b border-neutral-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-black mb-4">
-                Our Partners
-              </h2>
-              <p className="text-lg text-neutral-600 font-sans font-light leading-relaxed max-w-3xl mx-auto">
-                We're proud to collaborate with leading organizations across
-                various sectors
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {currentPartners.map((partner, index) => (
-                <Card
-                  key={index}
-                  className="border border-neutral-200 rounded-none shadow-none hover:border-black transition-colors overflow-hidden group"
-                >
-                  <div className="relative h-32 overflow-hidden bg-neutral-100">
-                    <Image
-                      src={partner.logo || "/placeholder.svg"}
-                      alt={partner.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute top-4 right-4">
-                      <Badge variant="outline" className="rounded-none border-neutral-300 bg-white text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
-                        {partner.type}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-serif font-normal text-black mb-2 group-hover:text-neutral-700 transition-colors">
-                      {partner.name}
-                    </h3>
-                    <p className="text-sm text-neutral-600 mb-3 line-clamp-3">
-                      {partner.description}
-                    </p>
-                    <Badge variant="outline" className="rounded-none border-neutral-300 bg-neutral-50 text-neutral-700 font-mono text-[10px] uppercase tracking-wider">
-                      {partner.partnership}
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
+      {/* Success Stories (hidden, see SHOW_SUCCESS_STORIES) */}
+      {SHOW_SUCCESS_STORIES && (
       <section className="py-24 bg-neutral-50 border-b border-neutral-200">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -523,6 +408,7 @@ export default function PartnershipsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Partnership Benefits */}
       <section className="py-24 bg-white border-b border-neutral-200">

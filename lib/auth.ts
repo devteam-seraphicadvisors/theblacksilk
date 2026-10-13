@@ -206,11 +206,10 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      // Handle session updates
+      // Handle session updates. Membership is never taken from the client: it
+      // only comes from the database (hasActiveMembership above), so free
+      // accounts cannot grant themselves member access via update().
       if (trigger === "update" && session) {
-        if (session.hasMembership !== undefined) {
-          token.hasMembership = session.hasMembership;
-        }
         if (session.onboardingCompleted !== undefined) {
           token.onboardingCompleted = session.onboardingCompleted;
         }
